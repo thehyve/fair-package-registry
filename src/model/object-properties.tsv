@@ -1,0 +1,24 @@
+IRI	Type	Label	Dutch label	Description	Domain	Range
+ID	TYPE	LABEL	AL rdfs:label@nl	A rdfs:comment	DOMAIN	RANGE
+fpr-o:hasPackageType	object property	has package type	heeft pakkettype	Indicates the package type of a Package Statement	Package Statement	Package Type
+fpr-o:hasPackageTypeMedicationSubtype	object property	has package type medical subtype	heeft pakkettype geneesmiddel subtype	Indicates the package subtype in case the intervention is medication	Package Statement	Package Type Medication Subtype
+fpr-o:hasStatus	object property	has status	heeft status	Indicates the editorial status of the Package Statement	Package Statement	Editorial Status
+fpr-o:hasAssessmentType	object property	has assessment type	heeft beoordelingstype	Indicates the assessment type of a Package Statement	Package Statement	Assessment Type
+fpr-o:hasIndication	object property	has indication	heeft indication	The indication that an IIC assessment is about	Intervention-Indication Combination Assessment	Population
+fpr-o:hasIntervention	object property	has intervention	heeft intervention	The intervention that a IIC assessment is about	Intervention-Indication Combination Assessment	Intervention
+fpr-o:hasIICAssessment	object property	has IIC assessment	heeft IIC assessment	An IIC assessment that a Package Statement covers	Package Statement	Intervention-Indication Combination Assessment
+fpr-o:hasEMSMP	object property	has EMSMP	heeft SWP	The discussion of EMSMP for an IIC	Intervention-Indication Combination Assessment	Established Medical Science and Medical Practice
+fpr-o:hasPICO	object property	has PICO	heeft PICO	The PICO that is defined for an EMSMP investigation	Established Medical Science and Medical Practice	PICO
+fpr-o:hasSystematicLiteratureReview	object property	has systematic literature review	heeft systematisch literatuuronderzoek	The search for evidence and results for the EMSMP evaluation	Established Medical Science and Medical Practice	Systematic Literature Review
+fpr-o:hasDateLimit	object property	has date limit	heeft datum limiet	The date limit for a search for evidence	Literature Search	time:Interval
+fpr-o:hasEvidenceType	object property	has evidence type	heeft bewijstype	The type of evidence (RTC, Systematic review etc) that was searched for	Literature Search	
+fpr-o:hasOutcomeMeasurement	object property	has outcome measurement	heeft uitkomstmaat meting	The actual value of a outcome measure that is part of the EMSMP evaluation	Established Medical Science and Medical Practice	STATO:statistic
+fpr-o:hasBIA	object property	has BIA	heeft BIA	The Budget Impact Analysis for an IIC	Intervention-Indication Combination Assessment	Budget Impact Analysis
+fpr-o:hasScenario	object property	has scenario	heeft scenario	The scenario for a BIA dataset	DataSet	Scenario
+fpr-o:hasTrendAssumption	object property	has trend assumption	heeft trend verwachting	The trend assumption dataset of a BIA	BIA	DataSet
+fpr-o:hasCostEstimation	object property	has cost estimation	heeft kosten verwachting	The cost estimation dataset of a BIA	BIA	DataSet
+fpr-o:hasCostType	object property	has cost type	heeft kostentype	The cost type dimension of a particular cost estimation value	Observation	CostType
+fpr-o:hasConclusion	object property	has conclusion	heeft conclusion	The conclusion about a ICC assessment, expressed as positive or negative	Intervention-Indication Combination Assessment	Evaluation Outcome
+fpr-o:hasRelativeEffectiveness	object property	has relative effectiveness	heeft relatieve effectiviteit	The relative effectiveness of a Intervention for an Indication, expressed as positive, negative, or equal	Established Medical Science and Medical Practice	Evaluation Outcome
+fpr-o:hasCostEffectiveness	object property	has cost-effectiveness	heeft kosteneffectiviteit	The discussion of cost-effectiveness for an IIC	Intervention-Indication Combination Assessment	Cost-Effectiveness
+fpr-o:hasManagedEntryAgreement	object property	has managed entry agreement	heeft beheerde toegangsovereenkomst	A managed entry agreement for a IIC	Intervention-Indication Combination Assessment	Managed Entry Agreement

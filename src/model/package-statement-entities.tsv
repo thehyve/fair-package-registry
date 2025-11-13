@@ -1,0 +1,18 @@
+IRI	Type	Label	Dutch label	Superclass	Domain	Range	Close match
+ID	TYPE	LABEL	AL rdfs:label@nl	SC % SPLIT=|	DOMAIN	RANGE	I closeMatch
+fpr:PackageStatement	class	Package Statement	Pakket uitspraak				
+fpr:IIC	class	Intervention-Indication Combination	Interventie-Indicatie Combinatie				
+fpr:EMSMP	class	EMSMP	Stand Wetenschap en Praktijk				
+fpr:SystematicLiteratureReview	class	Systematic Literature Review	Systematisch Literatuur Onderzoek	Activity			SystematicReview
+fpr:LiteratureSearch	class	Literature Search	Literatuuronderzoek	Activity|SearchAction			Literature search
+fpr:OutcomeMeasurement	class	Outcome Measurement	Uitkomstmaatwaarde				
+fpr:packageType	object property	package type	pakket type				
+fpr:caseNumber	data property	case number	zaak nummer				
+fpr:manufacturerName	data property	manufacturer name					
+fpr:claimCode	data property	claim code					
+fpr:careActivityCode	data property	care activity code					
+fpr:hasPICO	object property	has pico	heeft pico		fpr:EMSMP	PICO	
+fpr:hasSLR	object property	has systematic literature review	heeft systematisch literatuuronderzoek		fpr:EMSMP	fpr:SystematicLiteratureReview	
+fpr:hasEMSMP	object property	has emsmp	heeft swp		fpr:IIC	fpr:EMSMP	
+schema:query	data property	query					
+							

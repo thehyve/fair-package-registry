@@ -1,0 +1,450 @@
+package-statement:
+  id: PS-AFT
+  title: Borstreconstructie middels autologe vettransplantatie (AFT) na uitwendige weefsel expansie met een externe expander bij vrouwen met een totale borstverwijdering na borstkanker of ter preventie wegens genetische predispositie
+  date: 2023-01-01
+  package-type: PointOfView
+  case-number: 2022006448
+  serial-number: 2022006461
+  status: Definitive
+  contact-person: [Ingrid de Groot,Angèl Link,Steef Redeker,Yoka Kusumanto]
+  department: Zorg 1
+  team: Pakket en Advies
+  see-also: "https://www.zorginstituutnederland.nl/documenten/2023/01/01/standpunt-aft-na-een-totale-borstverwijdering"
+  guarantee-document: "https://www.zorginstituutnederland.nl/site/binaries/site-content/collections/documents/2023/01/01/standpunt-aft-na-een-totale-borstverwijdering/Waarborgendocument+autologe+vettransplantatie.pdf"
+  iic-assessments:
+  - IICAssessment-AFT
+
+populations:
+  - id: Population-WomenSimpleMastectomyAfterBreastCancer
+    title: Vrouwen die besloten hebben tot borstreconstructie na totale borstverwijdering ter behandeling van borstkanker
+    sex: Female
+    age: 
+    conditions:
+      - Breast Cancer
+    treatment: [Simple mastectomy]
+  - id: Population-WomenSimpleMastectomyWithGeneticPredisposition
+    title: Vrouwen die besloten hebben tot borstreconstructie na totale borstverwijdering ter preventie van borstkanker wegens genetische predispositie
+    age: 
+    conditions:
+      - Genetic predisposition to breast cancer
+    treatment: [Simple mastectomy]
+
+interventions:
+  # TODO: Add Dutch title
+  - id: Intervention-AFT
+    title: Autologe vettransplantatie (AFT)
+    applied-intervention: Autologous fat transplantation (AFT)
+    intervention-rationale: Verbeteren esthetisch resultaat
+    intervention-classification: Surgical
+  - id: Intervention-BRAVA
+    title: Uitwendige weefsel expansie met BRAVA
+    applied-intervention: Breast Tissue Expander
+    intervention-rationale: Weefsel expansie voor AFT
+    intervention-classification: Medical Devices
+  - id: Intervention-AFT-BRAVA
+    title: Autologe vettransplantatie (AFT) na uitwendige weefsel expansie met BRAVA
+    applied-intervention: Autologous fat transplantation (AFT) after external tissue expansion using BRAVA
+    intervention-rationale: Herstellen borstvolume en -vorm
+    intervention-classification: Surgical
+    marketing-authorization-holder: 
+    claim-code: 
+    care-activity-code: "033973"
+    care-product-code: "982017017"
+    costs: 5_565 
+    child-interventions:
+    - Intervention-AFT
+    - Intervention-BRAVA
+  - id: Intervention-IBR
+    title: Implant-based breast reconstruction (IBR)
+    applied-intervention: Implant-based breast reconstruction (IBR)
+    intervention-rationale: Herstellen borstvolume en -vorm
+    intervention-classification: Surgical
+    marketing-authorization-holder: 
+    claim-code:
+    care-activity-code:
+    care-product-code: "990004080"
+    costs: 3_975
+  - id: Intervention-ABR
+    title: Autologe borstreconstructie (ABR)
+    applied-intervention: Autologous breast reconstruction (ABR)
+    intervention-rationale: Herstellen borstvolume en -vorm
+    intervention-classification: Surgical
+    marketing-authorization-holder: 
+    claim-code:
+    care-activity-code: 
+    care-product-code: "990004018"
+    costs: 14_490
+
+intervention-groups:
+  - id: InterventionGroup-AFT
+    title: Borstreconstructie met AFT
+    intervention-ids: [Intervention-AFT-BRAVA]
+  - id: InterventionGroup-IBRorABR
+    title: Borstreconstructie met IBR of ABR
+    intervention-ids: [Intervention-IBR, Intervention-ABR]
+
+outcomes:
+  # MammaOnco
+  - id: Outcome-BreastvolumeRetention
+    name: Breast volume retention
+    outcome-classification: Aesthetic
+    outcome-measurement: Breast volume retention
+    specific-metric: 3D fotografie met VECTRA®XT (ml)
+    surrogate-outcome: False
+  - id: Outcome-BREASTQPatientSatisfactionWithBreast
+    name: Patient satisfaction with breast
+    outcome-classification: Patient-reported
+    outcome-measurement: BREAST-Q - satisfaction with breast
+    surrogate-outcome: False
+  - id: Outcome-SeriousPerioperativeComplications
+    name: Serious perioperative complications
+    outcome-classification: Adverse events
+    outcome-measurement: Number of serious complications
+    surrogate-outcome: False
+  - id: Outcome-LocoregionalOncologicEvents
+    name: Locoregional oncologic events
+    outcome-classification: Adverse events
+    outcome-measurement: Number of locoregional oncologic events
+    surrogate-outcome: False
+  - id: Outcome-BREASTQPhysicalWellbeing
+    name: BREAST-Q - physical wellbeing
+    outcome-classification: Patient-reported
+    outcome-measurement: BREAST-Q - physical wellbeing
+    surrogate-outcome: False
+  - id: Outcome-BREASTQPsychosocialWellbeing
+    name: BREAST-Q - psychosocial wellbeing
+    outcome-classification: Patient-reported
+    outcome-measurement: BREAST-Q - psychosocial wellbeing
+    surrogate-outcome: False
+  - id: Outcome-BREASTQSexualWellbeing
+    name: BREAST-Q - sexual well-being
+    outcome-classification: Patient-reported
+    outcome-measurement: BREAST-Q - sexual well-being
+    surrogate-outcome: False
+  - id: Outcome-NonSeriousSideEffects
+    name: Non-serious side effects
+    outcome-classification: Adverse events
+    outcome-measurement: Number of non-serious side effects
+    surrogate-outcome: False
+
+outcome-groups:
+  - id: OutcomeGroup-AFT-Between6to12MonthsPostIntervention
+    endpoint: Between 6 and 12 months post-intervention
+    outcome-ids: [Outcome-BreastvolumeRetention, Outcome-LocoregionalOncologicEvents]
+  - id: OutcomeGroup-AFT-Between12MonthsPostIntervention
+    endpoint: "12 months post-intervention"
+    outcome-ids: [Outcome-BREASTQPatientSatisfactionWithBreast, Outcome-BREASTQPhysicalWellbeing, Outcome-BREASTQPsychosocialWellbeing, Outcome-BREASTQSexualWellbeing]
+  - id: OutcomeGroup-AFT-PeriAndPostOperativeTill12MonthsPostIntervention
+    endpoint: "12 Peri- en postoperative till 12 months postintervention"
+    outcome-ids: [Outcome-SeriousPerioperativeComplications, Outcome-NonSeriousSideEffects]
+  - id: OutcomeGroup-AFT-12to60MonthsPostIntervention
+    outcome-ids: [Outcome-LocoregionalOncologicEvents]
+    endpoint: "12 to 60 months post-intervention"
+
+picots:
+  - id: PICOT-AFT
+    population-ids:
+    - Population-WomenSimpleMastectomyAfterBreastCancer
+    - Population-WomenSimpleMastectomyWithGeneticPredisposition
+    intervention-group-id: InterventionGroup-AFT
+    comparator-group-id: InterventionGroup-IBRorABR
+    outcome-group-ids:
+    - OutcomeGroup-AFT-Between6to12MonthsPostIntervention
+    - OutcomeGroup-AFT-Between12MonthsPostIntervention
+    - OutcomeGroup-AFT-PeriAndPostOperativeTill12MonthsPostIntervention
+    - OutcomeGroup-AFT-12to60MonthsPostIntervention
+
+intervention-indication-combination-assessments:
+  - id: IICAssessment-AFT
+    assessment-type: Initial
+    intervention-id: Intervention-AFT-BRAVA
+    indication-ids:
+    - Population-WomenSimpleMastectomyAfterBreastCancer
+    - Population-WomenSimpleMastectomyWithGeneticPredisposition
+    emsmp-id: EMSMP-AFT
+    bia-id: BIA-AFT
+    au-id: AU-AFT
+    conclusion: Positive
+    conclusion-text: "Sacituzumab govitecan voldoet aan de stand van de wetenschap en praktijk bij de behandeling van volwassen patiënten met inoperabele of gemetastaseerde triplenegatieve borstkanker, die twee of meer eerdere systemische therapieën hebben gekregen, waaronder één lijn taxaanbevattende therapie en tenminste één voor gevorderde ziekte. Het Zorginstituut adviseert u sacituzumab govitecan op te nemen in het verzekerde pakket voor deze indicatie. Het Zorginstituut acht een korting van tenminste 55% aangewezen. Zoals het Zorginstituut u in 2022 reeds adviseerde, dient bij de onderhandelingen te worden meegenomen dat indicatie-uitbreidingen van sacituzumab govitecan te verwachten zijn."
+    cost-effective: False
+
+emsmps: # Established Medical Science and Medical Practice
+  - id: EMSMP-AFT
+    title: Established Medical Science and Medical Practice - AFT
+    picots-id: PICOT-AFT
+    slr-id: SLR-AFT
+    outcome-measurement-ids:
+    - OutcomeMeasurement-BreastvolumeRetention-SMD
+    - OutcomeMeasurement-SeriousPerioperativeComplications-RR
+    - OutcomeMeasurement-SeriousPerioperativeComplications-AbsoluteDifference
+    - OutcomeMeasurement-LocoregionalOncologicEvents-RR
+    - OutcomeMeasurement-LocoregionalOncologicEvents-AbsoluteDifference
+    - OutcomeMeasurement-BREASTQPatientSatisfactionWithBreast-MD
+    - OutcomeMeasurement-BREASTQPhysicalWellbeing-MD
+    - OutcomeMeasurement-BREASTQPsychosocialWellbeing-MD
+    - OutcomeMeasurement-BREASTQSexualWellbeing-MD
+    # relative-effectiveness: Equal
+    adheres-to-emsmps: True
+
+
+systematic-literature-reviews:
+  - id: SLR-AFT
+    title: Systematisch literatuuronderzoek voor AFT
+    literature-searches: 
+    - LS-AFT-Embase-RCT-2022-04-28
+    - LS-AFT-Medline-RCT-2022-04-28
+    - LS-AFT-Cochrane-RCT-2022-04-28
+    - LS-AFT-Embase-SystematicReview-2022-04-28
+    - LS-AFT-Medline-SystematicReview-2022-04-28
+    - LS-AFT-Cochrane-SystematicReview-2022-04-28
+    literature-reference-list: LRL-AFT
+
+literature-searches:
+  - id: LS-AFT-Embase-RCT-2022-04-28
+    label: Literatuur zoekopdracht voor RCTs voor AFT in Embase op 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: Embase
+    target-url: https://www.embase.com/
+    evidence-type: RCT
+    query: >-
+      ('autologous fat'/de OR 'lipotransfer'/de OR 'lipomodelling'/de OR 'adipose tissue transplantation'/de OR (('adipose tissue'/exp) AND ('transplantation'/de )) OR 'autologous fat grafting'/de OR 'autologous fat transplantation'/de OR 'autologous fat transfer'/de OR 'autologous fat graft'/de OR 'autologous fat injection'/de OR (((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*):ab,ti,kw) AND ('breast tumor'/exp OR 'mastectomy'/exp OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ('clinical study'/exp OR (((clinical* OR case* OR family* OR intervent* OR longitudinal* OR open OR prospect* OR retrospect* OR multicent*) NEAR/2 (study OR studies OR article* OR trial* OR evaluation*)) OR case-report* OR case-serie* OR ((communit*) NEAR/2 (trial*)) OR RCT OR RCTS OR randomi* OR placebo* OR ((single* or double* or triple* or treble*) AND (blind* or mask*)) OR ((phase*) NEAR/3 (1 OR one OR I OR 2 OR two OR II OR 3 OR three OR III OR 4 OR four OR IV) NEAR/6 (trial* OR stud*))):ab,ti,kw) NOT ([Conference Abstract]/lim OR 'editorial'/it OR 'letter'/it OR 'note'/it OR 'chapter'/it OR 'conference abstract'/it OR 'conference paper'/it OR 'conference review'/it OR 'editorial'/it OR 'erratum'/it OR [preprint]/lim) NOT ('systematic review'/de OR 'systematic review (topic)'/de OR (systematic-review*):ab,ti,kw)
+  - id: LS-AFT-Medline-RCT-2022-04-28
+    label: Literatuur zoekopdracht voor RCTs voor AFT in Medline op 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: Medline
+    target-url: https://www.medline.com/
+    evidence-type: RCT
+    query: >-
+      (((exp "Adipose Tissue"/) AND ("Transplantation"/ OR "Transplantation, Autologous"/ OR "Tissue Transplantation"/ OR tr.fs)) OR (((autolog*) ADJ3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) ADJ3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*).ab,ti,kf.) AND (exp "Breast Neoplasms"/ OR exp "Mastectomy"/ OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) ADJ3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) ADJ6 (oncol*)) OR mammacarcin*).ab,ti,kf.) AND ("Clinical Study".pt OR "Clinical Trial".pt OR "Adaptive Clinical Trial".pt OR "Clinical Trial, Phase I".pt OR "Clinical Trial, Phase II".pt OR "Clinical Trial, Phase III".pt OR "Clinical Trial, Phase IV".pt OR "Controlled Clinical Trial".pt OR "Randomized Controlled Trial".pt OR "Equivalence Trial".pt OR "Pragmatic Clinical Trial".pt OR "Clinical Trial Protocol".pt OR "Observational Study".pt OR exp "Clinical Studies as Topic"/ OR (((clinical* OR case* OR family* OR intervent* OR longitudinal* OR open OR prospect* OR retrospect* OR multicent*) ADJ2 (study OR studies OR article* OR trial* OR evaluation*)) OR case-report* OR case-serie* OR ((communit*) ADJ2 (trial*)) OR RCT OR RCTS OR randomi* OR placebo* OR ((single* or double* or triple* or treble*) AND (blind* or mask*)) OR ((phase*) ADJ3 (1 OR one OR I OR 2 OR two OR II OR 3 OR three OR III OR 4 OR four OR IV) ADJ6 (trial* OR stud*))).ab,ti,kf.) NOT ("Editorial".pt. OR "Comment".pt. OR "Letter".pt. OR "News".pt. OR "Congress".pt. OR "Meeting Abstract".pt. OR "Abstracts".pt. OR "Academic Dissertation".pt. OR "Published Erratum".pt. OR (book* OR chapter* OR dissertation abstract*).pt.) NOT ("Systematic Reviews as Topic"/ OR "Systematic Review".pt. OR (systematic-review*).ab,ti,kf.)
+  - id: LS-AFT-Cochrane-RCT-2022-04-28
+    label: Literatuur zoekopdracht voor RCTs voor AFT in Cochrane op 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: Cochrane
+    target-url: https://www.cochranelibrary.com/
+    evidence-type: RCT
+    query: >-
+      ((((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverseexpan*):ab,ti,kw) AND ((mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ((((clinical* OR case* OR family* OR intervent* OR longitudinal* OR open OR prospect* OR retrospect* OR multicent*) NEAR/2 (study OR studies OR article* OR trial* OR evaluation*)) OR case-report* OR case-serie* OR ((communit*) NEAR/2 (trial*)) OR RCT OR RCTS OR randomi* OR placebo* OR ((single* or double* or triple* or treble*) AND (blind* or mask*)) OR ((phase*) NEAR/3 (1 OR one OR I OR 2 OR two OR II OR 3 OR three OR III OR 4 OR four OR IV) NEAR/6 (trial* OR stud*))):ab,ti,kw).
+  - id: LS-AFT-Embase-SystematicReview-2022-04-28
+    label: Literatuur zoekopdracht voor Systematic Reviews on AFT in Embase op 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: Embase
+    target-url: https://www.embase.com/
+    evidence-type: Systematic Review
+    query: >-
+      ('autologous fat'/de OR 'lipotransfer'/de OR 'lipomodelling'/de OR 'adipose tissue transplantation'/de OR (('adipose tissue'/exp) AND ('transplantation'/de )) OR 'autologous fat grafting'/de OR 'autologous fat transplantation'/de OR 'autologous fat transfer'/de OR 'autologous fat graft'/de OR 'autologous fat injection'/de OR (((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*):ab,ti,kw) AND ('breast tumor'/exp OR 'mastectomy'/exp OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ('systematic review'/de OR 'systematic review (topic)'/de OR (systematic-review*):ab,ti,kw)
+  - id: LS-AFT-Medline-SystematicReview-2022-04-28
+    label: Literatuur zoekopdracht voor Systematic Reviews on AFT in Medline op 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: Medline
+    target-url: https://www.medline.com/
+    evidence-type: Systematic Review
+    query: >-
+      (((exp "Adipose Tissue"/) AND ("Transplantation"/ OR "Transplantation, Autologous"/ OR "Tissue Transplantation"/ OR tr.fs)) OR (((autolog*) ADJ3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) ADJ3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*).ab,ti,kf.) AND (exp "Breast Neoplasms"/ OR exp "Mastectomy"/ OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) ADJ3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) ADJ6 (oncol*)) OR mammacarcin*).ab,ti,kf.) AND ("Systematic Reviews as Topic"/ OR "Systematic Review".pt. OR (systematicreview*).ab,ti,kf.)
+  - id: LS-AFT-Cochrane-SystematicReview-2022-04-28
+    label: Literatuur zoekopdracht voor Systematic Reviews on AFT in Cochrane op 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: Cochrane
+    target-url: https://www.cochranelibrary.com/
+    evidence-type: Systematic Review
+    query: >-
+      ((((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverseexpan*):ab,ti,kw) AND ((mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ((systematic-review*):ab,ti,kw)
+
+publications:
+  - id: Manuscript-BREAST
+    type: Manuscript
+    title: "Eindverslag gegevens Autologe Vettransplantatie (AFT) bij borstreconstructie na borstkanker; de techniek van de toekomst bij borstreconstructies."
+    authors: [ZonMw]
+    year: 2022
+
+literature-reference-lists:
+  - id: LRL-AFT
+    title: Literatuur referentielijst voor AFT
+    number-of-items: 1
+    references:
+    - Manuscript-BREAST
+
+studies:
+  - id: Study-BREAST
+    title: "Breast Reconstruction With External Pre-expansion and Autologous Fat Transfer Versus Standard Therapy (BREAST)"
+    short-title: BREAST
+    registry: Clinicaltrials.gov
+    registry-id: NCT02339779
+    start-date: 2015-10
+    end-date: 2026-10
+    study-type: Interventional
+    phase: 
+    sponsor: Maastricht University Medical Center
+    url: https://clinicaltrials.gov/study/NCT02339779
+    publication-ids:
+    - Manuscript-BREAST
+
+cohorts:
+  - id: Cohort-BREAST-Intervention
+    study-id: Study-BREAST
+    intervention-group-id: InterventionGroup-MammaOnco-Intervention
+  - id: Cohort-BREAST-Comparator # IBR
+    study-id: Study-BREAST
+    intervention-group-id: InterventionGroup-MammaOnco-Comparator
+
+outcome-measurements:
+  - id: OutcomeMeasurement-BreastvolumeRetention-SMD
+    type: standardized mean difference
+    outcome-id: Outcome-BreastvolumeRetention
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: -9.9
+    unit: ml
+    ci-lower: -37.04
+    ci-upper: 17.24
+  - id: OutcomeMeasurement-SeriousPerioperativeComplications-RR
+    type: risk ratio
+    outcome-id: Outcome-SeriousPerioperativeComplications
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: 0.18
+    unit: 
+    ci-lower: 0.04
+    ci-upper: 0.76
+  - id: OutcomeMeasurement-SeriousPerioperativeComplications-AbsoluteDifference
+    type: absolute difference
+    outcome-id: Outcome-SeriousPerioperativeComplications
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: -14.5
+    unit: '%'
+    ci-lower: -169
+    ci-upper: -42
+  - id: OutcomeMeasurement-LocoregionalOncologicEvents-RR
+    type: risk ratio
+    outcome-id: Outcome-LocoregionalOncologicEvents
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: 0.85
+    unit: 
+    ci-lower: 3.03
+    ci-upper: 0.24
+  - id: OutcomeMeasurement-LocoregionalOncologicEvents-AbsoluteDifference
+    type: absolute difference
+    outcome-id: Outcome-LocoregionalOncologicEvents
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: -1.1
+    unit: '%'
+    ci-lower: -6.2
+    ci-upper: 149
+  - id: OutcomeMeasurement-BREASTQPatientSatisfactionWithBreast-MD
+    type: mean difference
+    outcome-id: Outcome-BREASTQPatientSatisfactionWithBreast
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: 9.9
+    unit: 
+    ci-lower: 3.92
+    ci-upper: 15.88
+  - id: OutcomeMeasurement-BREASTQPhysicalWellbeing-MD
+    type: mean difference
+    outcome-id: Outcome-BREASTQPhysicalWellbeing
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: 7.6
+    unit: 
+    ci-lower: 2.19
+    ci-upper: 13.01
+  - id: OutcomeMeasurement-BREASTQSexualWellbeing-MD
+    type: mean difference
+    outcome-id: Outcome-BREASTQSexualWellbeing
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: 2.9
+    unit: 
+    ci-lower: -3.47
+    ci-upper: 9.27
+  - id: OutcomeMeasurement-BREASTQPsychosocialWellbeing-MD
+    type: mean difference
+    outcome-id: Outcome-BREASTQPsychosocialWellbeing
+    cohort-ids: [Cohort-BREAST-Intervention, Cohort-BREAST-Comparator]
+    value: 1.3
+    unit: 
+    ci-lower: 4.72
+    ci-upper: 7.32
+
+bias:
+  - id: BIA-AFT
+    title: Budget Impact Analyse voor AFT
+    trend-assumption-id: TrendAssumption-AFT
+    cost-estimation-ids: [ CostEstimation-AFT ]
+
+scenarios:
+  - id: Scenario-AFT-low
+    title: Scenario met minimum aantal AFT-gebruik
+    description: Scenario met minimum aantal AFT-gebruik
+  - id: Scenario-AFT-high
+    title: Scenario met maximum aantal AFT gebruik
+    description: Scenario met maximum aantal AFT gebruik
+
+trend-assumptions:
+  - id: TrendAssumption-AFT-low
+    title: Geschatte trend voor AFT laag aantal borstkanker patiënten scenario
+    scenario-id: Scenario-AFT-low
+    time-unit: year
+    number-of-patients: [ 600 ]
+    intervention-market-penetration: [ 1.0 ]
+  - id: TrendAssumption-AFT-high
+    title: Geschatte trend voor AFT hoog aantal borstkanker patiënten scenario
+    scenario-id: Scenario-AFT-high
+    time-unit: year
+    number-of-patients: [ 900 ]
+    intervention-market-penetration: [ 1.0 ]
+
+cost-estimations:
+  - id: CostEstimation-AFT-Substitution-low
+    title: Kostenraming voor AFT laag aantal borstkanker patiënten scenario
+    trend-assumption-id: TrendAssumption-AFT-low
+    scenario-id: Scenario-AFT-low
+    observation-groups:
+    - type: Current
+      intervention-ids: [ Intervention-IBR ]
+      number-of-patients: [ 510 ]
+      total-costs: [ 4_054_500 ]
+    - type: Current
+      intervention-ids: [ Intervention-ABR ]
+      number-of-patients: [ 90 ]
+      total-costs: [ 1_304_100 ]
+    - type: Substitution
+      intervention-ids: [ Intervention-AFT-BRAVA ]
+      number-of-patients: [ 600 ]
+      total-costs: [ 13_356_000 ]
+    - type: Additional
+      intervention-ids: [ Intervention-AFT-BRAVA ]
+      number-of-patients: [ 600 ]
+      total-costs: [ 7_997_400 ]
+    - type: Total
+      intervention-ids: [ Intervention-IBR, Intervention-ABR, Intervention-AFT-BRAVA ]
+      number-of-patients: [ 600 ]
+      total-costs: [ 13_356_000 ]
+  - id: CostEstimation-AFT-Substitution-high
+    title: Kostenraming voor AFT hoog aantal borstkanker patiënten scenario
+    trend-assumption-id: TrendAssumption-AFT-high
+    scenario-id: Scenario-AFT-high
+    observation-groups:
+    - type: Current
+      intervention-ids: [ Intervention-IBR ]
+      number-of-patients: [ 900 ]
+      total-costs: [ 6_081_750 ]
+    - type: Current
+      intervention-ids: [ Intervention-ABR ]
+      number-of-patients: [ 900 ]
+      total-costs: [ 1_956_150 ]
+    - type: Substitution
+      intervention-ids: [ Intervention-AFT-BRAVA ]
+      number-of-patients: [ 900 ]
+      total-costs: [ 20_034_000 ]
+    - type: Additional
+      intervention-ids: [ Intervention-AFT-BRAVA ]
+      number-of-patients: [ 900 ]
+      total-costs: [ 11_996_100 ]
+    - type: Total
+      intervention-ids: [ Intervention-IBR, Intervention-ABR, Intervention-AFT-BRAVA ]
+      number-of-patients: [ 900 ]
+      total-costs: [ 20_034_000 ]
+
+appropriate-use:
+  id: AU-AFT
+  title: Gepast gebruik afspraken voor AFT
+  agreements:
+  - description: "Indicatieprotocol: aansluiten bij de indicatiecriteria en exclusiecriteria van patiënten, zoals in de BREAST-studie om in aanmerking te komen voor deze behandeling en welke professionals verantwoordelijk zijn voor de selectie van patiënten;"
+  - description: Uitgebreide patiënteninformatie en richtlijnen voor professionals over hoe de patiënt voor te lichten over de voor- en nadelen van deze techniek, zodat de patiënt een weloverwogen besluit kan nemen (samen beslissen).
+  - description: Procesvoorwaarden voor trainingen en opleidingseisen om deze operatietechniek uit te kunnen voeren door plastisch chirurgen, en
+  - description: Procesvoorwaarden voor het opzetten van het kwaliteitsregister t.b.v. verzamelen langetermijngegevens voor kosteneffectiviteit, en risicogerichte monitoring.

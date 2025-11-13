@@ -1,0 +1,547 @@
+@base <https://w3id.org/zinl/package-statements/aft_ps#> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix STATO: <http://purl.obolibrary.org/obo/STATO_> .
+@prefix UO: <http://purl.obolibrary.org/obo/UO_> .
+@prefix data: <https://w3id.org/zinl/package-statements/aft_ps#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix fpr: <https://w3id.org/zinl/fpr-o#> .
+@prefix ns1: <http://purl.obolibrary.org/obo/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix pico: <http://data.cochrane.org/ontologies/pico/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix tax: <https://w3id.org/zinl/fpr-tax#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<AU-AFT> a fpr:AppropriateUseAgreement ;
+    dcterms:hasPart <Agreement-0>,
+        <Agreement-1>,
+        <Agreement-2>,
+        <Agreement-3> ;
+    dcterms:title "Gepast gebruik afspraken voor AFT" .
+
+<CostEstimation-AFT-Substitution-high-Intervention-ABR-Current-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-high> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-ABR> ;
+    fpr:hasNumberOfPatients 900 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "1956150"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-high-Intervention-AFT-BRAVA-Additional-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-high> ;
+    fpr:hasCostType fpr:Additional ;
+    fpr:hasIntervention <Intervention-AFT-BRAVA> ;
+    fpr:hasNumberOfPatients 900 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "11996100"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-high-Intervention-AFT-BRAVA-Substitution-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-high> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-AFT-BRAVA> ;
+    fpr:hasNumberOfPatients 900 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "20034000"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-high-Intervention-IBR-Current-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-high> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-IBR> ;
+    fpr:hasNumberOfPatients 900 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "6081750"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-high-Intervention-IBR-Intervention-ABR-Intervention-AFT-BRAVA-Total-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-high> ;
+    fpr:hasCostType fpr:Total ;
+    fpr:hasIntervention <Intervention-ABR>,
+        <Intervention-AFT-BRAVA>,
+        <Intervention-IBR> ;
+    fpr:hasNumberOfPatients 900 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "20034000"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-low-Intervention-ABR-Current-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-low> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-ABR> ;
+    fpr:hasNumberOfPatients 90 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "1304100"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-low-Intervention-AFT-BRAVA-Additional-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-low> ;
+    fpr:hasCostType fpr:Additional ;
+    fpr:hasIntervention <Intervention-AFT-BRAVA> ;
+    fpr:hasNumberOfPatients 600 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "7997400"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-low-Intervention-AFT-BRAVA-Substitution-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-low> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-AFT-BRAVA> ;
+    fpr:hasNumberOfPatients 600 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "13356000"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-low-Intervention-IBR-Current-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-low> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-IBR> ;
+    fpr:hasNumberOfPatients 510 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "4054500"^^xsd:float .
+
+<CostEstimation-AFT-Substitution-low-Intervention-IBR-Intervention-ABR-Intervention-AFT-BRAVA-Total-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-AFT-Substitution-low> ;
+    fpr:hasCostType fpr:Total ;
+    fpr:hasIntervention <Intervention-ABR>,
+        <Intervention-AFT-BRAVA>,
+        <Intervention-IBR> ;
+    fpr:hasNumberOfPatients 600 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "13356000"^^xsd:float .
+
+<Organization-ZorginstituutNederland> a org:FormalOrganization ;
+    rdfs:label "Zorginstituut Nederland" ;
+    org:hasUnit <OrganizationalUnit-Department-Zorg-I> .
+
+<PS-AFT> a fpr:PackageStatement ;
+    rdfs:label "Borstreconstructie middels autologe vettransplantatie (AFT) na uitwendige weefsel expansie met een externe expander bij vrouwen met een totale borstverwijdering na borstkanker of ter preventie wegens genetische predispositie" ;
+    dc:contributor "Angèl Link",
+        "Ingrid de Groot",
+        "Steef Redeker",
+        "Yoka Kusumanto" ;
+    dcterms:issued "2023-01-01"^^xsd:date ;
+    dcterms:publisher <OrganizationalUnit-Team-Pakket-en-Advies> ;
+    rdfs:seeAlso <https://www.zorginstituutnederland.nl/documenten/2023/01/01/standpunt-aft-na-een-totale-borstverwijdering> ;
+    fpr:hasCaseNumber 2022006448 ;
+    fpr:hasGuaranteeDocument <https://www.zorginstituutnederland.nl/site/binaries/site-content/collections/documents/2023/01/01/standpunt-aft-na-een-totale-borstverwijdering/Waarborgendocument+autologe+vettransplantatie.pdf> ;
+    fpr:hasIICAssessment <IICAssessment-AFT> ;
+    fpr:hasPackageType fpr:PointOfView ;
+    fpr:hasSerialNumber 2022006461 ;
+    fpr:hasStatus fpr:Definitive .
+
+<TrendAssumption-AFT-high-year-default> a qb:Observation ;
+    qb:dataSet <DataSet-TrendAssumption-AFT-high> ;
+    fpr:hasMarketPenetration "1.0"^^xsd:float ;
+    fpr:hasNumberOfPatients 900 ;
+    fpr:hasTimepoint "default" .
+
+<TrendAssumption-AFT-low-year-default> a qb:Observation ;
+    qb:dataSet <DataSet-TrendAssumption-AFT-low> ;
+    fpr:hasMarketPenetration "1.0"^^xsd:float ;
+    fpr:hasNumberOfPatients 600 ;
+    fpr:hasTimepoint "default" .
+
+<> IAO:0000136 <Study-BREAST> .
+
+<Agreement-0> dcterms:title "{'description': 'Indicatieprotocol: aansluiten bij de indicatiecriteria en exclusiecriteria van patiënten, zoals in de BREAST-studie om in aanmerking te komen voor deze behandeling en welke professionals verantwoordelijk zijn voor de selectie van patiënten;'}"@nl .
+
+<Agreement-1> dcterms:title "{'description': 'Uitgebreide patiënteninformatie en richtlijnen voor professionals over hoe de patiënt voor te lichten over de voor- en nadelen van deze techniek, zodat de patiënt een weloverwogen besluit kan nemen (samen beslissen).'}"@nl .
+
+<Agreement-2> dcterms:title "{'description': 'Procesvoorwaarden voor trainingen en opleidingseisen om deze operatietechniek uit te kunnen voeren door plastisch chirurgen, en'}"@nl .
+
+<Agreement-3> dcterms:title "{'description': 'Procesvoorwaarden voor het opzetten van het kwaliteitsregister t.b.v. verzamelen langetermijngegevens voor kosteneffectiviteit, en risicogerichte monitoring.'}"@nl .
+
+<BIA-AFT> a fpr:BIA ;
+    dcterms:title "Budget Impact Analyse voor AFT" ;
+    fpr:hasCostEstimation <DataSet-CostEstimation-AFT> ;
+    fpr:hasTrendAssumption <DataSet-TrendAssumption-AFT> .
+
+<EMSMP-AFT> a fpr:EMSMP ;
+    dcterms:title "Established Medical Science and Medical Practice - AFT" ;
+    fpr:adheresToEMSMP true ;
+    fpr:hasPICO <PICOT-AFT> ;
+    fpr:hasSystematicLiteratureReview <SLR-AFT> .
+
+<IICAssessment-AFT> a fpr:IICAssessment ;
+    fpr:hasAssessmentType fpr:InitialAssessment ;
+    fpr:hasBIA <BIA-AFT> ;
+    fpr:hasConclusion fpr:Positive ;
+    fpr:hasConclusionText "Sacituzumab govitecan voldoet aan de stand van de wetenschap en praktijk bij de behandeling van volwassen patiënten met inoperabele of gemetastaseerde triplenegatieve borstkanker, die twee of meer eerdere systemische therapieën hebben gekregen, waaronder één lijn taxaanbevattende therapie en tenminste één voor gevorderde ziekte. Het Zorginstituut adviseert u sacituzumab govitecan op te nemen in het verzekerde pakket voor deze indicatie. Het Zorginstituut acht een korting van tenminste 55% aangewezen. Zoals het Zorginstituut u in 2022 reeds adviseerde, dient bij de onderhandelingen te worden meegenomen dat indicatie-uitbreidingen van sacituzumab govitecan te verwachten zijn." ;
+    fpr:hasCostEffectiveness [ a fpr:CostEffectiveness ;
+            fpr:isCostEffective false ] ;
+    fpr:hasEMSMP <EMSMP-AFT> ;
+    fpr:hasIndication <Population-WomenSimpleMastectomyAfterBreastCancer>,
+        <Population-WomenSimpleMastectomyWithGeneticPredisposition> ;
+    fpr:hasIntervention <Intervention-AFT-BRAVA> .
+
+<Intervention-AFT> a pico:Intervention ;
+    pico:appliedIntervention tax:Autologous%20fat%20transplantation%20%28AFT%29 ;
+    pico:interventionClassification tax:Surgical ;
+    pico:interventionRationale "Verbeteren esthetisch resultaat" ;
+    dcterms:title "Autologe vettransplantatie (AFT)" .
+
+<Intervention-BRAVA> a pico:Intervention ;
+    pico:appliedIntervention tax:Breast%20Tissue%20Expander ;
+    pico:interventionClassification tax:Medical%20Devices ;
+    pico:interventionRationale "Weefsel expansie voor AFT" ;
+    dcterms:title "Uitwendige weefsel expansie met BRAVA" .
+
+<InterventionGroup-AFT> a pico:InterventionGroup ;
+    pico:intervention <Intervention-AFT-BRAVA> .
+
+<InterventionGroup-IBRorABR> a pico:InterventionGroup ;
+    pico:intervention <Intervention-ABR>,
+        <Intervention-IBR> .
+
+<LRL-AFT> a fabio:SystematicLiteratureReview ;
+    dcterms:title "Literatuur referentielijst voor AFT" ;
+    prov:hadMember <Manuscript-BREAST> ;
+    prov:wasGeneratedBy <SLR-AFT> ;
+    schema:itemListElement <Manuscript-BREAST> ;
+    schema:numberOfItems 1 .
+
+<LS-AFT-Cochrane-RCT-2022-04-28> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor RCTs voor AFT in Cochrane op 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "Cochrane" ;
+    schema:query "((((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverseexpan*):ab,ti,kw) AND ((mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ((((clinical* OR case* OR family* OR intervent* OR longitudinal* OR open OR prospect* OR retrospect* OR multicent*) NEAR/2 (study OR studies OR article* OR trial* OR evaluation*)) OR case-report* OR case-serie* OR ((communit*) NEAR/2 (trial*)) OR RCT OR RCTS OR randomi* OR placebo* OR ((single* or double* or triple* or treble*) AND (blind* or mask*)) OR ((phase*) NEAR/3 (1 OR one OR I OR 2 OR two OR II OR 3 OR three OR III OR 4 OR four OR IV) NEAR/6 (trial* OR stud*))):ab,ti,kw)." ;
+    schema:target <https://www.cochranelibrary.com/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<LS-AFT-Cochrane-SystematicReview-2022-04-28> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor Systematic Reviews on AFT in Cochrane op 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "Cochrane" ;
+    schema:query "((((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverseexpan*):ab,ti,kw) AND ((mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ((systematic-review*):ab,ti,kw)" ;
+    schema:target <https://www.cochranelibrary.com/> ;
+    fpr:hasEvidenceType fabio:SystematicLiteratureReview .
+
+<LS-AFT-Embase-RCT-2022-04-28> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor RCTs voor AFT in Embase op 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "Embase" ;
+    schema:query "('autologous fat'/de OR 'lipotransfer'/de OR 'lipomodelling'/de OR 'adipose tissue transplantation'/de OR (('adipose tissue'/exp) AND ('transplantation'/de )) OR 'autologous fat grafting'/de OR 'autologous fat transplantation'/de OR 'autologous fat transfer'/de OR 'autologous fat graft'/de OR 'autologous fat injection'/de OR (((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*):ab,ti,kw) AND ('breast tumor'/exp OR 'mastectomy'/exp OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ('clinical study'/exp OR (((clinical* OR case* OR family* OR intervent* OR longitudinal* OR open OR prospect* OR retrospect* OR multicent*) NEAR/2 (study OR studies OR article* OR trial* OR evaluation*)) OR case-report* OR case-serie* OR ((communit*) NEAR/2 (trial*)) OR RCT OR RCTS OR randomi* OR placebo* OR ((single* or double* or triple* or treble*) AND (blind* or mask*)) OR ((phase*) NEAR/3 (1 OR one OR I OR 2 OR two OR II OR 3 OR three OR III OR 4 OR four OR IV) NEAR/6 (trial* OR stud*))):ab,ti,kw) NOT ([Conference Abstract]/lim OR 'editorial'/it OR 'letter'/it OR 'note'/it OR 'chapter'/it OR 'conference abstract'/it OR 'conference paper'/it OR 'conference review'/it OR 'editorial'/it OR 'erratum'/it OR [preprint]/lim) NOT ('systematic review'/de OR 'systematic review (topic)'/de OR (systematic-review*):ab,ti,kw)" ;
+    schema:target <https://www.embase.com/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<LS-AFT-Embase-SystematicReview-2022-04-28> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor Systematic Reviews on AFT in Embase op 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "Embase" ;
+    schema:query "('autologous fat'/de OR 'lipotransfer'/de OR 'lipomodelling'/de OR 'adipose tissue transplantation'/de OR (('adipose tissue'/exp) AND ('transplantation'/de )) OR 'autologous fat grafting'/de OR 'autologous fat transplantation'/de OR 'autologous fat transfer'/de OR 'autologous fat graft'/de OR 'autologous fat injection'/de OR (((autolog*) NEAR/3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) NEAR/3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*):ab,ti,kw) AND ('breast tumor'/exp OR 'mastectomy'/exp OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) NEAR/6 (oncol*)) OR mammacarcin*):ab,ti,kw) AND ('systematic review'/de OR 'systematic review (topic)'/de OR (systematic-review*):ab,ti,kw)" ;
+    schema:target <https://www.embase.com/> ;
+    fpr:hasEvidenceType fabio:SystematicLiteratureReview .
+
+<LS-AFT-Medline-RCT-2022-04-28> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor RCTs voor AFT in Medline op 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "Medline" ;
+    schema:query "(((exp \"Adipose Tissue\"/) AND (\"Transplantation\"/ OR \"Transplantation, Autologous\"/ OR \"Tissue Transplantation\"/ OR tr.fs)) OR (((autolog*) ADJ3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) ADJ3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*).ab,ti,kf.) AND (exp \"Breast Neoplasms\"/ OR exp \"Mastectomy\"/ OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) ADJ3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) ADJ6 (oncol*)) OR mammacarcin*).ab,ti,kf.) AND (\"Clinical Study\".pt OR \"Clinical Trial\".pt OR \"Adaptive Clinical Trial\".pt OR \"Clinical Trial, Phase I\".pt OR \"Clinical Trial, Phase II\".pt OR \"Clinical Trial, Phase III\".pt OR \"Clinical Trial, Phase IV\".pt OR \"Controlled Clinical Trial\".pt OR \"Randomized Controlled Trial\".pt OR \"Equivalence Trial\".pt OR \"Pragmatic Clinical Trial\".pt OR \"Clinical Trial Protocol\".pt OR \"Observational Study\".pt OR exp \"Clinical Studies as Topic\"/ OR (((clinical* OR case* OR family* OR intervent* OR longitudinal* OR open OR prospect* OR retrospect* OR multicent*) ADJ2 (study OR studies OR article* OR trial* OR evaluation*)) OR case-report* OR case-serie* OR ((communit*) ADJ2 (trial*)) OR RCT OR RCTS OR randomi* OR placebo* OR ((single* or double* or triple* or treble*) AND (blind* or mask*)) OR ((phase*) ADJ3 (1 OR one OR I OR 2 OR two OR II OR 3 OR three OR III OR 4 OR four OR IV) ADJ6 (trial* OR stud*))).ab,ti,kf.) NOT (\"Editorial\".pt. OR \"Comment\".pt. OR \"Letter\".pt. OR \"News\".pt. OR \"Congress\".pt. OR \"Meeting Abstract\".pt. OR \"Abstracts\".pt. OR \"Academic Dissertation\".pt. OR \"Published Erratum\".pt. OR (book* OR chapter* OR dissertation abstract*).pt.) NOT (\"Systematic Reviews as Topic\"/ OR \"Systematic Review\".pt. OR (systematic-review*).ab,ti,kf.)" ;
+    schema:target <https://www.medline.com/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<LS-AFT-Medline-SystematicReview-2022-04-28> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor Systematic Reviews on AFT in Medline op 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "Medline" ;
+    schema:query "(((exp \"Adipose Tissue\"/) AND (\"Transplantation\"/ OR \"Transplantation, Autologous\"/ OR \"Tissue Transplantation\"/ OR tr.fs)) OR (((autolog*) ADJ3 (fat*)) OR lipostruct* OR lipotransfer* OR lipomodel* OR lipofill* OR ((fat*) ADJ3 (transplant* OR graft* OR transfer* OR inject* OR infiltrate*)) OR reverse-expan*).ab,ti,kf.) AND (exp \"Breast Neoplasms\"/ OR exp \"Mastectomy\"/ OR (mammaplast* OR mammoplast* OR mastoplast* OR mastectom* OR ((breast* OR mamma*) ADJ3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer* OR malignan*)) OR ((breast* OR mamma*) ADJ6 (oncol*)) OR mammacarcin*).ab,ti,kf.) AND (\"Systematic Reviews as Topic\"/ OR \"Systematic Review\".pt. OR (systematicreview*).ab,ti,kf.)" ;
+    schema:target <https://www.medline.com/> ;
+    fpr:hasEvidenceType fabio:SystematicLiteratureReview .
+
+<OrganizationalUnit-Department-Zorg-I> a org:OrganizationalUnit ;
+    rdfs:label "Department Zorg I" ;
+    org:hasUnit <OrganizationalUnit-Team-Pakket-en-Advies> .
+
+<Outcome-BREASTQPatientSatisfactionWithBreast> a pico:Outcome ;
+    rdfs:label "Patient satisfaction with breast" ;
+    pico:outcomeClassification tax:Patient-reported ;
+    pico:outcomeMeasurement tax:BREAST-Q%20-%20satisfaction%20with%20breast ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-BREASTQPhysicalWellbeing> a pico:Outcome ;
+    rdfs:label "BREAST-Q - physical wellbeing" ;
+    pico:outcomeClassification tax:Patient-reported ;
+    pico:outcomeMeasurement tax:BREAST-Q%20-%20physical%20wellbeing ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-BREASTQPsychosocialWellbeing> a pico:Outcome ;
+    rdfs:label "BREAST-Q - psychosocial wellbeing" ;
+    pico:outcomeClassification tax:Patient-reported ;
+    pico:outcomeMeasurement tax:BREAST-Q%20-%20psychosocial%20wellbeing ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-BREASTQSexualWellbeing> a pico:Outcome ;
+    rdfs:label "BREAST-Q - sexual well-being" ;
+    pico:outcomeClassification tax:Patient-reported ;
+    pico:outcomeMeasurement tax:BREAST-Q%20-%20sexual%20well-being ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-BreastvolumeRetention> a pico:Outcome ;
+    rdfs:label "Breast volume retention" ;
+    pico:outcomeClassification tax:Aesthetic ;
+    pico:outcomeMeasurement tax:Breast%20volume%20retention ;
+    pico:specificMetric tax:3D%20fotografie%20met%20VECTRA%C2%AEXT%20%28ml%29 ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-NonSeriousSideEffects> a pico:Outcome ;
+    rdfs:label "Non-serious side effects" ;
+    pico:outcomeClassification tax:Adverse%20events ;
+    pico:outcomeMeasurement tax:Number%20of%20non-serious%20side%20effects ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-SeriousPerioperativeComplications> a pico:Outcome ;
+    rdfs:label "Serious perioperative complications" ;
+    pico:outcomeClassification tax:Adverse%20events ;
+    pico:outcomeMeasurement tax:Number%20of%20serious%20complications ;
+    fpr:isSurrogateOutcome false .
+
+<OutcomeGroup-AFT-12to60MonthsPostIntervention> a pico:OutcomeGroup ;
+    pico:endpoint "12 to 60 months post-intervention" ;
+    pico:outcome <Outcome-LocoregionalOncologicEvents> .
+
+<OutcomeGroup-AFT-Between12MonthsPostIntervention> a pico:OutcomeGroup ;
+    pico:endpoint "12 months post-intervention" ;
+    pico:outcome <Outcome-BREASTQPatientSatisfactionWithBreast>,
+        <Outcome-BREASTQPhysicalWellbeing>,
+        <Outcome-BREASTQPsychosocialWellbeing>,
+        <Outcome-BREASTQSexualWellbeing> .
+
+<OutcomeGroup-AFT-Between6to12MonthsPostIntervention> a pico:OutcomeGroup ;
+    pico:endpoint "Between 6 and 12 months post-intervention" ;
+    pico:outcome <Outcome-BreastvolumeRetention>,
+        <Outcome-LocoregionalOncologicEvents> .
+
+<OutcomeGroup-AFT-PeriAndPostOperativeTill12MonthsPostIntervention> a pico:OutcomeGroup ;
+    pico:endpoint "12 Peri- en postoperative till 12 months postintervention" ;
+    pico:outcome <Outcome-NonSeriousSideEffects>,
+        <Outcome-SeriousPerioperativeComplications> .
+
+<OutcomeMeasurement-BREASTQPatientSatisfactionWithBreast-MD> a STATO:0000457 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-BREASTQPatientSatisfactionWithBreast> ;
+    STATO:0000129 "9.9"^^xsd:float .
+
+<OutcomeMeasurement-BREASTQPhysicalWellbeing-MD> a STATO:0000457 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-BREASTQPhysicalWellbeing> ;
+    STATO:0000129 "7.6"^^xsd:float .
+
+<OutcomeMeasurement-BREASTQPsychosocialWellbeing-MD> a STATO:0000457 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-BREASTQPsychosocialWellbeing> ;
+    STATO:0000129 "1.3"^^xsd:float .
+
+<OutcomeMeasurement-BREASTQSexualWellbeing-MD> a STATO:0000457 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-BREASTQSexualWellbeing> ;
+    STATO:0000129 "2.9"^^xsd:float .
+
+<OutcomeMeasurement-BreastvolumeRetention-SMD> a STATO:0000176 ;
+    IAO:0000039 UO:0000098 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-BreastvolumeRetention> ;
+    STATO:0000129 "-9.9"^^xsd:float .
+
+<OutcomeMeasurement-LocoregionalOncologicEvents-AbsoluteDifference> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-LocoregionalOncologicEvents> ;
+    STATO:0000129 "-1.1"^^xsd:float .
+
+<OutcomeMeasurement-LocoregionalOncologicEvents-RR> a STATO:0000245 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-LocoregionalOncologicEvents> ;
+    STATO:0000129 "0.85"^^xsd:float .
+
+<OutcomeMeasurement-SeriousPerioperativeComplications-AbsoluteDifference> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-SeriousPerioperativeComplications> ;
+    STATO:0000129 "-14.5"^^xsd:float .
+
+<OutcomeMeasurement-SeriousPerioperativeComplications-RR> a STATO:0000245 ;
+    IAO:0000136 <Cohort-BREAST-Comparator>,
+        <Cohort-BREAST-Intervention> ;
+    IAO:0000221 <Outcome-SeriousPerioperativeComplications> ;
+    STATO:0000129 "0.18"^^xsd:float .
+
+<PICOT-AFT> a pico:PICO ;
+    pico:comparatorGroup <InterventionGroup-IBRorABR> ;
+    pico:interventionGroup <InterventionGroup-AFT> ;
+    pico:outcome <OutcomeGroup-AFT-12to60MonthsPostIntervention>,
+        <OutcomeGroup-AFT-Between12MonthsPostIntervention>,
+        <OutcomeGroup-AFT-Between6to12MonthsPostIntervention>,
+        <OutcomeGroup-AFT-PeriAndPostOperativeTill12MonthsPostIntervention> ;
+    pico:population <Population-WomenSimpleMastectomyAfterBreastCancer>,
+        <Population-WomenSimpleMastectomyWithGeneticPredisposition> .
+
+<DataSet-TrendAssumption-AFT-high> a qb:DataSet ;
+    dcterms:title "Geschatte trend voor AFT hoog aantal borstkanker patiënten scenario" ;
+    fpr:hasScenario <Scenario-AFT-high> .
+
+<DataSet-TrendAssumption-AFT-low> a qb:DataSet ;
+    dcterms:title "Geschatte trend voor AFT laag aantal borstkanker patiënten scenario" ;
+    fpr:hasScenario <Scenario-AFT-low> .
+
+<Manuscript-BREAST> a fabio:Manuscript ;
+    dcterms:title "Eindverslag gegevens Autologe Vettransplantatie (AFT) bij borstreconstructie na borstkanker; de techniek van de toekomst bij borstreconstructies." .
+
+<OrganizationalUnit-Team-Pakket-en-Advies> a org:OrganizationalUnit ;
+    rdfs:label "Team Pakket en Advies" .
+
+<Outcome-LocoregionalOncologicEvents> a pico:Outcome ;
+    rdfs:label "Locoregional oncologic events" ;
+    pico:outcomeClassification tax:Adverse%20events ;
+    pico:outcomeMeasurement tax:Number%20of%20locoregional%20oncologic%20events ;
+    fpr:isSurrogateOutcome false .
+
+<Population-WomenSimpleMastectomyAfterBreastCancer> a pico:Population ;
+    rdfs:label "Vrouwen die besloten hebben tot borstreconstructie na totale borstverwijdering ter behandeling van borstkanker" ;
+    pico:condition tax:Breast%20Cancer ;
+    pico:sex tax:Female ;
+    pico:treatment tax:Simple%20mastectomy .
+
+<Population-WomenSimpleMastectomyWithGeneticPredisposition> a pico:Population ;
+    rdfs:label "Vrouwen die besloten hebben tot borstreconstructie na totale borstverwijdering ter preventie van borstkanker wegens genetische predispositie" ;
+    pico:condition tax:Genetic%20predisposition%20to%20breast%20cancer ;
+    pico:treatment tax:Simple%20mastectomy .
+
+<SLR-AFT> a fpr:SystematicLiteratureReview ;
+    dcterms:hasPart <LS-AFT-Cochrane-RCT-2022-04-28>,
+        <LS-AFT-Cochrane-SystematicReview-2022-04-28>,
+        <LS-AFT-Embase-RCT-2022-04-28>,
+        <LS-AFT-Embase-SystematicReview-2022-04-28>,
+        <LS-AFT-Medline-RCT-2022-04-28>,
+        <LS-AFT-Medline-SystematicReview-2022-04-28> ;
+    dcterms:title "Systematisch literatuuronderzoek voor AFT" ;
+    schema:result <LRL-AFT> .
+
+<Scenario-AFT-high> a fpr:Scenario ;
+    dcterms:description "Scenario met maximum aantal AFT gebruik" ;
+    dcterms:title "Scenario met maximum aantal AFT gebruik" .
+
+<Scenario-AFT-low> a fpr:Scenario ;
+    dcterms:description "Scenario met minimum aantal AFT-gebruik" ;
+    dcterms:title "Scenario met minimum aantal AFT-gebruik" .
+
+<Study-BREAST> a OBI:0003699 ;
+    dcterms:bibliographicCitation <> ;
+    dcterms:identifier "NCT02339779" ;
+    dcterms:source <Clinicaltrials.gov> ;
+    dcterms:title "Breast Reconstruction With External Pre-expansion and Autologous Fat Transfer Versus Standard Therapy (BREAST)" ;
+    rdfs:seeAlso <https://clinicaltrials.gov/study/NCT02339779> .
+
+<DataSet-CostEstimation-AFT-Substitution-high> a qb:DataSet ;
+    dcterms:title "Kostenraming voor AFT hoog aantal borstkanker patiënten scenario" ;
+    prov:wasDerivedFrom <DataSet-TrendAssumption-AFT-high> ;
+    fpr:hasScenario <Scenario-AFT-high> .
+
+<DataSet-CostEstimation-AFT-Substitution-low> a qb:DataSet ;
+    dcterms:title "Kostenraming voor AFT laag aantal borstkanker patiënten scenario" ;
+    prov:wasDerivedFrom <DataSet-TrendAssumption-AFT-low> ;
+    fpr:hasScenario <Scenario-AFT-low> .
+
+<Intervention-ABR> a pico:Intervention ;
+    pico:appliedIntervention tax:Autologous%20breast%20reconstruction%20%28ABR%29 ;
+    pico:interventionClassification tax:Surgical ;
+    pico:interventionRationale "Herstellen borstvolume en -vorm" ;
+    dcterms:title "Autologe borstreconstructie (ABR)" ;
+    fpr:hasCareProductCode "990004018" .
+
+<Intervention-IBR> a pico:Intervention ;
+    pico:appliedIntervention tax:Implant-based%20breast%20reconstruction%20%28IBR%29 ;
+    pico:interventionClassification tax:Surgical ;
+    pico:interventionRationale "Herstellen borstvolume en -vorm" ;
+    dcterms:title "Implant-based breast reconstruction (IBR)" ;
+    fpr:hasCareProductCode "990004080" .
+
+<Intervention-AFT-BRAVA> a pico:Intervention ;
+    pico:appliedIntervention tax:Autologous%20fat%20transplantation%20%28AFT%29%20after%20external%20tissue%20expansion%20using%20BRAVA ;
+    pico:childIntervention <Intervention-AFT>,
+        <Intervention-BRAVA> ;
+    pico:interventionClassification tax:Surgical ;
+    pico:interventionRationale "Herstellen borstvolume en -vorm" ;
+    dcterms:title "Autologe vettransplantatie (AFT) na uitwendige weefsel expansie met BRAVA" ;
+    fpr:hasCareActivityCode "033973" ;
+    fpr:hasCareProductCode "982017017" .
+
+<Cohort-BREAST-Comparator> a STATO:0000203 ;
+    RO:0000056 <Study-BREAST> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Comparator> .
+
+<Cohort-BREAST-Intervention> a STATO:0000203 ;
+    RO:0000056 <Study-BREAST> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Intervention> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "0.24"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "3.03"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-LocoregionalOncologicEvents-RR> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "7.32"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "4.72"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-BREASTQPsychosocialWellbeing-MD> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "0.76"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "0.04"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-SeriousPerioperativeComplications-RR> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "9.27"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "-3.47"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-BREASTQSexualWellbeing-MD> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "-37.04"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "17.24"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-BreastvolumeRetention-SMD> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "15.88"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "3.92"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-BREASTQPatientSatisfactionWithBreast-MD> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "-6.2"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "149"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-LocoregionalOncologicEvents-AbsoluteDifference> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "-42"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "-169"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-SeriousPerioperativeComplications-AbsoluteDifference> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "2.19"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "13.01"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-BREASTQPhysicalWellbeing-MD> .
+

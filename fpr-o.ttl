@@ -1,0 +1,727 @@
+@prefix : <https://w3id.org/zinl/fpr-o#> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix cc: <http://data.cochrane.org/ontologies/core/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix MESH: <http://purl.bioontology.org/ontology/MESH/> .
+@prefix data: <https://w3id.org/zinl/package-statements/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix pico: <http://data.cochrane.org/ontologies/pico/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix STATO: <http://purl.obolibrary.org/obo/STATO_> .
+@prefix fabio: <http://purl.org/spar/fabio> .
+@prefix fpr-o: <https://w3id.org/zinl/fpr-o#> .
+@prefix MEDDRA: <http://purl.bioontology.org/ontology/MEDDRA/> .
+@prefix schema: <http://schema.org/> .
+@prefix fpr-tax: <https://w3id.org/zinl/fpr-tax#> .
+@prefix cochrane-ld: <https://data.cochrane.org/concepts/> .
+@base <https://w3id.org/zinl/fpr-o> .
+
+<https://w3id.org/zinl/fpr-o> rdf:type owl:Ontology ;
+                               owl:versionIRI <https://w3id.org/zinl/fpr-o/1.0.0> ;
+                               dc:creator "Dutch Health Care Institute (Zorginstituut Nederland)" ,
+                                          "Eelke van der Horst - The Hyve" ;
+                               dc:date "2025-11-12" ;
+                               rdfs:comment "Ontology to describe FAIR Package Statements of the Dutch Health Care Institute (Zorginstituut Nederland)" ;
+                               rdfs:label "FAIR Package Registry ontology" ;
+                               owl:versionInfo "1.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/zinl/fpr-o#hasAssessmentType
+fpr-o:hasAssessmentType rdf:type owl:ObjectProperty ;
+                        rdfs:domain fpr-o:PackageStatement ;
+                        rdfs:range fpr-o:AssessmentType ;
+                        rdfs:comment "Indicates the assessment type of a Package Statement" ;
+                        rdfs:label "heeft beoordelingstype"@nl ,
+                                   "has assessment type" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasBIA
+fpr-o:hasBIA rdf:type owl:ObjectProperty ;
+             rdfs:domain fpr-o:IICAssessment ;
+             rdfs:range fpr-o:BIA ;
+             rdfs:comment "The Budget Impact Analysis for an IIC" ;
+             rdfs:label "heeft BIA"@nl ,
+                        "has BIA" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasConclusion
+fpr-o:hasConclusion rdf:type owl:ObjectProperty ;
+                    rdfs:domain fpr-o:IICAssessment ;
+                    rdfs:range fpr-o:EvaluationOutcome ;
+                    rdfs:comment "The conclusion about a ICC assessment, expressed as positive or negative" ;
+                    rdfs:label "heeft conclusion"@nl ,
+                               "has conclusion" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasCostEffectiveness
+fpr-o:hasCostEffectiveness rdf:type owl:ObjectProperty ;
+                           rdfs:domain fpr-o:IICAssessment ;
+                           rdfs:range fpr-o:CostEffectiveness ;
+                           rdfs:comment "The discussion of cost-effectiveness for an IIC" ;
+                           rdfs:label "heeft kosteneffectiviteit"@nl ,
+                                      "has cost-effectiveness" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasCostEstimation
+fpr-o:hasCostEstimation rdf:type owl:ObjectProperty ;
+                        rdfs:domain fpr-o:BIA ;
+                        rdfs:range qb:DataSet ;
+                        rdfs:comment "The cost estimation dataset of a BIA" ;
+                        rdfs:label "heeft kosten verwachting"@nl ,
+                                   "has cost estimation" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasCostType
+fpr-o:hasCostType rdf:type owl:ObjectProperty ;
+                  rdfs:domain qb:Observation ;
+                  rdfs:range fpr-o:CostType ;
+                  rdfs:comment "The cost type dimension of a particular cost estimation value" ;
+                  rdfs:label "heeft kostentype"@nl ,
+                             "has cost type" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasDateLimit
+fpr-o:hasDateLimit rdf:type owl:ObjectProperty ;
+                   rdfs:domain fpr-o:LiteratureSearch ;
+                   rdfs:range time:Interval ;
+                   rdfs:comment "The date limit for a search for evidence" ;
+                   rdfs:label "heeft datum limiet"@nl ,
+                              "has date limit" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasEMSMP
+fpr-o:hasEMSMP rdf:type owl:ObjectProperty ;
+               rdfs:domain fpr-o:IICAssessment ;
+               rdfs:range fpr-o:EMSMP ;
+               rdfs:comment "The discussion of EMSMP for an IIC" ;
+               rdfs:label "heeft SWP"@nl ,
+                          "has EMSMP" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasEvidenceType
+fpr-o:hasEvidenceType rdf:type owl:ObjectProperty ;
+                      rdfs:domain fpr-o:LiteratureSearch ;
+                      rdfs:comment "The type of evidence (RTC, Systematic review etc) that was searched for" ;
+                      rdfs:label "heeft bewijstype"@nl ,
+                                 "has evidence type" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasIICAssessment
+fpr-o:hasIICAssessment rdf:type owl:ObjectProperty ;
+                       rdfs:domain fpr-o:PackageStatement ;
+                       rdfs:range fpr-o:IICAssessment ;
+                       rdfs:comment "An IIC assessment that a Package Statement covers" ;
+                       rdfs:label "heeft IIC assessment"@nl ,
+                                  "has IIC assessment" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasIndication
+fpr-o:hasIndication rdf:type owl:ObjectProperty ;
+                    rdfs:domain fpr-o:IICAssessment ;
+                    rdfs:range pico:Population ;
+                    rdfs:comment "The indication that an IIC assessment is about" ;
+                    rdfs:label "heeft indication"@nl ,
+                               "has indication" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasIntervention
+fpr-o:hasIntervention rdf:type owl:ObjectProperty ;
+                      rdfs:domain fpr-o:IICAssessment ;
+                      rdfs:range pico:Intervention ;
+                      rdfs:comment "The intervention that a IIC assessment is about" ;
+                      rdfs:label "heeft intervention"@nl ,
+                                 "has intervention" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasManagedEntryAgreement
+fpr-o:hasManagedEntryAgreement rdf:type owl:ObjectProperty ;
+                               rdfs:domain fpr-o:IICAssessment ;
+                               rdfs:range fpr-o:ManagedEntryAgreement ;
+                               rdfs:comment "A managed entry agreement for a IIC" ;
+                               rdfs:label "heeft beheerde toegangsovereenkomst"@nl ,
+                                          "has managed entry agreement" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasOutcomeMeasurement
+fpr-o:hasOutcomeMeasurement rdf:type owl:ObjectProperty ;
+                            rdfs:domain fpr-o:EMSMP ;
+                            rdfs:range obo:STATO_statistic ;
+                            rdfs:comment "The actual value of a outcome measure that is part of the EMSMP evaluation" ;
+                            rdfs:label "heeft uitkomstmaat meting"@nl ,
+                                       "has outcome measurement" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasPICO
+fpr-o:hasPICO rdf:type owl:ObjectProperty ;
+              rdfs:domain fpr-o:EMSMP ;
+              rdfs:range pico:PICO ;
+              rdfs:comment "The PICO that is defined for an EMSMP investigation" ;
+              rdfs:label "heeft PICO"@nl ,
+                         "has PICO" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasPackageType
+fpr-o:hasPackageType rdf:type owl:ObjectProperty ;
+                     rdfs:domain fpr-o:PackageStatement ;
+                     rdfs:range fpr-o:PackageType ;
+                     rdfs:comment "Indicates the package type of a Package Statement" ;
+                     rdfs:label "heeft pakkettype"@nl ,
+                                "has package type" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasPackageTypeMedicationSubtype
+fpr-o:hasPackageTypeMedicationSubtype rdf:type owl:ObjectProperty ;
+                                      rdfs:domain fpr-o:PackageStatement ;
+                                      rdfs:range fpr-o:PackageTypeMedicationSubtype ;
+                                      rdfs:comment "Indicates the package subtype in case the intervention is medication" ;
+                                      rdfs:label "heeft pakkettype geneesmiddel subtype"@nl ,
+                                                 "has package type medical subtype" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasRelativeEffectiveness
+fpr-o:hasRelativeEffectiveness rdf:type owl:ObjectProperty ;
+                               rdfs:domain fpr-o:EMSMP ;
+                               rdfs:range fpr-o:EvaluationOutcome ;
+                               rdfs:comment "The relative effectiveness of a Intervention for an Indication, expressed as positive, negative, or equal" ;
+                               rdfs:label "heeft relatieve effectiviteit"@nl ,
+                                          "has relative effectiveness" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasScenario
+fpr-o:hasScenario rdf:type owl:ObjectProperty ;
+                  rdfs:domain qb:DataSet ;
+                  rdfs:range fpr-o:Scenario ;
+                  rdfs:comment "The scenario for a BIA dataset" ;
+                  rdfs:label "heeft scenario"@nl ,
+                             "has scenario" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasStatus
+fpr-o:hasStatus rdf:type owl:ObjectProperty ;
+                rdfs:domain fpr-o:PackageStatement ;
+                rdfs:range fpr-o:EditorialStatus ;
+                rdfs:comment "Indicates the editorial status of the Package Statement" ;
+                rdfs:label "heeft status"@nl ,
+                           "has status" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasSystematicLiteratureReview
+fpr-o:hasSystematicLiteratureReview rdf:type owl:ObjectProperty ;
+                                    rdfs:domain fpr-o:EMSMP ;
+                                    rdfs:range fpr-o:SystematicLiteratureReview ;
+                                    rdfs:comment "The search for evidence and results for the EMSMP evaluation" ;
+                                    rdfs:label "heeft systematisch literatuuronderzoek"@nl ,
+                                               "has systematic literature review" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasTrendAssumption
+fpr-o:hasTrendAssumption rdf:type owl:ObjectProperty ;
+                         rdfs:domain fpr-o:BIA ;
+                         rdfs:range qb:DataSet ;
+                         rdfs:comment "The trend assumption dataset of a BIA" ;
+                         rdfs:label "heeft trend verwachting"@nl ,
+                                    "has trend assumption" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/zinl/fpr-o#adheresToEMSMP
+fpr-o:adheresToEMSMP rdf:type owl:DatatypeProperty ;
+                     rdfs:domain fpr-o:EMSMP ;
+                     rdfs:range xsd:boolean ;
+                     rdfs:comment "Whether the Intervention adheres to Established Medical Science and Medical Practice for the relevant indication" ;
+                     rdfs:label "voldoet aan SWP"@nl ,
+                                "adheres to EMSMP" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasATCCode
+fpr-o:hasATCCode rdf:type owl:DatatypeProperty ;
+                 rdfs:domain pico:Intervention ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "ATC code for the Intervention" ;
+                 rdfs:label "heeft ATC code"@nl ,
+                            "has ATC code" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasCareActivityCode
+fpr-o:hasCareActivityCode rdf:type owl:DatatypeProperty ;
+                          rdfs:domain pico:Intervention ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "Care activity code (ZA-code) of the Intervention" ;
+                          rdfs:label "heeft zorgactiviteitcode"@nl ,
+                                     "has care activity code" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasCareProductCode
+fpr-o:hasCareProductCode rdf:type owl:DatatypeProperty ;
+                         rdfs:domain pico:Intervention ;
+                         rdfs:range xsd:string ;
+                         rdfs:comment "Care product code of the Intervention" ;
+                         rdfs:label "heeft zorgproductcode"@nl ,
+                                    "has care product code" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasCaseNumber
+fpr-o:hasCaseNumber rdf:type owl:DatatypeProperty ;
+                    rdfs:domain fpr-o:PackageStatement ;
+                    rdfs:range xsd:integer ;
+                    rdfs:comment "Case number of the Package Statement" ;
+                    rdfs:label "heeft zaaknummer"@nl ,
+                               "has case number" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasClaimCode
+fpr-o:hasClaimCode rdf:type owl:DatatypeProperty ;
+                   rdfs:domain pico:Intervention ;
+                   rdfs:range xsd:integer ;
+                   rdfs:comment "Claim code of the Intervention" ;
+                   rdfs:label "heeft aanspraakcode"@nl ,
+                              "has claim code" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasConclusionText
+fpr-o:hasConclusionText rdf:type owl:DatatypeProperty ;
+                        rdfs:domain fpr-o:IICAssessment ;
+                        rdfs:range xsd:string ;
+                        rdfs:comment "Conclusion text for an IIC assessment" ;
+                        rdfs:label "heeft conclusietext"@nl ,
+                                   "has conclusion text" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasEMARef
+fpr-o:hasEMARef rdf:type owl:DatatypeProperty ;
+                rdfs:domain pico:Intervention ;
+                rdfs:range xsd:string ;
+                rdfs:comment "EMA reference for the Intervention" ;
+                rdfs:label "heeft EMA referentie"@nl ,
+                           "has EMA reference" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasGuaranteeDocument
+fpr-o:hasGuaranteeDocument rdf:type owl:DatatypeProperty ;
+                           rdfs:domain fpr-o:PackageStatement ;
+                           rdfs:range xsd:anyURI ;
+                           rdfs:comment "Guarantee document of the Package Statement" ;
+                           rdfs:label "heeft waarborgdocument"@nl ,
+                                      "has guarantee document" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasINN
+fpr-o:hasINN rdf:type owl:DatatypeProperty ;
+             rdfs:domain pico:Intervention ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Nonproperietary name of the Intervention" ;
+             rdfs:label "heeft internationale niet-gepatenteerde naam"@nl ,
+                        "has international nonproperietary name" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasMarketPenetration
+fpr-o:hasMarketPenetration rdf:type owl:DatatypeProperty ;
+                           rdfs:domain qb:Observation ;
+                           rdfs:range xsd:float ;
+                           rdfs:comment "Expected Intervention market penetration" ;
+                           rdfs:label "heeft marktpenetratie"@nl ,
+                                      "has market penetration" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasMarketingAuthorizationHolder
+fpr-o:hasMarketingAuthorizationHolder rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain pico:Intervention ;
+                                      rdfs:range xsd:string ;
+                                      rdfs:comment "Authorization holder of the Intervention" ;
+                                      rdfs:label "heeft markt autorisatiehouder"@nl ,
+                                                 "has marketing authorization holder" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasNumberOfPatients
+fpr-o:hasNumberOfPatients rdf:type owl:DatatypeProperty ;
+                          rdfs:domain qb:Observation ;
+                          rdfs:range xsd:integer ;
+                          rdfs:comment "Number of patients for a BIA estimate" ;
+                          rdfs:label "heeft aantal patienten"@nl ,
+                                     "has number of patients" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasSerialNumber
+fpr-o:hasSerialNumber rdf:type owl:DatatypeProperty ;
+                      rdfs:domain fpr-o:PackageStatement ;
+                      rdfs:range xsd:integer ;
+                      rdfs:comment "Serial number of the Package Statement" ;
+                      rdfs:label "heeft volgnummer"@nl ,
+                                 "has serial number" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasTimepoint
+fpr-o:hasTimepoint rdf:type owl:DatatypeProperty ;
+                   rdfs:domain qb:Observation ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "Time point of a particular BIA estimate" ;
+                   rdfs:label "heeft tijdpunt"@nl ,
+                              "has timepoint" .
+
+
+###  https://w3id.org/zinl/fpr-o#hasTotalCosts
+fpr-o:hasTotalCosts rdf:type owl:DatatypeProperty ;
+                    rdfs:domain qb:Observation ;
+                    rdfs:range xsd:integer ;
+                    rdfs:comment "Total costs for a particular BIA estimate" ;
+                    rdfs:label "heeft totale kosten"@nl ,
+                               "has total costs" .
+
+
+###  https://w3id.org/zinl/fpr-o#isCostEffective
+fpr-o:isCostEffective rdf:type owl:DatatypeProperty ;
+                      rdfs:domain fpr-o:CostEffectiveness ;
+                      rdfs:range xsd:boolean ;
+                      rdfs:comment "Whether an Intervention is cost-effective for the Indication" ;
+                      rdfs:label "is kosteneffectief"@nl ,
+                                 "is cost effective" .
+
+
+###  https://w3id.org/zinl/fpr-o#isSurrogateOutcome
+fpr-o:isSurrogateOutcome rdf:type owl:DatatypeProperty ;
+                         rdfs:domain pico:Outcome ;
+                         rdfs:range xsd:boolean ;
+                         rdfs:comment "Whether an outcome is a surrogate outcome" ;
+                         rdfs:label "is surrogaatuitkomst"@nl ,
+                                    "is surrogate outcome" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://data.cochrane.org/ontologies/pico/Intervention
+pico:Intervention rdf:type owl:Class .
+
+
+###  http://data.cochrane.org/ontologies/pico/Outcome
+pico:Outcome rdf:type owl:Class .
+
+
+###  http://data.cochrane.org/ontologies/pico/PICO
+pico:PICO rdf:type owl:Class .
+
+
+###  http://data.cochrane.org/ontologies/pico/Population
+pico:Population rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/STATO_statistic
+obo:STATO_statistic rdf:type owl:Class .
+
+
+###  http://purl.org/linked-data/cube#DataSet
+qb:DataSet rdf:type owl:Class .
+
+
+###  http://purl.org/linked-data/cube#Observation
+qb:Observation rdf:type owl:Class .
+
+
+###  http://schema.org/ItemList
+schema:ItemList rdf:type owl:Class .
+
+
+###  http://schema.org/SearchAction
+schema:SearchAction rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Interval
+time:Interval rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Activity
+prov:Activity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Collection
+prov:Collection rdf:type owl:Class .
+
+
+###  https://w3id.org/zinl/fpr-o#AppropriateUseAgreement
+fpr-o:AppropriateUseAgreement rdf:type owl:Class ;
+                              rdfs:comment "A mechanism or agreement, often a managed entry or risk-sharing scheme, that links a new technology's funding or reimbursement to its actual use in a specific patient population or clinical setting, typically to manage clinical or financial uncertainty or to ensure cost-effective utilization" ;
+                              rdfs:label "Gepast gebruik afspraak"@nl ,
+                                         "Appropriate Use Agreement" .
+
+
+###  https://w3id.org/zinl/fpr-o#AssessmentType
+fpr-o:AssessmentType rdf:type owl:Class ;
+                     rdfs:comment "Type of assessment of a intervention-indication combination evaluation, such as initial assessment or reassessment" ;
+                     rdfs:label "Beoordelingstype"@nl ,
+                                "Assessment Type" .
+
+
+###  https://w3id.org/zinl/fpr-o#BIA
+fpr-o:BIA rdf:type owl:Class ;
+          rdfs:comment "Economic evaluation that maps the expected change in (total) expenditures resulting from the implementation of new care (intervention, process) or the de-implementation of existing care, and focuses on whether the implementation is actually financeable" ;
+          rdfs:label "Budget Impact Analyze"@nl ,
+                     "Budget Impact Analysis" .
+
+
+###  https://w3id.org/zinl/fpr-o#CostEffectiveness
+fpr-o:CostEffectiveness rdf:type owl:Class ;
+                        rdfs:comment "A type of economic evaluation that compares the relative costs and health outcomes of two or more alternative interventions to determine which one provides the greatest health benefit for a given cost, often expressed as the Incremental Cost-Effectiveness Ratio (ICER)" ;
+                        rdfs:label "Kosteneffectiviteit"@nl ,
+                                   "Cost-Effectiveness" .
+
+
+###  https://w3id.org/zinl/fpr-o#CostType
+fpr-o:CostType rdf:type owl:Class ;
+               rdfs:comment "Indicator of a cost type in the context of a BIA, such as the cost in the current situation, or the additional care costs when a substitute is reimbursed" ;
+               rdfs:label "Kostentype"@nl ,
+                          "Cost type" .
+
+
+###  https://w3id.org/zinl/fpr-o#EMSMP
+fpr-o:EMSMP rdf:type owl:Class ;
+            rdfs:comment "Section of a Package Statement that evaluates whether the Intervention conforms to Established Medical Science and Medical Practice in relation to the Indication." ;
+            rdfs:label "Stand van de Wetenschap en Praktijk"@nl ,
+                       "Established Medical Science and Medical Practice" .
+
+
+###  https://w3id.org/zinl/fpr-o#EditorialStatus
+fpr-o:EditorialStatus rdf:type owl:Class ;
+                      rdfs:comment "Editorial status of a package type, such as definitive" ;
+                      rdfs:label "Redactionele status"@nl ,
+                                 "Editorial Status" .
+
+
+###  https://w3id.org/zinl/fpr-o#EvaluationOutcome
+fpr-o:EvaluationOutcome rdf:type owl:Class ;
+                        rdfs:comment "Relative outcome of a comparison or evaluation, such as positive or negative" ;
+                        rdfs:label "Beoordelingsuitkomst"@nl ,
+                                   "Evaluation Outcome" .
+
+
+###  https://w3id.org/zinl/fpr-o#IICAssessment
+fpr-o:IICAssessment rdf:type owl:Class ;
+                    rdfs:comment "Grouping of all evaluations related to one Intervention-Indication Combination in the context of a Package Statement" ;
+                    rdfs:label "Interventie-Indicatie Combinatie Beoordeling"@nl ,
+                               "Intervention-Indication Combination Assessment" .
+
+
+###  https://w3id.org/zinl/fpr-o#LiteratureReferenceList
+fpr-o:LiteratureReferenceList rdf:type owl:Class ;
+                              rdfs:subClassOf schema:ItemList ,
+                                              prov:Collection ;
+                              rdfs:comment "Filtered (literature) results that resulted from literature searches and cleaning/evaluation of each result" ;
+                              rdfs:label "Literatuur referenties lijst"@nl ,
+                                         "Literature Reference List" .
+
+
+###  https://w3id.org/zinl/fpr-o#LiteratureSearch
+fpr-o:LiteratureSearch rdf:type owl:Class ;
+                       rdfs:subClassOf schema:SearchAction ,
+                                       prov:Activity ;
+                       rdfs:comment "Execution of a search for relevant literature/evidence in a data source using a particular search query, executed at a particular time." ;
+                       rdfs:label "Literatuuronderzoek"@nl ,
+                                  "Literature Search" ;
+                       skos:closeMatch <http://edamontology.org/operation_0305> .
+
+
+###  https://w3id.org/zinl/fpr-o#ManagedEntryAgreement
+fpr-o:ManagedEntryAgreement rdf:type owl:Class ;
+                            rdfs:comment "Formal, negotiated contract between a health technology provider and a payer (like a national health system) that provides conditional access and reimbursement for a health technology, specifically addressing and mitigating uncertainty about its real-world performance or budget impact" ;
+                            rdfs:label "Beheerde toetredingsovereenkomst"@nl ,
+                                       "Managed Entry Agreement" .
+
+
+###  https://w3id.org/zinl/fpr-o#PackageStatement
+fpr-o:PackageStatement rdf:type owl:Class ;
+                       rdfs:comment "The official determination by the Dutch Health Care Institute regarding the content of the standard health insurance package (basisverzekering) that defines the boundaries of what should be collectively insured and what should not." ;
+                       rdfs:label "Pakket uitspraak"@nl ,
+                                  "Package Statement" .
+
+
+###  https://w3id.org/zinl/fpr-o#PackageType
+fpr-o:PackageType rdf:type owl:Class ;
+                  rdfs:comment "Type of the package statement, i.e. point-of-view or advice" ;
+                  rdfs:label "Pakket type"@nl ,
+                             "Package Type" .
+
+
+###  https://w3id.org/zinl/fpr-o#PackageTypeMedicationSubtype
+fpr-o:PackageTypeMedicationSubtype rdf:type owl:Class ;
+                                   rdfs:comment "In case of medication, the subtype of the package statement, which can be lock procedure drug" ;
+                                   rdfs:label "Pakket type medicatie subtype"@nl ,
+                                              "Package Type Medication Subtype" .
+
+
+###  https://w3id.org/zinl/fpr-o#Scenario
+fpr-o:Scenario rdf:type owl:Class ;
+               rdfs:comment "Possible financial situation that is evaluated in the context of a BIA" ;
+               rdfs:label "Scenario"@nl ,
+                          "Scenario" .
+
+
+###  https://w3id.org/zinl/fpr-o#SystematicLiteratureReview
+fpr-o:SystematicLiteratureReview rdf:type owl:Class ;
+                                 rdfs:subClassOf prov:Activity ;
+                                 rdfs:comment "Search for evidence (literature) in the context of a Package Statement, and listing of filtered results" ;
+                                 rdfs:label "Systematisch Literatuur Onderzoek"@nl ,
+                                            "Systematic Literature Review" ;
+                                 skos:closeMatch <http://purl.org/spar/fabio/SystematicReview> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/zinl/fpr-o#Additional
+fpr-o:Additional rdf:type owl:NamedIndividual ,
+                          fpr-o:CostType ;
+                 rdfs:comment "The additional costs (compared to the current situation) when the intervention (partly) substitutes standard care  " ;
+                 rdfs:label "Additioneel"@nl ,
+                            "Additional" .
+
+
+###  https://w3id.org/zinl/fpr-o#Advice
+fpr-o:Advice rdf:type owl:NamedIndividual ,
+                      fpr-o:PackageType ;
+             rdfs:comment "The Package Statement is an Advice" ;
+             rdfs:label "Advies"@nl ,
+                        "Advice" .
+
+
+###  https://w3id.org/zinl/fpr-o#Current
+fpr-o:Current rdf:type owl:NamedIndividual ,
+                       fpr-o:CostType ;
+              rdfs:comment "The costs of the standard care" ;
+              rdfs:label "Huidig"@nl ,
+                         "Current" .
+
+
+###  https://w3id.org/zinl/fpr-o#Definitive
+fpr-o:Definitive rdf:type owl:NamedIndividual ,
+                          fpr-o:EditorialStatus ;
+                 rdfs:comment "The Editorial Status is Definitive and will not change" ;
+                 rdfs:label "Definitief"@nl ,
+                            "Definitive" .
+
+
+###  https://w3id.org/zinl/fpr-o#Equal
+fpr-o:Equal rdf:type owl:NamedIndividual ,
+                     fpr-o:EvaluationOutcome ;
+            rdfs:comment "The relative outcome is equal" ;
+            rdfs:label "Gelijk"@nl ,
+                       "Equal" .
+
+
+###  https://w3id.org/zinl/fpr-o#IndicationBroadening
+fpr-o:IndicationBroadening rdf:type owl:NamedIndividual ,
+                                    fpr-o:AssessmentType ;
+                           rdfs:comment "A broadening of the indication is assessed for the intervention" ;
+                           rdfs:label "Indicatie-verbreding"@nl ,
+                                      "Indication broadening" .
+
+
+###  https://w3id.org/zinl/fpr-o#IndicationExtension
+fpr-o:IndicationExtension rdf:type owl:NamedIndividual ,
+                                   fpr-o:AssessmentType ;
+                          rdfs:comment "An extension of the indication is assessed for the intervention" ;
+                          rdfs:label "Indicatie-uitbreiding"@nl ,
+                                     "Indication extension" .
+
+
+###  https://w3id.org/zinl/fpr-o#InitialAssessment
+fpr-o:InitialAssessment rdf:type owl:NamedIndividual ,
+                                 fpr-o:AssessmentType ;
+                        rdfs:comment "It is the initial assessment of this ICC" ;
+                        rdfs:label "Initiële beoordeling"@nl ,
+                                   "Initial assessment" .
+
+
+###  https://w3id.org/zinl/fpr-o#LockProcedureDrug
+fpr-o:LockProcedureDrug rdf:type owl:NamedIndividual ,
+                                 fpr-o:PackageTypeMedicationSubtype ;
+                        rdfs:comment "The Package Slutement is a Lock procedure Drug" ;
+                        rdfs:label "Sluisgeneesmiddel"@nl ,
+                                   "Lock procedure drug" .
+
+
+###  https://w3id.org/zinl/fpr-o#Negative
+fpr-o:Negative rdf:type owl:NamedIndividual ,
+                        fpr-o:EvaluationOutcome ;
+               rdfs:comment "The relative outcome is negative" ;
+               rdfs:label "Negatief"@nl ,
+                          "Negative" .
+
+
+###  https://w3id.org/zinl/fpr-o#PointOfView
+fpr-o:PointOfView rdf:type owl:NamedIndividual ,
+                           fpr-o:PackageType ;
+                  rdfs:comment "The Package Statement is a Point of View" ;
+                  rdfs:label "Standpunt"@nl ,
+                             "Point of view" .
+
+
+###  https://w3id.org/zinl/fpr-o#Positive
+fpr-o:Positive rdf:type owl:NamedIndividual ,
+                        fpr-o:EvaluationOutcome ;
+               rdfs:comment "The relative outcome is positive" ;
+               rdfs:label "Positief"@nl ,
+                          "Positive" .
+
+
+###  https://w3id.org/zinl/fpr-o#Reassessment
+fpr-o:Reassessment rdf:type owl:NamedIndividual ,
+                            fpr-o:AssessmentType ;
+                   rdfs:comment "This ICC is reassessed" ;
+                   rdfs:label "Herbeoordeling"@nl ,
+                              "Reassessment" .
+
+
+###  https://w3id.org/zinl/fpr-o#Substitution
+fpr-o:Substitution rdf:type owl:NamedIndividual ,
+                            fpr-o:CostType ;
+                   rdfs:comment "The costs in the situation where the intervention (partly) substitutes standard care" ;
+                   rdfs:label "Substitutie"@nl ,
+                              "Substitution" .
+
+
+###  https://w3id.org/zinl/fpr-o#Total
+fpr-o:Total rdf:type owl:NamedIndividual ,
+                     fpr-o:CostType ;
+            rdfs:comment "The total costs in the situation where the intervention (partly) substitutes standard care" ;
+            rdfs:label "Totaal"@nl ,
+                       "Total" .
+
+
+###  Generated by the OWL API (version 4.5.29) https://github.com/owlcs/owlapi

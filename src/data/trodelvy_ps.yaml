@@ -1,0 +1,337 @@
+
+package-statement:
+  id: PS-Trodelvy
+  title: Herbeoordeling farmacoeconomische analyse sacituzumab govitecan (Trodelvy®) bij de behandeling van inoperabele of gemetastaseerde triple-negatieve borstkanker
+  date: 2024-07-09
+  package-type: Advice
+  package-type-medication-subtype: LockProcedureDrug
+  case-number: 2024015841
+  serial-number: 2024020563
+  status: Definitive
+  contact-person: [Mr. Drs. K.G. Watson MD]
+  department: Zorg
+  team: Geneesmiddelen
+  see-also: "https://www.zorginstituutnederland.nl/documenten/2024/07/09/pakketadvies-sacituzumab-govitecan-trodelvy-bij-borstkanker-herbeoordeling"
+  iic-assessments:
+  - IICAssessment-Trodelvy
+
+populations:
+  # TODO: add: tenminste 2 systemische therapieën gekregen, waarvan één lijn taxaanbevattende therapie en tenminste één voor gevorderde ziekte
+  - id: Population-AdultInoperableTNBC
+    title: Volwassenen met lokaal gevorderde (inoperabele) triple-negatieve borstkanker
+    age: Adult
+    conditions:
+      - Triple-negative breast cancer
+      - T3 Category
+    treatment: [Chemotherapy]
+  - id: Population-AdultMetastaticTNBC
+    title: Volwassenen met lokaal gevorderde (inoperabele) triple-negatieve borstkanker
+    age: Adult
+    conditions:
+      - Triple-negative breast cancer
+      - T4 Category
+    treatment: [Chemotherapy]
+
+interventions:
+  - id: Intervention-Trodelvy
+    title: Trodelvy
+    applied-intervention: Trodelvy
+    intervention-rationale: Systemische behandelen van TNBC
+    intervention-classification: Pharmacological Interventions
+    marketing-authorization-holder: Gilead Sciences Netherlands B.V.
+    inn: Sacituzumab govitecan
+    atc-code: L01FX17
+    ema-id: EMEA/H/C/005182/0000
+    schedule:
+    dose:
+    duration:
+    costs: 68_706.76
+  - id: Intervention-Chemotherapy
+    title: Chemotherapy (eribuline, capecitabine, vinorelbine of gemcitabine)
+    applied-intervention: Chemotherapy
+    intervention-rationale: Systemische behandelen van TNBC
+    intervention-classification: Pharmacological Interventions
+    schedule:
+    dose:
+    duration:
+    costs: 6_425.12
+
+intervention-groups:
+  - id: InterventionGroup-Trodelvy
+    title: Trodelvy Interventiegroep
+    intervention-ids: [Intervention-Trodelvy]
+  - id: InterventionGroup-Chemotherapy
+    title: Chemotherapie Interventiegroep (standaard zorg)
+    intervention-ids: [Intervention-Chemotherapy]
+
+outcomes:
+  - id: Outcome-Overall-Survival
+    name: Overall Survival
+    outcome-classification: Survival
+    outcome-measurement: Overall Survival
+    surrogate-outcome: False
+  - id: Outcome-ProgressionFree-Survival
+    name: Progression-free Survival
+    outcome-classification: Survival
+    outcome-measurement: Progression-free Survival
+    surrogate-outcome: True
+  - id: Outcome-EQ-5D-5L
+    name: EQ-5D-5L - Quality of Life
+    outcome-classification: Quality of Life
+    outcome-measurement: EQ-5D-5L
+    surrogate-outcome: False
+  - id: Outcome-EORTC-QLQ-C30
+    name: European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-C30)
+    outcome-classification: Quality of Life
+    outcome-measurement: European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-C30)
+    surrogate-outcome: False
+  - id: Outcome-EORTC-QLQ-B23
+    name: European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-B23)
+    outcome-classification: Quality of Life
+    outcome-measurement: European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-B23)
+    surrogate-outcome: False
+  - id: Outcome-SeriousAdverseEvents
+    name: Number of serious adverse events
+    outcome-classification: Adverse events
+    outcome-measurement: Number of serious adverse events
+    surrogate-outcome: False
+  - id: Outcome-DropoutDueToAdverseEvents
+    name: Dropout due to adverse events
+    outcome-classification: Dropout
+    outcome-measurement: Dropout due to adverse events
+    surrogate-outcome: False
+
+outcome-groups:
+  - id: OutcomeGroup-Trodelvy-Between12to15Months
+    endpoint: Between 12 and 15 months
+    outcome-ids:
+    - Outcome-Overall-Survival
+    - Outcome-ProgressionFree-Survival
+    - Outcome-EQ-5D-5L
+    - Outcome-EORTC-QLQ-C30
+    - Outcome-EORTC-QLQ-B23
+    - Outcome-DropoutDueToAdverseEvents
+
+picots:
+  - id: PICO-Trodelvy
+    population-ids:
+    - Population-AdultInoperableTNBC
+    - Population-AdultMetastaticTNBC
+    intervention-group-id: InterventionGroup-Trodelvy
+    comparator-group-id: InterventionGroup-Chemotherapy
+    outcome-group-ids: [OutcomeGroup-Trodelvy-Between12to15Months]
+
+intervention-indication-combination-assessments:
+  - id: IICAssessment-Trodelvy
+    assessment-type: Reassessment
+    intervention-id: Intervention-Trodelvy
+    indication-ids:
+    - Population-AdultInoperableTNBC
+    - Population-AdultMetastaticTNBC
+    emsmp-id: EMSMP-Trodelvy
+    bia-id: BIA-Trodelvy
+    conclusion: Positive
+    conclusion-text: "Onze conclusie is dat op basis van het huidige wetenschappelijk bewijs en aanvullende argumenten AFT na externe weefselexpansie een voldoende bewezen effectieve behandeling is voor deze groep vrouwen. Het Zorginstituut concludeert dan ook dat volledige borstreconstructie met AFT en een externe weefselexpander bij vrouwen na een totale borstverwijdering vanwege borstkanker of ter preventie hiervan voldoet aan de stand van de wetenschap en praktijk en daarmee kan worden toegelaten tot het basispakket."
+    cost-effective: False
+    managed-entry-agreement-text: "Het Zorginstituut acht een korting van tenminste 55% aangewezen."
+
+emsmps:
+  - id: EMSMP-Trodelvy
+    title: Stand van de Wetenschap en Praktijk - Trodelvy
+    picots-id: PICO-Trodelvy
+    slr-id: SLR-Trodelvy
+    outcome-measurement-ids:
+    - OutcomeMeasurement-Overall-Survival-HazardRatio-Trodelvy
+    - OutcomeMeasurement-Overall-Survival-MedianDifference-Trodelvy
+    - OutcomeMeasurement-ProgressionFree-Survival-HazardRatio-Trodelvy
+    - OutcomeMeasurement-ProgressionFree-Survival-MedianDifference-Trodelvy
+    - OutcomeMeasurement-EORTC-QLQ-C30-MeanDifference-Trodelvy
+    - OutcomeMeasurement-SeriousAdverseEvents-RiskRatio-Trodelvy
+    - OutcomeMeasurement-SeriousAdverseEvents-AbsoluteDifference-Trodelvy
+    - OutcomeMeasurement-DropoutDueToAdverseEvents-RiskRatio-Trodelvy
+    - OutcomeMeasurement-DropoutDueToAdverseEvents-AbsoluteDifference-Trodelvy
+    relative-effectiveness: Positive
+    adheres-to-emsmps: True
+
+systematic-literature-reviews:
+  - id: SLR-Trodelvy
+    title: Systematisch literatuuronderzoek voor Trodelvy
+    literature-searches: 
+    - LS-Trodelvy-PubMed-2022-04
+    - LS-Trodelvy-Cochrane-2022-04
+    literature-reference-list: LRL-Trodelvy
+
+literature-searches:
+  - id: LS-Trodelvy-PubMed-2022-04
+    label: Literatuur zoekopdracht voor klinische studies voor Trodelvy in PubMed on 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: PubMed
+    target-url: https://pubmed.ncbi.nlm.nih.gov/
+    evidence-type: Clinical Trial
+    query: >-
+      (sacituzumab govitecan) AND (metastatic triple-negative breast cancer)
+  - id: LS-Trodelvy-Cochrane-2022-04
+    label: Literatuur zoekopdracht voor klinische studies voor Trodelvy in Cochrane on 2022-04-28
+    end-time: 2022-04-28T00:00:00
+    target-db: Cochrane
+    target-url: https://www.cochranelibrary.com/
+    evidence-type: Clinical Trial
+    query: >-
+      (sacituzumab govitecan) AND (metastatic triple-negative breast cancer)
+
+publications:
+  - id: JournalArticle-ASCENT
+    type: JournalArticle
+    title: "Trodelvy (sacituzumab govitecan) in metastatic triple-negative breast cancer: a review of the clinical evidence."
+    authors: [Aditya Bardia, Sara A Hurvitz, Sara M Tolaney, Delphine Loirat, Kevin Punie, Mafalda Oliveira, Adam Brufsky, Sagar D Sardesai, Kevin Kalinsky, Amelia B Zelnak, Robert Weaver, Tiffany Traina, Florence Dalenc, Philippe Aftimos, Filipa Lynce, Sami Diab, Javier Cortés, Joyce O'Shaughnessy, Véronique Diéras, Cristiano Ferrario, Peter Schmid, Lisa A Carey, Luca Gianni, Martine J Piccart, Sibylle Loibl, David M Goldenberg, Quan Hong, Martin S Olivo, Loretta M Itri, Hope S Rugo, ASCENT Clinical Trial Investigators]
+    journal: New England Journal of Medicine
+    year: 2021
+    issue: 16
+    pages: 1529-1541
+
+literature-reference-lists:
+  - id: LRL-Trodelvy
+    title: Literatuur referentielijst voor Trodelvy SLR
+    number-of-items: 1
+    references:
+    - JournalArticle-ASCENT
+
+studies:
+  - id: Study-ASCENT
+    title: "Trial of Sacituzumab Govitecan in Participants With Refractory/​Relapsed Metastatic Triple-Negative Breast Cancer (TNBC) (ASCENT)"
+    short-title: ASCENT
+    registry: Clinicaltrials.gov
+    registry-id: NCT02574455
+    start-date: 2017-11-07
+    end-date: 2020-12-08
+    study-type: Interventional
+    phase: Phase 3
+    sponsor: Gilead Sciences
+    url: https://clinicaltrials.gov/study/NCT02574455
+    publication-ids:
+    - JournalArticle-ASCENT
+
+cohorts:
+  - id: Cohort-ASCENT-Intervention
+    study-id: Study-ASCENT
+    intervention-group-id: InterventionGroup-Trodelvy
+  - id: Cohort-ASCENT-Comparator
+    study-id: Study-ASCENT
+    intervention-group-id: InterventionGroup-Chemotherapy
+
+outcome-measurements:
+  - id: OutcomeMeasurement-Overall-Survival-HazardRatio-Trodelvy
+    type: hazard ratio
+    outcome-id: Outcome-Overall-Survival
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 0.48
+    unit:
+    ci-lower: 0.38
+    ci-upper: 0.59
+  - id: OutcomeMeasurement-Overall-Survival-MedianDifference-Trodelvy
+    type: median difference
+    outcome-id: Outcome-Overall-Survival
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 5.4
+    unit: months
+  - id: OutcomeMeasurement-ProgressionFree-Survival-HazardRatio-Trodelvy
+    type: hazard ratio
+    outcome-id: Outcome-ProgressionFree-Survival
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 0.41
+    unit:
+    ci-lower: 0.32
+    ci-upper: 0.52
+  - id: OutcomeMeasurement-ProgressionFree-Survival-MedianDifference-Trodelvy
+    type: median difference
+    outcome-id: Outcome-ProgressionFree-Survival
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 3.9
+    unit: months
+  - id: OutcomeMeasurement-EORTC-QLQ-C30-MeanDifference-Trodelvy
+    type: mean difference
+    outcome-id: Outcome-EORTC-QLQ-C30
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 4.08
+    unit: 
+    ci-lower: 0.82
+    ci-upper: 7.35
+  - id: OutcomeMeasurement-SeriousAdverseEvents-RiskRatio-Trodelvy
+    type: risk ratio
+    outcome-id: Outcome-SeriousAdverseEvents
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 1.38
+    unit: 
+    ci-lower: 1.16
+    ci-upper: 1.63
+  - id: OutcomeMeasurement-SeriousAdverseEvents-AbsoluteDifference-Trodelvy
+    type: absolute difference
+    outcome-id: Outcome-SeriousAdverseEvents
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 17.6
+    unit: '%'
+    ci-lower: 7.4
+    ci-upper: 29.3
+  - id: OutcomeMeasurement-DropoutDueToAdverseEvents-RiskRatio-Trodelvy
+    type: risk ratio
+    outcome-id: Outcome-DropoutDueToAdverseEvents
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: 0.99
+    unit: 
+    ci-lower: 0.45
+    ci-upper: 2.16
+  - id: OutcomeMeasurement-DropoutDueToAdverseEvents-AbsoluteDifference-Trodelvy
+    type: absolute difference
+    outcome-id: Outcome-DropoutDueToAdverseEvents
+    cohort-ids: [Cohort-ASCENT-Intervention, Cohort-ASCENT-Comparator]
+    value: -0.1
+    unit: '%'
+    ci-lower: -2.8
+    ci-upper: 6.0
+
+bias:
+  - id: BIA-Trodelvy
+    title: Budget Impact Analyse voor Trodelvy
+    trend-assumption-id: TrendAssumption-Trodelvy
+    cost-estimation-ids: [CostEstimation-Substitution-Trodelvy]
+
+scenarios:
+  - id: Scenario-Trodelvy-Substitution
+    title: Substitutie met Trodelvy
+    description: Substitutie van chemotherapie door Trodelvy bij patiënten met inoperabele of gemetastaseerde triple-negatieve borstkanker die ten minste twee eerdere systemische therapieën hebben ondergaan, waaronder een taxaan-bevattende therapie en ten minste één therapie voor gevorderde ziekte.
+
+trend-assumptions:
+  - id: TrendAssumption-Trodelvy
+    title: Geschatte trend voor Trodelvy
+    scenario-id: Scenario-Trodelvy-Substitution
+    time-points: [1, 2, 3]
+    time-unit: year
+    number-of-patients: [277, 277, 277]
+    intervention-market-penetration: [0.2, 0.4, 0.5]
+
+cost-estimations:
+    # Existing:
+  - id: CostEstimation-Substitution-Trodelvy
+    title: Kostenraming voor substitutie met Trodelvy
+    time-unit: year
+    time-points: [1, 2, 3]
+    trend-assumption-id: TrendAssumption-Trodelvy
+    scenario-id: Scenario-Trodelvy-Substitution
+    observation-groups:
+      - type: Current
+        intervention-ids: [Intervention-Chemotherapy]
+        number-of-patients: [ 222, 166, 138]
+        total-costs: [ 1_426_350, 1_066_550, 886_650]
+      - type: Substitution
+        intervention-ids: [Intervention-Trodelvy]
+        number-of-patients: [ 55, 111, 139]
+        total-costs: [ 377_872, 7_626_450, 9_550_239]
+      - type: Additional
+        intervention-ids: [Intervention-Chemotherapy, Intervention-Trodelvy]
+        number-of-patients: [ 55, 111, 139]
+        total-costs: [ 3_425_490, 6_913_262, 8_657_147]
+      - type: Total
+        intervention-ids: [Intervention-Chemotherapy, Intervention-Trodelvy]
+        number-of-patients: [ 277, 277, 277]
+        total-costs: [ 1_804_222, 8_693_000, 10_436_889]
+

@@ -1,0 +1,20 @@
+IRI	Type	Label	Dutch label	Description	Domain	Range
+ID	TYPE	LABEL	AL rdfs:label@nl	A rdfs:comment	DOMAIN	RANGE
+fpr-o:hasCaseNumber	data property	has case number	heeft zaaknummer	Case number of the Package Statement	Package Statement	xsd:integer
+fpr-o:hasSerialNumber	data property	has serial number	heeft volgnummer	Serial number of the Package Statement	Package Statement	xsd:integer
+fpr-o:hasGuaranteeDocument	data property	has guarantee document	heeft waarborgdocument	Guarantee document of the Package Statement	Package Statement	xsd:anyURI
+fpr-o:hasMarketingAuthorizationHolder	data property	has marketing authorization holder	heeft markt autorisatiehouder	Authorization holder of the Intervention	Intervention	xsd:string
+fpr-o:hasClaimCode	data property	has claim code	heeft aanspraakcode	Claim code of the Intervention	Intervention	xsd:integer
+fpr-o:hasCareActivityCode	data property	has care activity code	heeft zorgactiviteitcode	Care activity code (ZA-code) of the Intervention	Intervention	xsd:string
+fpr-o:hasCareProductCode	data property	has care product code	heeft zorgproductcode	Care product code of the Intervention	Intervention	xsd:string
+fpr-o:hasINN	data property	has international nonproperietary name	heeft internationale niet-gepatenteerde naam	Nonproperietary name of the Intervention	Intervention	xsd:string
+fpr-o:hasATCCode	data property	has ATC code	heeft ATC code	ATC code for the Intervention	Intervention	xsd:string
+fpr-o:hasEMARef	data property	has EMA reference	heeft EMA referentie	EMA reference for the Intervention	Intervention	xsd:string
+fpr-o:hasNumberOfPatients	data property	has number of patients	heeft aantal patienten	Number of patients for a BIA estimate	Observation	xsd:integer
+fpr-o:hasTotalCosts	data property	has total costs	heeft totale kosten	Total costs for a particular BIA estimate	Observation	xsd:integer
+fpr-o:hasMarketPenetration	data property	has market penetration	heeft marktpenetratie	Expected Intervention market penetration	Observation	xsd:float
+fpr-o:hasTimepoint	data property	has timepoint	heeft tijdpunt	Time point of a particular BIA estimate	Observation	xsd:string
+fpr-o:hasConclusionText	data property	has conclusion text	heeft conclusietext	Conclusion text for an IIC assessment	IICAssessment	xsd:string
+fpr-o:adheresToEMSMP	data property	adheres to EMSMP	voldoet aan SWP	Whether the Intervention adheres to Established Medical Science and Medical Practice for the relevant indication	Established Medical Science and Medical Practice	xsd:boolean
+fpr-o:isCostEffective	data property	is cost effective	is kosteneffectief	Whether an Intervention is cost-effective for the Indication	Cost-Effectiveness	xsd:boolean
+fpr-o:isSurrogateOutcome	data property	is surrogate outcome	is surrogaatuitkomst	Whether an outcome is a surrogate outcome	Outcome	xsd:boolean

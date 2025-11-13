@@ -1,0 +1,455 @@
+@base <https://w3id.org/zinl/package-statements/trodelvy_ps#> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix STATO: <http://purl.obolibrary.org/obo/STATO_> .
+@prefix UO: <http://purl.obolibrary.org/obo/UO_> .
+@prefix data: <https://w3id.org/zinl/package-statements/trodelvy_ps#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix fpr: <https://w3id.org/zinl/fpr-o#> .
+@prefix ns1: <http://purl.obolibrary.org/obo/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix pico: <http://data.cochrane.org/ontologies/pico/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tax: <https://w3id.org/zinl/fpr-tax#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Current-year-1> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-Chemotherapy> ;
+    fpr:hasNumberOfPatients 222 ;
+    fpr:hasTimepoint 1 ;
+    fpr:hasTotalCosts "1426350"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Current-year-2> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-Chemotherapy> ;
+    fpr:hasNumberOfPatients 166 ;
+    fpr:hasTimepoint 2 ;
+    fpr:hasTotalCosts "1066550"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Current-year-3> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-Chemotherapy> ;
+    fpr:hasNumberOfPatients 138 ;
+    fpr:hasTimepoint 3 ;
+    fpr:hasTotalCosts "886650"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Intervention-Trodelvy-Additional-year-1> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Additional ;
+    fpr:hasIntervention <Intervention-Chemotherapy>,
+        <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 55 ;
+    fpr:hasTimepoint 1 ;
+    fpr:hasTotalCosts "3425490"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Intervention-Trodelvy-Additional-year-2> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Additional ;
+    fpr:hasIntervention <Intervention-Chemotherapy>,
+        <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 111 ;
+    fpr:hasTimepoint 2 ;
+    fpr:hasTotalCosts "6913262"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Intervention-Trodelvy-Additional-year-3> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Additional ;
+    fpr:hasIntervention <Intervention-Chemotherapy>,
+        <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 139 ;
+    fpr:hasTimepoint 3 ;
+    fpr:hasTotalCosts "8657147"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Intervention-Trodelvy-Total-year-1> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Total ;
+    fpr:hasIntervention <Intervention-Chemotherapy>,
+        <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 277 ;
+    fpr:hasTimepoint 1 ;
+    fpr:hasTotalCosts "1804222"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Intervention-Trodelvy-Total-year-2> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Total ;
+    fpr:hasIntervention <Intervention-Chemotherapy>,
+        <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 277 ;
+    fpr:hasTimepoint 2 ;
+    fpr:hasTotalCosts "8693000"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Chemotherapy-Intervention-Trodelvy-Total-year-3> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Total ;
+    fpr:hasIntervention <Intervention-Chemotherapy>,
+        <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 277 ;
+    fpr:hasTimepoint 3 ;
+    fpr:hasTotalCosts "10436889"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Trodelvy-Substitution-year-1> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 55 ;
+    fpr:hasTimepoint 1 ;
+    fpr:hasTotalCosts "377872"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Trodelvy-Substitution-year-2> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 111 ;
+    fpr:hasTimepoint 2 ;
+    fpr:hasTotalCosts "7626450"^^xsd:float .
+
+<CostEstimation-Substitution-Trodelvy-Intervention-Trodelvy-Substitution-year-3> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-Trodelvy> ;
+    fpr:hasNumberOfPatients 139 ;
+    fpr:hasTimepoint 3 ;
+    fpr:hasTotalCosts "9550239"^^xsd:float .
+
+<Organization-ZorginstituutNederland> a org:FormalOrganization ;
+    rdfs:label "Zorginstituut Nederland" ;
+    org:hasUnit <OrganizationalUnit-Department-Zorg-I> .
+
+<Outcome-SeriousAdverseEvents> a pico:Outcome ;
+    rdfs:label "Number of serious adverse events" ;
+    pico:outcomeClassification tax:Adverse%20events ;
+    pico:outcomeMeasurement tax:Number%20of%20serious%20adverse%20events ;
+    fpr:isSurrogateOutcome false .
+
+<OutcomeMeasurement-Overall-Survival-MedianDifference-Trodelvy> a STATO:0000617 ;
+    IAO:0000039 UO:0000035 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-Overall-Survival> ;
+    STATO:0000129 "5.4"^^xsd:float .
+
+<OutcomeMeasurement-ProgressionFree-Survival-MedianDifference-Trodelvy> a STATO:0000617 ;
+    IAO:0000039 UO:0000035 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-ProgressionFree-Survival> ;
+    STATO:0000129 "3.9"^^xsd:float .
+
+<PS-Trodelvy> a fpr:PackageStatement ;
+    rdfs:label "Herbeoordeling farmacoeconomische analyse sacituzumab govitecan (Trodelvy®) bij de behandeling van inoperabele of gemetastaseerde triple-negatieve borstkanker" ;
+    dc:contributor "Mr. Drs. K.G. Watson MD" ;
+    dcterms:issued "2024-07-09"^^xsd:date ;
+    dcterms:publisher <OrganizationalUnit-Team-Pakket-en-Advies> ;
+    rdfs:seeAlso <https://www.zorginstituutnederland.nl/documenten/2024/07/09/pakketadvies-sacituzumab-govitecan-trodelvy-bij-borstkanker-herbeoordeling> ;
+    fpr:hasCaseNumber 2024015841 ;
+    fpr:hasIICAssessment <IICAssessment-Trodelvy> ;
+    fpr:hasPackageType fpr:Advice ;
+    fpr:hasPackageTypeMedicationSubtype fpr:LockProcedureDrug ;
+    fpr:hasSerialNumber 2024020563 ;
+    fpr:hasStatus fpr:Definitive .
+
+<TrendAssumption-Trodelvy-year-1> a qb:Observation ;
+    qb:dataSet <DataSet-TrendAssumption-Trodelvy> ;
+    fpr:hasMarketPenetration "0.2"^^xsd:float ;
+    fpr:hasNumberOfPatients 277 ;
+    fpr:hasTimepoint 1 .
+
+<TrendAssumption-Trodelvy-year-2> a qb:Observation ;
+    qb:dataSet <DataSet-TrendAssumption-Trodelvy> ;
+    fpr:hasMarketPenetration "0.4"^^xsd:float ;
+    fpr:hasNumberOfPatients 277 ;
+    fpr:hasTimepoint 2 .
+
+<TrendAssumption-Trodelvy-year-3> a qb:Observation ;
+    qb:dataSet <DataSet-TrendAssumption-Trodelvy> ;
+    fpr:hasMarketPenetration "0.5"^^xsd:float ;
+    fpr:hasNumberOfPatients 277 ;
+    fpr:hasTimepoint 3 .
+
+<> IAO:0000136 <Study-ASCENT> .
+
+<BIA-Trodelvy> a fpr:BIA ;
+    dcterms:title "Budget Impact Analyse voor Trodelvy" ;
+    fpr:hasCostEstimation <DataSet-CostEstimation-Substitution-Trodelvy> ;
+    fpr:hasTrendAssumption <DataSet-TrendAssumption-Trodelvy> .
+
+<EMSMP-Trodelvy> a fpr:EMSMP ;
+    dcterms:title "Stand van de Wetenschap en Praktijk - Trodelvy" ;
+    fpr:adheresToEMSMP true ;
+    fpr:hasPICO <PICO-Trodelvy> ;
+    fpr:hasRelativeEffectiveness fpr:Positive ;
+    fpr:hasSystematicLiteratureReview <SLR-Trodelvy> .
+
+<IICAssessment-Trodelvy> a fpr:IICAssessment ;
+    fpr:hasAssessmentType fpr:Reassessment ;
+    fpr:hasBIA <BIA-Trodelvy> ;
+    fpr:hasConclusion fpr:Positive ;
+    fpr:hasConclusionText "Onze conclusie is dat op basis van het huidige wetenschappelijk bewijs en aanvullende argumenten AFT na externe weefselexpansie een voldoende bewezen effectieve behandeling is voor deze groep vrouwen. Het Zorginstituut concludeert dan ook dat volledige borstreconstructie met AFT en een externe weefselexpander bij vrouwen na een totale borstverwijdering vanwege borstkanker of ter preventie hiervan voldoet aan de stand van de wetenschap en praktijk en daarmee kan worden toegelaten tot het basispakket." ;
+    fpr:hasCostEffectiveness [ a fpr:CostEffectiveness ;
+            fpr:isCostEffective false ] ;
+    fpr:hasEMSMP <EMSMP-Trodelvy> ;
+    fpr:hasIndication <Population-AdultInoperableTNBC>,
+        <Population-AdultMetastaticTNBC> ;
+    fpr:hasIntervention <Intervention-Trodelvy> ;
+    fpr:hasManagedEntryAgreement [ a fpr:ManagedEntryAgreement ;
+            skos:note "Het Zorginstituut acht een korting van tenminste 55% aangewezen." ] .
+
+<LRL-Trodelvy> a fabio:SystematicLiteratureReview ;
+    dcterms:title "Literatuur referentielijst voor Trodelvy SLR" ;
+    prov:hadMember <JournalArticle-ASCENT> ;
+    prov:wasGeneratedBy <SLR-Trodelvy> ;
+    schema:itemListElement <JournalArticle-ASCENT> ;
+    schema:numberOfItems 1 .
+
+<LS-Trodelvy-Cochrane-2022-04> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor klinische studies voor Trodelvy in Cochrane on 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "Cochrane" ;
+    schema:query "(sacituzumab govitecan) AND (metastatic triple-negative breast cancer)" ;
+    schema:target <https://www.cochranelibrary.com/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<LS-Trodelvy-PubMed-2022-04> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor klinische studies voor Trodelvy in PubMed on 2022-04-28" ;
+    prov:endedAtTime "2022-04-28T00:00:00"^^xsd:dateTime ;
+    schema:name "PubMed" ;
+    schema:query "(sacituzumab govitecan) AND (metastatic triple-negative breast cancer)" ;
+    schema:target <https://pubmed.ncbi.nlm.nih.gov/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<OrganizationalUnit-Department-Zorg-I> a org:OrganizationalUnit ;
+    rdfs:label "Department Zorg I" ;
+    org:hasUnit <OrganizationalUnit-Team-Pakket-en-Advies> .
+
+<Outcome-DropoutDueToAdverseEvents> a pico:Outcome ;
+    rdfs:label "Dropout due to adverse events" ;
+    pico:outcomeClassification tax:Dropout ;
+    pico:outcomeMeasurement tax:Dropout%20due%20to%20adverse%20events ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-EORTC-QLQ-B23> a pico:Outcome ;
+    rdfs:label "European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-B23)" ;
+    pico:outcomeClassification tax:Quality%20of%20Life ;
+    pico:outcomeMeasurement tax:European%20Organization%20For%20Research%20And%20Treatment%20Of%20Cancer%20-%20Quality%20Of%20Life%20Questionnaire%20%28EORTC%20QLQ-B23%29 ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-EORTC-QLQ-C30> a pico:Outcome ;
+    rdfs:label "European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-C30)" ;
+    pico:outcomeClassification tax:Quality%20of%20Life ;
+    pico:outcomeMeasurement tax:European%20Organization%20For%20Research%20And%20Treatment%20Of%20Cancer%20-%20Quality%20Of%20Life%20Questionnaire%20%28EORTC%20QLQ-C30%29 ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-EQ-5D-5L> a pico:Outcome ;
+    rdfs:label "EQ-5D-5L - Quality of Life" ;
+    pico:outcomeClassification tax:Quality%20of%20Life ;
+    pico:outcomeMeasurement tax:EQ-5D-5L ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-Overall-Survival> a pico:Outcome ;
+    rdfs:label "Overall Survival" ;
+    pico:outcomeClassification tax:Survival ;
+    pico:outcomeMeasurement tax:Overall%20Survival ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-ProgressionFree-Survival> a pico:Outcome ;
+    rdfs:label "Progression-free Survival" ;
+    pico:outcomeClassification tax:Survival ;
+    pico:outcomeMeasurement tax:Progression-free%20Survival ;
+    fpr:isSurrogateOutcome true .
+
+<OutcomeGroup-Trodelvy-Between12to15Months> a pico:OutcomeGroup ;
+    pico:endpoint "Between 12 and 15 months" ;
+    pico:outcome <Outcome-DropoutDueToAdverseEvents>,
+        <Outcome-EORTC-QLQ-B23>,
+        <Outcome-EORTC-QLQ-C30>,
+        <Outcome-EQ-5D-5L>,
+        <Outcome-Overall-Survival>,
+        <Outcome-ProgressionFree-Survival> .
+
+<OutcomeMeasurement-DropoutDueToAdverseEvents-AbsoluteDifference-Trodelvy> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-DropoutDueToAdverseEvents> ;
+    STATO:0000129 "-0.1"^^xsd:float .
+
+<OutcomeMeasurement-DropoutDueToAdverseEvents-RiskRatio-Trodelvy> a STATO:0000245 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-DropoutDueToAdverseEvents> ;
+    STATO:0000129 "0.99"^^xsd:float .
+
+<OutcomeMeasurement-EORTC-QLQ-C30-MeanDifference-Trodelvy> a STATO:0000457 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-EORTC-QLQ-C30> ;
+    STATO:0000129 "4.08"^^xsd:float .
+
+<OutcomeMeasurement-Overall-Survival-HazardRatio-Trodelvy> a STATO:0000677 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-Overall-Survival> ;
+    STATO:0000129 "0.48"^^xsd:float .
+
+<OutcomeMeasurement-ProgressionFree-Survival-HazardRatio-Trodelvy> a STATO:0000677 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-ProgressionFree-Survival> ;
+    STATO:0000129 "0.41"^^xsd:float .
+
+<OutcomeMeasurement-SeriousAdverseEvents-AbsoluteDifference-Trodelvy> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-SeriousAdverseEvents> ;
+    STATO:0000129 "17.6"^^xsd:float .
+
+<OutcomeMeasurement-SeriousAdverseEvents-RiskRatio-Trodelvy> a STATO:0000245 ;
+    IAO:0000136 <Cohort-ASCENT-Comparator>,
+        <Cohort-ASCENT-Intervention> ;
+    IAO:0000221 <Outcome-SeriousAdverseEvents> ;
+    STATO:0000129 "1.38"^^xsd:float .
+
+<PICO-Trodelvy> a pico:PICO ;
+    pico:comparatorGroup <InterventionGroup-Chemotherapy> ;
+    pico:interventionGroup <InterventionGroup-Trodelvy> ;
+    pico:outcome <OutcomeGroup-Trodelvy-Between12to15Months> ;
+    pico:population <Population-AdultInoperableTNBC>,
+        <Population-AdultMetastaticTNBC> .
+
+<InterventionGroup-Chemotherapy> a pico:InterventionGroup ;
+    pico:intervention <Intervention-Chemotherapy> .
+
+<InterventionGroup-Trodelvy> a pico:InterventionGroup ;
+    pico:intervention <Intervention-Trodelvy> .
+
+<JournalArticle-ASCENT> a fabio:JournalArticle ;
+    dcterms:title "Trodelvy (sacituzumab govitecan) in metastatic triple-negative breast cancer: a review of the clinical evidence." .
+
+<OrganizationalUnit-Team-Pakket-en-Advies> a org:OrganizationalUnit ;
+    rdfs:label "Team Pakket en Advies" .
+
+<Population-AdultInoperableTNBC> a pico:Population ;
+    rdfs:label "Volwassenen met lokaal gevorderde (inoperabele) triple-negatieve borstkanker" ;
+    pico:age tax:Adult ;
+    pico:condition tax:T3%20Category,
+        tax:Triple-negative%20breast%20cancer ;
+    pico:treatment tax:Chemotherapy .
+
+<Population-AdultMetastaticTNBC> a pico:Population ;
+    rdfs:label "Volwassenen met lokaal gevorderde (inoperabele) triple-negatieve borstkanker" ;
+    pico:age tax:Adult ;
+    pico:condition tax:T4%20Category,
+        tax:Triple-negative%20breast%20cancer ;
+    pico:treatment tax:Chemotherapy .
+
+<SLR-Trodelvy> a fpr:SystematicLiteratureReview ;
+    dcterms:hasPart <LS-Trodelvy-Cochrane-2022-04>,
+        <LS-Trodelvy-PubMed-2022-04> ;
+    dcterms:title "Systematisch literatuuronderzoek voor Trodelvy" ;
+    schema:result <LRL-Trodelvy> .
+
+<Scenario-Trodelvy-Substitution> a fpr:Scenario ;
+    dcterms:description "Substitutie van chemotherapie door Trodelvy bij patiënten met inoperabele of gemetastaseerde triple-negatieve borstkanker die ten minste twee eerdere systemische therapieën hebben ondergaan, waaronder een taxaan-bevattende therapie en ten minste één therapie voor gevorderde ziekte." ;
+    dcterms:title "Substitutie met Trodelvy" .
+
+<Study-ASCENT> a OBI:0003699 ;
+    dcterms:bibliographicCitation <> ;
+    dcterms:identifier "NCT02574455" ;
+    dcterms:source <Clinicaltrials.gov> ;
+    dcterms:title "Trial of Sacituzumab Govitecan in Participants With Refractory/​Relapsed Metastatic Triple-Negative Breast Cancer (TNBC) (ASCENT)" ;
+    rdfs:seeAlso <https://clinicaltrials.gov/study/NCT02574455> .
+
+<DataSet-TrendAssumption-Trodelvy> a qb:DataSet ;
+    dcterms:title "Geschatte trend voor Trodelvy" ;
+    fpr:hasScenario <Scenario-Trodelvy-Substitution> .
+
+<Cohort-ASCENT-Comparator> a STATO:0000203 ;
+    RO:0000056 <Study-ASCENT> ;
+    RO:0000059 <InterventionGroup-Chemotherapy> .
+
+<Cohort-ASCENT-Intervention> a STATO:0000203 ;
+    RO:0000056 <Study-ASCENT> ;
+    RO:0000059 <InterventionGroup-Trodelvy> .
+
+<Intervention-Chemotherapy> a pico:Intervention ;
+    pico:appliedIntervention tax:Chemotherapy ;
+    pico:interventionClassification tax:Pharmacological%20Interventions ;
+    pico:interventionRationale "Systemische behandelen van TNBC" ;
+    dcterms:title "Chemotherapy (eribuline, capecitabine, vinorelbine of gemcitabine)" .
+
+<Intervention-Trodelvy> a pico:Intervention ;
+    pico:appliedIntervention tax:Trodelvy ;
+    pico:interventionClassification tax:Pharmacological%20Interventions ;
+    pico:interventionRationale "Systemische behandelen van TNBC" ;
+    dcterms:title "Trodelvy" ;
+    fpr:hasATCCode "L01FX17" ;
+    fpr:hasEMARef "EMEA/H/C/005182/0000" ;
+    fpr:hasINN "Sacituzumab govitecan" ;
+    fpr:hasMarketingAuthorizationHolder "Gilead Sciences Netherlands B.V." .
+
+<DataSet-CostEstimation-Substitution-Trodelvy> a qb:DataSet ;
+    dcterms:title "Kostenraming voor substitutie met Trodelvy" ;
+    prov:wasDerivedFrom <DataSet-TrendAssumption-Trodelvy> ;
+    fpr:hasScenario <Scenario-Trodelvy-Substitution> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "29.3"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "7.4"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-SeriousAdverseEvents-AbsoluteDifference-Trodelvy> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "6.0"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "-2.8"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-DropoutDueToAdverseEvents-AbsoluteDifference-Trodelvy> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "0.82"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "7.35"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-EORTC-QLQ-C30-MeanDifference-Trodelvy> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "1.63"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "1.16"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-SeriousAdverseEvents-RiskRatio-Trodelvy> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "0.52"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "0.32"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-ProgressionFree-Survival-HazardRatio-Trodelvy> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "0.45"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "2.16"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-DropoutDueToAdverseEvents-RiskRatio-Trodelvy> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "0.38"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "0.59"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-Overall-Survival-HazardRatio-Trodelvy> .
+

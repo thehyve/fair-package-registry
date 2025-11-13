@@ -1,0 +1,588 @@
+@base <https://w3id.org/zinl/package-statements/mammaonco_ps#> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix STATO: <http://purl.obolibrary.org/obo/STATO_> .
+@prefix UO: <http://purl.obolibrary.org/obo/UO_> .
+@prefix data: <https://w3id.org/zinl/package-statements/mammaonco_ps#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix fpr: <https://w3id.org/zinl/fpr-o#> .
+@prefix ns1: <http://purl.obolibrary.org/obo/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix pico: <http://data.cochrane.org/ontologies/pico/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix tax: <https://w3id.org/zinl/fpr-tax#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<AU-MammaOnco> a fpr:AppropriateUseAgreement ;
+    dcterms:hasPart <Agreement-0>,
+        <Agreement-1>,
+        <Agreement-2>,
+        <Agreement-3>,
+        <Agreement-4>,
+        <Agreement-5> ;
+    dcterms:issued "2023-09-26"^^xsd:date ;
+    dcterms:title "Gepast gebruik afspraken MammaPrint en Oncotype DX" .
+
+<CostEstimation-MammaPrint-Intervention-MammaPrint-Chemo-Additional-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-MammaPrint> ;
+    fpr:hasCostType fpr:Additional ;
+    fpr:hasIntervention <Intervention-MammaPrint-Chemo> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "-4251723"^^xsd:float .
+
+<CostEstimation-MammaPrint-Intervention-MammaPrint-Chemo-Intervention-PostoperativeChemo-Total-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-MammaPrint> ;
+    fpr:hasCostType fpr:Total ;
+    fpr:hasIntervention <Intervention-MammaPrint-Chemo>,
+        <Intervention-PostoperativeChemo> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "8521949"^^xsd:float .
+
+<CostEstimation-MammaPrint-Intervention-MammaPrint-Substitution-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-MammaPrint> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-MammaPrint> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "2625192"^^xsd:float .
+
+<CostEstimation-MammaPrint-Intervention-PostoperativeChemo-Current-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-MammaPrint> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-PostoperativeChemo> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "12773672"^^xsd:float .
+
+<CostEstimation-MammaPrint-Intervention-PostoperativeChemo-Substitution-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-MammaPrint> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-PostoperativeChemo> ;
+    fpr:hasNumberOfPatients 373 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "5896757"^^xsd:float .
+
+<CostEstimation-OncotypeDX-Intervention-OncotypeDX-Additional-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-OncotypeDX> ;
+    fpr:hasCostType fpr:Additional ;
+    fpr:hasIntervention <Intervention-OncotypeDX> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "-2972659"^^xsd:float .
+
+<CostEstimation-OncotypeDX-Intervention-OncotypeDX-Chemo-Intervention-PostoperativeChemo-Total-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-OncotypeDX> ;
+    fpr:hasCostType fpr:Total ;
+    fpr:hasIntervention <Intervention-OncotypeDX-Chemo>,
+        <Intervention-PostoperativeChemo> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "9801013"^^xsd:float .
+
+<CostEstimation-OncotypeDX-Intervention-OncotypeDX-Substitution-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-OncotypeDX> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-OncotypeDX> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "3904256"^^xsd:float .
+
+<CostEstimation-OncotypeDX-Intervention-PostoperativeChemo-Current-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-OncotypeDX> ;
+    fpr:hasCostType fpr:Current ;
+    fpr:hasIntervention <Intervention-PostoperativeChemo> ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "12773672"^^xsd:float .
+
+<CostEstimation-OncotypeDX-Intervention-PostoperativeChemo-Substitution-default> a qb:Observation ;
+    qb:dataSet <DataSet-CostEstimation-OncotypeDX> ;
+    fpr:hasCostType fpr:Substitution ;
+    fpr:hasIntervention <Intervention-PostoperativeChemo> ;
+    fpr:hasNumberOfPatients 373 ;
+    fpr:hasTimepoint "default" ;
+    fpr:hasTotalCosts "5896757"^^xsd:float .
+
+<Organization-ZorginstituutNederland> a org:FormalOrganization ;
+    rdfs:label "Zorginstituut Nederland" ;
+    org:hasUnit <OrganizationalUnit-Department-Zorg-I> .
+
+<Outcome-Distant-Relapse-Free-Survival> a pico:Outcome ;
+    rdfs:label "Distant Relapse-Free Survival" ;
+    pico:outcomeClassification tax:Survival ;
+    pico:outcomeMeasurement tax:Distant%20Relapse-Free%20Survival ;
+    fpr:isSurrogateOutcome true .
+
+<Outcome-Invasive-Disease-Free-Survival> a pico:Outcome ;
+    rdfs:label "Invasive Disease-Free Survival" ;
+    pico:outcomeClassification tax:Survival ;
+    pico:outcomeMeasurement tax:Invasive%20Disease-Free%20Survival ;
+    fpr:isSurrogateOutcome true .
+
+<PS-MammaOnco> a fpr:PackageStatement ;
+    rdfs:label "Standpunt ‘Genexpressietesten bij vrouwen ouder dan 50 jaar en vroeg stadium borstkanker’" ;
+    dc:contributor "Angèl Link",
+        "Ingrid de Groot",
+        "Steef Redeker",
+        "Yoka Kusumanto" ;
+    dcterms:issued "2023-10-24"^^xsd:date ;
+    dcterms:publisher <OrganizationalUnit-Team-Pakket-en-Advies> ;
+    rdfs:seeAlso <https://www.zorginstituutnederland.nl/documenten/2023/10/24/standpunt---mammaprint-en-oncotype-dx-vergoede-zorg-voor-bepaalde-groep-vrouwen> ;
+    fpr:hasCaseNumber 2022006448 ;
+    fpr:hasIICAssessment <IICAssessment-MammaPrint>,
+        <IICAssessment-OncotypeDX> ;
+    fpr:hasPackageType fpr:PointOfView ;
+    fpr:hasSerialNumber 2022006461 ;
+    fpr:hasStatus fpr:Definitive .
+
+<TrendAssumption-MammaOnco-default> a qb:Observation ;
+    qb:dataSet <DataSet-TrendAssumption-MammaOnco> ;
+    fpr:hasMarketPenetration "1"^^xsd:float ;
+    fpr:hasNumberOfPatients 808 ;
+    fpr:hasTimepoint "default" .
+
+<Agreement-0> dcterms:title "{'description': 'Uitgebreide patiëntinformatie en richtlijnen voor professionals over bij welke subgroep van vrouwen deze genexpressietesten van toegevoegde waarde zou kunnen zijn en wat de implicaties zijn, zodat de vrouw in overleg met haar arts een weloverwogen besluit kan nemen of inzet van een genexpressietest in het individuele geval van toegevoegde waarde is (samen beslissen). De BVN heeft toegezegd in afstemming met Patiëntfederatie Nederland de bestaande patiënteninformatie te updaten vóór maart 2024.'}"@nl .
+
+<Agreement-1> dcterms:title "{'description': 'Revisie van de huidige richtlijn waarin de resultaten van de RxPonder-studie, TailorX-studie (Oncotype DX®) en 8-jaars resultaten van de MINDACT-studie (MammaPrint®) zijn opgenomen. De NABON heeft toegezegd dat de module wordt geprioriteerd voor de volgende jaarlijkse cyclus. Omdat het updaten van richtlijnen niet op korte termijn gerealiseerd is, zal de beroepsgroep een standpunt publiceren over MammaPrint en Oncotype DX op haar website.'}"@nl .
+
+<Agreement-2> dcterms:title "{'description': 'Inzet van genexpressietesten alleen als add-on-test aan de standaard risicoschatting, indien op basis van de standaard risicoschatting twijfel bestaat over de meerwaarde van adjuvante chemotherapie. Het is niet de bedoeling om de genexpressietest in plaats van de standaard risicoschatting in te zetten.'}"@nl .
+
+<Agreement-3> dcterms:title "{'description': 'Vanwege het ontbreken van de directe vergelijking weten we nu niet welke test de meeste gezondheidswinst voor de patiënt oplevert. De beroepsgroep spant zich in om hier inzicht in te krijgen door het bijhouden van de internationale literatuur en/of uitkomsten uit registraties. Het Zorginstituut zal jaarlijks navraag doen bij de beroepsgroep of er nieuwe publicaties verschenen zijn.'}"@nl .
+
+<Agreement-4> dcterms:title "{'description': 'Inzet van één van de testen per tumor (en niet beide testen). Dat de twee testen niet uitwisselbaar zijn zou er mogelijk toe kunnen leiden dat zorgprofessionals en patiënten geneigd zijn om beide testen bij één patiënt af te nemen, om alleen bij concordante uitslagen (dezelfde uitslagen) een patiënt te informeren over het advies over wel of geen adjuvante chemotherapie. Het is echter niet onderzocht of het klinisch nuttig en doelmatig is om beide testen bij één patiënt af te nemen. Het Zorginstituut is daarom van mening dat de inzet van genexpressie testen beperkt moet blijven tot één van de testen per tumor.'}"@nl .
+
+<Agreement-5> dcterms:title "{'description': 'Het Zorginstituut zal monitoren en evalueren of er sprake is van gepast gebruik van de testen. In nauwe afstemming met de beroepsgroep worden hiervoor eindpunten gedefinieerd.'}"@nl .
+
+<BIA-MammaPrint> a fpr:BIA ;
+    dcterms:title "Budget Impact Analyse voor MammaPrint" ;
+    fpr:hasCostEstimation <DataSet-CostEstimation-MammaPrint> ;
+    fpr:hasTrendAssumption <DataSet-TrendAssumption-MammaOnco> .
+
+<BIA-OncotypeDX> a fpr:BIA ;
+    dcterms:title "Budget Impact Analyse voor Oncotype DX" ;
+    fpr:hasCostEstimation <DataSet-CostEstimation-OncotypeDX> ;
+    fpr:hasTrendAssumption <DataSet-TrendAssumption-MammaOnco> .
+
+<EMSMP-MammaPrint> a fpr:EMSMP ;
+    dcterms:title "Stand van de Wetenschap en Praktijk - MammaPrint" ;
+    fpr:adheresToEMSMP true ;
+    fpr:hasPICO <PICO-MammaOnco> ;
+    fpr:hasRelativeEffectiveness fpr:Equal ;
+    fpr:hasSystematicLiteratureReview <SLR-MammaOnco> .
+
+<EMSMP-OncotypeDX> a fpr:EMSMP ;
+    dcterms:title "Stand van de Wetenschap en Praktijk - OncotypeDX" ;
+    fpr:adheresToEMSMP true ;
+    fpr:hasPICO <PICO-MammaOnco> ;
+    fpr:hasRelativeEffectiveness fpr:Equal ;
+    fpr:hasSystematicLiteratureReview <SLR-MammaOnco> .
+
+<IICAssessment-MammaPrint> a fpr:IICAssessment ;
+    fpr:hasAssessmentType fpr:Reassessment ;
+    fpr:hasBIA <BIA-MammaPrint> ;
+    fpr:hasConclusion fpr:Positive ;
+    fpr:hasConclusionText "Het Zorginstituut concludeert dat de genexpressietest Oncotype DX® en de genexpressietest MammaPrint® bij de genoemde indicaties voldoet aan ‘de stand van de wetenschap en praktijk’ en daarmee bij deze subgroep van vrouwen vergoed kan worden vanuit de basisverzekering." ;
+    fpr:hasCostEffectiveness [ a fpr:CostEffectiveness ;
+            fpr:isCostEffective true ] ;
+    fpr:hasEMSMP <EMSMP-MammaPrint> ;
+    fpr:hasIndication <Population-WomenBreastCancer50plusHRplusHERminN0>,
+        <Population-WomenBreastCancer50plusHRplusHERminN1> ;
+    fpr:hasIntervention <Intervention-MammaPrint> .
+
+<IICAssessment-OncotypeDX> a fpr:IICAssessment ;
+    fpr:hasAssessmentType fpr:IndicationBroadening ;
+    fpr:hasBIA <BIA-OncotypeDX> ;
+    fpr:hasConclusion fpr:Positive ;
+    fpr:hasConclusionText "Het Zorginstituut concludeert dat de genexpressietest Oncotype DX® en de genexpressietest MammaPrint® bij de genoemde indicaties voldoet aan ‘de stand van de wetenschap en praktijk’ en daarmee bij deze subgroep van vrouwen vergoed kan worden vanuit de basisverzekering." ;
+    fpr:hasCostEffectiveness [ a fpr:CostEffectiveness ;
+            fpr:isCostEffective true ] ;
+    fpr:hasEMSMP <EMSMP-OncotypeDX> ;
+    fpr:hasIndication <Population-WomenBreastCancer50plusHRplusHERminN1> ;
+    fpr:hasIntervention <Intervention-OncotypeDX> .
+
+<LRL-MammaOnco> a fabio:SystematicLiteratureReview ;
+    dcterms:title "Literatuur referentielijst voor MammaPrint en Oncotype DX SLR" ;
+    prov:hadMember <JournalArticle-MINDACT>,
+        <JournalArticle-RxPONDER> ;
+    prov:wasGeneratedBy <SLR-MammaOnco> ;
+    schema:itemListElement <JournalArticle-MINDACT>,
+        <JournalArticle-RxPONDER> ;
+    schema:numberOfItems 2 .
+
+<LS-ICTRP-SearchPortal-2022-11-01> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor RCTs op MammaPrint en Oncotype DX in ICTRP Search Portal (WHO) op 2022-11-01" ;
+    prov:endedAtTime "2022-11-01T00:00:00"^^xsd:dateTime ;
+    schema:name "ICTRP Search Portal" ;
+    schema:query "(mammaprint OR oncotype) AND breast AND (cancer OR carcinoma OR tumor OR tumour OR neoplasm)" ;
+    schema:target <https://trialsearch.who.int/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<LS-MammaOnco-ClinicaltrialsGov-2022-11-01> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor RCTs op MammaPrint en Oncotype DX in Clinicaltrials.gov op 2022-10-26" ;
+    prov:endedAtTime "2022-11-01T00:00:00"^^xsd:dateTime ;
+    schema:name "Clinicaltrials.gov" ;
+    schema:query "(mammaprint OR oncotype) AND breast AND (cancer OR carcinoma OR tumor OR tumour OR neoplasm)" ;
+    schema:target <https://clinicaltrials.gov/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<LS-MammaOnco-Cochrane-2022-11-01> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor RCTs op MammaPrint en Oncotype DX in Cochrane op 2022-11-01" ;
+    prov:endedAtTime "2022-11-01T00:00:00"^^xsd:dateTime ;
+    schema:name "Cochrane" ;
+    schema:query "(mammaprint OR oncotype):ab,ti AND (breast NEXT/2 (cancer OR carcino* OR tumor* OR tumour* OR neoplas*)):ab,ti" ;
+    schema:target <https://www.cochranelibrary.com/> ;
+    fpr:hasEvidenceType OBI:0003699 .
+
+<LS-MammaOnco-Embase-2022-10-26> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor MammaPrint en Oncotype DX in Embase op 2022-10-26" ;
+    prov:endedAtTime "2022-10-26T00:00:00"^^xsd:dateTime ;
+    schema:name "Embase" ;
+    schema:query "((mammaprint* OR 70-gene* OR MINDACT OR oncotype* OR 21-gene*):ab,ti,kw) AND ('breast tumor'/exp OR (((breast*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer*))):ab,ti,kw) AND [2018-2023]/py NOT ([Conference Abstract]/lim OR 'editorial'/it OR 'letter'/it OR 'note'/it OR 'chapter'/it OR 'conference abstract'/it OR 'conference paper'/it OR 'conference review'/it OR 'erratum'/it OR [preprint]/lim) NOT ((animal/exp OR animal*:de OR nonhuman/de) NOT ('human'/exp)) AND ('clinical study'/de OR 'clinical trial'/exp OR 'intervention study'/exp OR 'longitudinal study'/exp OR 'prospective study'/exp OR (((clinical OR prospect* OR intervention* OR longitudinal* OR randomi*) NEAR/3 (stud* OR trial*))):ab,ti)" ;
+    schema:target <https://www.embase.com/> .
+
+<LS-MammaOnco-Medline-2-2022-10-26> a fpr:LiteratureSearch ;
+    rdfs:label "Literatuur zoekopdracht voor MammaPrint en Oncotype DX in Medline op 2022-10-26" ;
+    prov:endedAtTime "2022-10-26T00:00:00"^^xsd:dateTime ;
+    schema:name "Medline" ;
+    schema:query "((mammaprint* OR 70-gene* OR MINDACT OR oncotype* OR 21-gene*).ab,ti,kf.) AND (exp \"Breast Neoplasms\"/ OR (((breast*) ADJ3 (tumor* OR tumour* OR neoplas* OR carcino* Or cancer*))).ab,ti,kf.) AND (\"Clinical Study\".pt OR \"Clinical Trial\".pt OR \"Controlled Clinical Trial\".pt. OR \"Randomized Controlled Trial\".pt. OR \"Longitudinal Studies\"/ OR \"Prospective Studies\"/ OR (((clinical OR prospect* OR intervention* OR longitudinal* OR randomi*) ADJ3 (stud* OR trial*))).ab,ti,kf.) NOT (\"Editorial\".pt. OR \"Comment\".pt. OR \"Letter\".pt. OR \"News\".pt. OR \"Congress\".pt. OR \"Meeting Abstract\".pt. OR \"Abstracts\".pt. OR \"Academic Dissertation\".pt. OR \"Published Erratum\".pt. OR (book* OR chapter* OR dissertation abstract*).pt.) NOT (exp animals/ NOT humans/)" ;
+    schema:target <https://www.medline.com/> ;
+    fpr:hasDateLimit [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "2017"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "2023"^^xsd:gYear ] ] .
+
+<OrganizationalUnit-Department-Zorg-I> a org:OrganizationalUnit ;
+    rdfs:label "Department Zorg I" ;
+    org:hasUnit <OrganizationalUnit-Team-Pakket-en-Advies> .
+
+<Outcome-EORTC-QLQ-C30> a pico:Outcome ;
+    rdfs:label "European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-C30)" ;
+    pico:outcomeClassification tax:Quality%20of%20Life ;
+    pico:outcomeMeasurement tax:European%20Organization%20For%20Research%20And%20Treatment%20Of%20Cancer%20-%20Quality%20Of%20Life%20Questionnaire%20%28EORTC%20QLQ-C30%29 ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-EQ-5D-5L> a pico:Outcome ;
+    rdfs:label "EQ-5D-5L - Quality of Life" ;
+    pico:outcomeClassification tax:Quality%20of%20Life ;
+    pico:outcomeMeasurement tax:EQ-5D-5L ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-FACT-B> a pico:Outcome ;
+    rdfs:label "Functional Assessment of Cancer Therapy - Breast (FACT-B)" ;
+    pico:outcomeClassification tax:Quality%20of%20Life ;
+    pico:outcomeMeasurement tax:Functional%20Assessment%20of%20Cancer%20Therapy ;
+    fpr:isSurrogateOutcome false .
+
+<Outcome-Overall-Survival> a pico:Outcome ;
+    rdfs:label "Overall Survival" ;
+    pico:outcomeClassification tax:Survival ;
+    pico:outcomeMeasurement tax:Overall%20Survival ;
+    fpr:isSurrogateOutcome false .
+
+<OutcomeGroup-MammaOnco-10-years> a pico:OutcomeGroup ;
+    pico:endpoint "10 years or more" ;
+    pico:outcome <Outcome-EORTC-QLQ-C30>,
+        <Outcome-EQ-5D-5L>,
+        <Outcome-FACT-B>,
+        <Outcome-Overall-Survival> .
+
+<OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-AbsoluteDifference-OncotypeDX> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-RxPONDER-ITT-Comparator>,
+        <Cohort-RxPONDER-ITT-Intervention> ;
+    IAO:0000221 <Outcome-Distant-Relapse-Free-Survival> ;
+    STATO:0000129 "0.1"^^xsd:float .
+
+<OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-HazardRatio-OncotypeDX> a STATO:0000677 ;
+    IAO:0000136 <Cohort-RxPONDER-ITT-Comparator>,
+        <Cohort-RxPONDER-ITT-Intervention> ;
+    IAO:0000221 <Outcome-Distant-Relapse-Free-Survival> ;
+    STATO:0000129 "1.05"^^xsd:float .
+
+<OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-AbsoluteDifference-OncotypeDX> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-RxPONDER-ITT-Comparator>,
+        <Cohort-RxPONDER-ITT-Intervention> ;
+    IAO:0000221 <Outcome-Invasive-Disease-Free-Survival> ;
+    STATO:0000129 "0.6"^^xsd:float .
+
+<OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-HazardRatio-OncotypeDX> a STATO:0000677 ;
+    IAO:0000136 <Cohort-RxPONDER-ITT-Comparator>,
+        <Cohort-RxPONDER-ITT-Intervention> ;
+    IAO:0000221 <Outcome-Invasive-Disease-Free-Survival> ;
+    STATO:0000129 "1.04"^^xsd:float .
+
+<OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-AbsoluteDifference-OncotypeDX> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-RxPONDER-PP-Comparator>,
+        <Cohort-RxPONDER-PP-Intervention> ;
+    IAO:0000221 <Outcome-Invasive-Disease-Free-Survival> ;
+    STATO:0000129 "-0.3"^^xsd:float .
+
+<OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-HazardRatio-OncotypeDX> a STATO:0000677 ;
+    IAO:0000136 <Cohort-RxPONDER-PP-Comparator>,
+        <Cohort-RxPONDER-PP-Intervention> ;
+    IAO:0000221 <Outcome-Invasive-Disease-Free-Survival> ;
+    STATO:0000129 "0.97"^^xsd:float .
+
+<OutcomeMeasurement-OverallSurvival-PP-AbsoluteDifference-MammaPrint> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-MINDACT-Comparator>,
+        <Cohort-MINDACT-Intervention> ;
+    IAO:0000221 <Outcome-Overall-Survival> ;
+    STATO:0000129 "0.3"^^xsd:float .
+
+<OutcomeMeasurement-OverallSurvival-PP-HazardRatio-MammaPrint> a STATO:0000677 ;
+    IAO:0000136 <Cohort-MINDACT-Comparator>,
+        <Cohort-MINDACT-Intervention> ;
+    IAO:0000221 <Outcome-Overall-Survival> ;
+    STATO:0000129 "1.06"^^xsd:float .
+
+<OutcomeMeasurement-OverallSurvival-TTI-AbsoluteDifference-MammaPrint> a STATO:0000614 ;
+    IAO:0000039 UO:0000187 ;
+    IAO:0000136 <Cohort-MINDACT-Comparator>,
+        <Cohort-MINDACT-Intervention> ;
+    IAO:0000221 <Outcome-Overall-Survival> ;
+    STATO:0000129 "1.6"^^xsd:float .
+
+<OutcomeMeasurement-OverallSurvival-TTI-HazardRatio-MammaPrint> a STATO:0000677 ;
+    IAO:0000136 <Cohort-MINDACT-Comparator>,
+        <Cohort-MINDACT-Intervention> ;
+    IAO:0000221 <Outcome-Overall-Survival> ;
+    STATO:0000129 "1.36"^^xsd:float .
+
+<> IAO:0000136 <Study-MINDACT>,
+        <Study-RxPONDER> .
+
+<Cohort-RxPONDER-PP-Comparator> a STATO:0000203 ;
+    RO:0000056 <Study-RxPONDER> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Comparator> .
+
+<Cohort-RxPONDER-PP-Intervention> a STATO:0000203 ;
+    RO:0000056 <Study-RxPONDER> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Intervention> .
+
+<Intervention-OncotypeDX-Chemo> a pico:Intervention ;
+    pico:appliedIntervention tax:Genetic%20test%20adviced%20Chemotherapy ;
+    pico:childIntervention <Intervention-OncotypeDX>,
+        <Intervention-PostoperativeChemo> ;
+    pico:interventionClassification tax:Screening ;
+    pico:interventionRationale "Pas chemotherapie toe naar aanleiding van hoge risicoschatting Oncotype DX" ;
+    dcterms:title "Chemotherapie op basis van Oncotype DX uitslag" .
+
+<JournalArticle-MINDACT> a fabio:JournalArticle ;
+    dcterms:title "70-gene signature as an aid for treatment decisions in early breast cancer: updated results of the phase 3 randomised MINDACT trial with an exploratory analysis by age." .
+
+<JournalArticle-RxPONDER> a fabio:JournalArticle ;
+    dcterms:title "21-Gene Assay to Inform Chemotherapy Benefit in Node-Positive Breast Cancer" .
+
+<OrganizationalUnit-Team-Pakket-en-Advies> a org:OrganizationalUnit ;
+    rdfs:label "Team Pakket en Advies" .
+
+<PICO-MammaOnco> a pico:PICO ;
+    pico:comparatorGroup <InterventionGroup-MammaOnco-Comparator> ;
+    pico:interventionGroup <InterventionGroup-MammaOnco-Intervention> ;
+    pico:outcome <OutcomeGroup-MammaOnco-10-years> ;
+    pico:population <Population-WomenBreastCancer50plusHRplusHERminN0>,
+        <Population-WomenBreastCancer50plusHRplusHERminN1> .
+
+<Population-WomenBreastCancer50plusHRplusHERminN0> a pico:Population ;
+    rdfs:label "Vrouwen ouder dan 50 met borstkanker, HR+/HER2-, N0, hoog risico op basis van AO! of Predict" ;
+    pico:age tax:Age%20more%20than%2050%20years ;
+    pico:condition tax:Breast%20Cancer,
+        tax:Estrogen%20Receptor%20Positive%20Tumor,
+        tax:High%20risk%20based%20on%20AO%21%20or%20Predict,
+        tax:Human%20Epidermal%20Growth%20Factor%202%20Negative%20Carcinoma%20Of%20Breast,
+        tax:N0%20Category,
+        tax:Progesterone%20Receptor%20Positive%20Tumor ;
+    pico:sex tax:Female ;
+    pico:treatment tax:Surgery .
+
+<Intervention-MammaPrint> a pico:Intervention ;
+    pico:appliedIntervention tax:MammaPrint ;
+    pico:interventionClassification tax:Screening ;
+    pico:interventionRationale "Ondersteunt beslissing om chemotherapie achterwege te laten" ;
+    dcterms:title "Complexe moleculaire diagnostiek genexpressietest op basis van 70 genen, MammaPrint®" ;
+    fpr:hasCareActivityCode "050530" ;
+    fpr:hasClaimCode 1602 ;
+    fpr:hasMarketingAuthorizationHolder "Agendia" .
+
+<Intervention-MammaPrint-Chemo> a pico:Intervention ;
+    pico:appliedIntervention tax:Genetic%20test%20adviced%20Chemotherapy ;
+    pico:childIntervention <Intervention-MammaPrint>,
+        <Intervention-PostoperativeChemo> ;
+    pico:interventionClassification tax:Screening ;
+    pico:interventionRationale "Pas chemotherapie toe naar aanleiding van hoge risicoschatting MammaPrint" ;
+    dcterms:title "Chemotherapie op basis van MammaPrint uitslag" .
+
+<Population-WomenBreastCancer50plusHRplusHERminN1> a pico:Population ;
+    rdfs:label "Vrouwen ouder dan 50 met borstkanker, HR+/HER2-, N1, hoog risico op basis van AO! of Predict" ;
+    pico:age tax:Age%20more%20than%2050%20years ;
+    pico:condition tax:Breast%20Cancer,
+        tax:Estrogen%20Receptor%20Positive%20Tumor,
+        tax:High%20risk%20based%20on%20AO%21%20or%20Predict,
+        tax:Human%20Epidermal%20Growth%20Factor%202%20Negative%20Carcinoma%20Of%20Breast,
+        tax:N1%20Category,
+        tax:Progesterone%20Receptor%20Positive%20Tumor ;
+    pico:sex tax:Female ;
+    pico:treatment tax:Surgery .
+
+<SLR-MammaOnco> a fpr:SystematicLiteratureReview ;
+    dcterms:hasPart <LS-ICTRP-SearchPortal-2022-11-01>,
+        <LS-MammaOnco-ClinicaltrialsGov-2022-11-01>,
+        <LS-MammaOnco-Cochrane-2022-11-01>,
+        <LS-MammaOnco-Embase-2022-10-26>,
+        <LS-MammaOnco-Medline-2-2022-10-26> ;
+    dcterms:title "Systematisch literatuuronderzoek MammaPrint/Oncotype DX" ;
+    schema:result <LRL-MammaOnco> .
+
+<Scenario-MammaOnco-Substitution> a fpr:Scenario ;
+    dcterms:description "Dit scenario beschrijft de substitutie van standaardzorg door MammaPrint & Oncotype tests." ;
+    dcterms:title "Substitutie scenario voor MammaPrint en/of Oncotype DX" .
+
+<Study-MINDACT> a OBI:0003699 ;
+    dcterms:bibliographicCitation <> ;
+    dcterms:identifier "NCT00433589" ;
+    dcterms:source <Clinicaltrials.gov> ;
+    dcterms:title "Genetic Testing or Clinical Assessment in Determining the Need for Chemotherapy in Women With Breast Cancer That Involves No More Than 3 Lymph Nodes (MINDACT)" ;
+    rdfs:seeAlso <https://clinicaltrials.gov/study/NCT00433589> .
+
+<Cohort-MINDACT-Comparator> a STATO:0000203 ;
+    RO:0000056 <Study-MINDACT> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Comparator> .
+
+<Cohort-MINDACT-Intervention> a STATO:0000203 ;
+    RO:0000056 <Study-MINDACT> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Intervention> .
+
+<Cohort-RxPONDER-ITT-Comparator> a STATO:0000203 ;
+    RO:0000056 <Study-RxPONDER> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Comparator> .
+
+<Cohort-RxPONDER-ITT-Intervention> a STATO:0000203 ;
+    RO:0000056 <Study-RxPONDER> ;
+    RO:0000059 <InterventionGroup-MammaOnco-Intervention> .
+
+<Intervention-OncotypeDX> a pico:Intervention ;
+    pico:appliedIntervention tax:OncotypeDX ;
+    pico:interventionClassification tax:Screening ;
+    pico:interventionRationale "Ondersteunt beslissing om chemotherapie achterwege te laten" ;
+    dcterms:title "Complexe moleculaire diagnostiek genexpressietest op basis van 21 genen, Oncotype DX®" ;
+    fpr:hasCareActivityCode "050531" ;
+    fpr:hasClaimCode 2601 ;
+    fpr:hasMarketingAuthorizationHolder "Exact Sciences" .
+
+<InterventionGroup-MammaOnco-Comparator> a pico:InterventionGroup ;
+    pico:intervention <Intervention-PostoperativeChemo> .
+
+<InterventionGroup-MammaOnco-Intervention> a pico:InterventionGroup ;
+    pico:intervention <Intervention-MammaPrint-Chemo>,
+        <Intervention-OncotypeDX-Chemo> .
+
+<DataSet-TrendAssumption-MammaOnco> a qb:DataSet ;
+    dcterms:title "Geschatte trend voor MammaPrint en/of Oncotype DX" ;
+    fpr:hasScenario <Scenario-MammaOnco-Substitution> .
+
+<Study-RxPONDER> a OBI:0003699 ;
+    dcterms:bibliographicCitation <> ;
+    dcterms:identifier "NCT01272037" ;
+    dcterms:source <Clinicaltrials.gov> ;
+    dcterms:title "Tamoxifen Citrate, Letrozole, Anastrozole, or Exemestane With or Without Chemotherapy in Treating Patients With Invasive RxPONDER Breast Cancer" ;
+    rdfs:seeAlso <https://clinicaltrials.gov/study/NCT01272037> .
+
+<DataSet-CostEstimation-MammaPrint> a qb:DataSet ;
+    dcterms:title "Kostenraming voor MammaPrint" ;
+    prov:wasDerivedFrom <DataSet-TrendAssumption-MammaOnco> ;
+    fpr:hasScenario <Scenario-MammaOnco-Substitution> .
+
+<DataSet-CostEstimation-OncotypeDX> a qb:DataSet ;
+    dcterms:title "Kostenraming voor Oncotype DX" ;
+    prov:wasDerivedFrom <DataSet-TrendAssumption-MammaOnco> ;
+    fpr:hasScenario <Scenario-MammaOnco-Substitution> .
+
+<Intervention-PostoperativeChemo> a pico:Intervention ;
+    pico:appliedIntervention tax:Postoperative%20chemotherapy ;
+    pico:interventionClassification tax:Pharmacological%20Interventions ;
+    pico:interventionRationale "behandeling van afstandsmetastasen na chirurgie" ;
+    dcterms:title "Postoperatieve Chemotherapie" .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "2.5"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "0.74"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-OverallSurvival-TTI-HazardRatio-MammaPrint> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "-1.3"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "2.0"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-AbsoluteDifference-OncotypeDX> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "0.81"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "1.37"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-HazardRatio-OncotypeDX> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "-2.96"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "3.52"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-OverallSurvival-PP-AbsoluteDifference-MammaPrint> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "2.3"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "-2.0"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-AbsoluteDifference-OncotypeDX> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "1.47"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "4.73"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-OverallSurvival-TTI-AbsoluteDifference-MammaPrint> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000315 ;
+            STATO:0000129 "-0.8"^^xsd:float ],
+        [ a STATO:0000314 ;
+            STATO:0000129 "1.7"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-AbsoluteDifference-OncotypeDX> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "1.22"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "0.77"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-HazardRatio-OncotypeDX> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "1.3"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "0.8"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-HazardRatio-OncotypeDX> .
+
+[] a STATO:0000196 ;
+    ns1:BFO_0000051 [ a STATO:0000314 ;
+            STATO:0000129 "2.13"^^xsd:float ],
+        [ a STATO:0000315 ;
+            STATO:0000129 "0.53"^^xsd:float ] ;
+    IAO:0000136 <OutcomeMeasurement-OverallSurvival-PP-HazardRatio-MammaPrint> .
+

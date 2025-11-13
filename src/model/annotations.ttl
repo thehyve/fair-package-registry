@@ -1,0 +1,32 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix fpr-o: <https://w3id.org/zinl/fpr-o#> .
+
+<https://w3id.org/zinl/fpr-o> 
+    rdf:type owl:Ontology ;
+    # owl:imports <http://purl.obolibrary.org/obo/iao.owl> ,
+    #     <http://purl.obolibrary.org/obo/obi.owl> ,
+    #     <http://purl.obolibrary.org/obo/ro.owl> ,
+    #     <http://purl.obolibrary.org/obo/bfo.owl> ,
+    #     <http://www.w3.org/2006/time> ,
+    #     <http://purl.org/linked-data/cube> ,
+    #     <http://www.w3.org/ns/prov#> ,
+    #     <http://www.w3.org/2004/02/skos/core> ,
+    #     <http://rdfs.org/ns/void> ,
+    #     <http://schema.org/> ,
+    #     <http://data.cochrane.org/ontologies/core/> ,
+    #     <http://data.cochrane.org/ontologies/pico/> ,
+    #     <http://schema.org/> ,
+    #     <http://purl.obolibrary.org/obo/iao.owl> ,
+    #     <http://purl.obolibrary.org/obo/stato.owl> ,
+    #     <http://purl.org/spar/fabio> ;
+    owl:versionIRI <https://w3id.org/zinl/fpr-o/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
+    rdfs:label "FAIR Package Registry ontology" ;
+    rdfs:comment "Ontology to describe FAIR Package Statements of the Dutch Health Care Institute (Zorginstituut Nederland)" ;
+    dc:creator "Eelke van der Horst - The Hyve" ;
+    dc:creator "Dutch Health Care Institute (Zorginstituut Nederland)" ;
+    dc:date "2025-11-12" ;
+    .

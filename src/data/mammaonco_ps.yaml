@@ -1,0 +1,508 @@
+
+package-statement:
+  id: PS-MammaOnco
+  title: Standpunt ‘Genexpressietesten bij vrouwen ouder dan 50 jaar en vroeg stadium borstkanker’
+  date: 2023-10-24
+  package-type: PointOfView
+  case-number: 2022006448
+  serial-number: 2022006461
+  status: Definitive
+  contact-person: [Ingrid de Groot,Angèl Link,Steef Redeker,Yoka Kusumanto]
+  department: Zorg 1
+  team: Pakket en Advies
+  see-also: "https://www.zorginstituutnederland.nl/documenten/2023/10/24/standpunt---mammaprint-en-oncotype-dx-vergoede-zorg-voor-bepaalde-groep-vrouwen"
+  iic-assessments:
+  - IICAssessment-MammaPrint
+  - IICAssessment-OncotypeDX
+
+populations:
+  - id: Population-WomenBreastCancer50plusHRplusHERminN0
+    title: Vrouwen ouder dan 50 met borstkanker, HR+/HER2-, N0, hoog risico op basis van AO! of Predict
+    sex: Female
+    age: Age more than 50 years
+    conditions:
+      - Breast Cancer
+      - Estrogen Receptor Positive Tumor
+      - Progesterone Receptor Positive Tumor
+      - Human Epidermal Growth Factor 2 Negative Carcinoma Of Breast
+      - N0 Category
+      # - G1 Grade
+      # - Tumor size between 3.1 cm and 5.0 cm
+      - High risk based on AO! or Predict
+    treatment: [Surgery]
+  - id: Population-WomenBreastCancer50plusHRplusHERminN1
+    title: Vrouwen ouder dan 50 met borstkanker, HR+/HER2-, N1, hoog risico op basis van AO! of Predict
+    sex: Female
+    age: Age more than 50 years
+    conditions:
+      - Breast Cancer
+      - Estrogen Receptor Positive Tumor
+      - Progesterone Receptor Positive Tumor
+      - Human Epidermal Growth Factor 2 Negative Carcinoma Of Breast
+      - N1 Category
+      # - G1 Grade
+      # - Tumor size between 3.1 cm and 5.0 cm
+      - High risk based on AO! or Predict
+    treatment: [Surgery]
+
+interventions:
+  # TODO: Add Dutch title
+  - id: Intervention-MammaPrint
+    title: Complexe moleculaire diagnostiek genexpressietest op basis van 70 genen, MammaPrint®
+    applied-intervention: MammaPrint
+    intervention-rationale: Ondersteunt beslissing om chemotherapie achterwege te laten
+    intervention-classification: Screening
+    marketing-authorization-holder: Agendia
+    claim-code: 1602
+    care-activity-code: "050530"
+    costs: 3_249
+  - id: Intervention-OncotypeDX
+    title: Complexe moleculaire diagnostiek genexpressietest op basis van 21 genen, Oncotype DX®
+    applied-intervention: OncotypeDX
+    intervention-rationale: Ondersteunt beslissing om chemotherapie achterwege te laten
+    intervention-classification: Screening
+    marketing-authorization-holder: Exact Sciences
+    claim-code: 2601
+    care-activity-code: "050531"
+    costs: 4_832
+  - id: Intervention-PostoperativeChemo
+    title: Postoperatieve Chemotherapie
+    applied-intervention: Postoperative chemotherapy
+    intervention-rationale: behandeling van afstandsmetastasen na chirurgie
+    intervention-classification: Pharmacological Interventions
+    cost: 15_809
+  - id: Intervention-MammaPrint-Chemo
+    title: Chemotherapie op basis van MammaPrint uitslag
+    applied-intervention: Genetic test adviced Chemotherapy
+    intervention-rationale: Pas chemotherapie toe naar aanleiding van hoge risicoschatting MammaPrint
+    intervention-classification: Screening
+    child-interventions:
+    - Intervention-MammaPrint
+    - Intervention-PostoperativeChemo
+    costs: 19_058  # 3249 + 15809
+  - id: Intervention-OncotypeDX-Chemo
+    title: Chemotherapie op basis van Oncotype DX uitslag
+    applied-intervention: Genetic test adviced Chemotherapy
+    intervention-rationale: Pas chemotherapie toe naar aanleiding van hoge risicoschatting Oncotype DX
+    intervention-classification: Screening
+    child-interventions:
+    - Intervention-OncotypeDX
+    - Intervention-PostoperativeChemo
+    costs: 20_641  # 4832 + 15809
+
+intervention-groups:
+  - id: InterventionGroup-MammaOnco-Intervention
+    title: MammaPrint/Oncotype DX Interventiegroep
+    intervention-ids: [Intervention-MammaPrint-Chemo, Intervention-OncotypeDX-Chemo]
+  - id: InterventionGroup-MammaOnco-Comparator
+    title: Standaard zorg groep
+    intervention-ids: [Intervention-PostoperativeChemo]
+
+outcomes:
+  # MammaOnco
+  - id: Outcome-Overall-Survival
+    name: Overall Survival
+    outcome-classification: Survival
+    outcome-measurement: Overall Survival
+    surrogate-outcome: False
+  - id: Outcome-FACT-B
+    name: Functional Assessment of Cancer Therapy - Breast (FACT-B)
+    outcome-classification: Quality of Life
+    outcome-measurement: Functional Assessment of Cancer Therapy
+    surrogate-outcome: False
+  - id: Outcome-EORTC-QLQ-C30
+    name: European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-C30)
+    outcome-classification: Quality of Life
+    outcome-measurement: European Organization For Research And Treatment Of Cancer - Quality Of Life Questionnaire (EORTC QLQ-C30)
+    surrogate-outcome: False
+  - id: Outcome-EQ-5D-5L
+    name: EQ-5D-5L - Quality of Life
+    outcome-classification: Quality of Life
+    outcome-measurement: EQ-5D-5L
+    surrogate-outcome: False
+  # Not from PICO, but needed for outcome measurements:
+  - id: Outcome-Invasive-Disease-Free-Survival
+    name: Invasive Disease-Free Survival
+    outcome-classification: Survival
+    outcome-measurement: Invasive Disease-Free Survival
+    surrogate-outcome: True
+  - id: Outcome-Distant-Relapse-Free-Survival
+    name: Distant Relapse-Free Survival
+    outcome-classification: Survival
+    outcome-measurement: Distant Relapse-Free Survival
+    surrogate-outcome: True
+
+outcome-groups:
+  - id: OutcomeGroup-MammaOnco-10-years
+    endpoint: 10 years or more
+    outcome-ids:
+    - Outcome-Overall-Survival
+    - Outcome-FACT-B
+    - Outcome-EORTC-QLQ-C30
+    - Outcome-EQ-5D-5L
+
+picots:
+  - id: PICO-MammaOnco
+    population-ids:
+    - Population-WomenBreastCancer50plusHRplusHERminN0
+    - Population-WomenBreastCancer50plusHRplusHERminN1
+    intervention-group-id: InterventionGroup-MammaOnco-Intervention
+    comparator-group-id: InterventionGroup-MammaOnco-Comparator
+    outcome-group-ids: [OutcomeGroup-MammaOnco-10-years]
+
+intervention-indication-combination-assessments:
+  - id: IICAssessment-MammaPrint
+    assessment-type: Reassessment
+    intervention-id: Intervention-MammaPrint
+    indication-ids:
+    - Population-WomenBreastCancer50plusHRplusHERminN0
+    - Population-WomenBreastCancer50plusHRplusHERminN1
+    emsmp-id: EMSMP-MammaPrint
+    bia-id: BIA-MammaPrint
+    au-id: AU-MammaOnco
+    conclusion: Positive
+    conclusion-text: "Het Zorginstituut concludeert dat de genexpressietest Oncotype DX® en de genexpressietest MammaPrint® bij de genoemde indicaties voldoet aan ‘de stand van de wetenschap en praktijk’ en daarmee bij deze subgroep van vrouwen vergoed kan worden vanuit de basisverzekering."
+    cost-effective: True
+  - id: IICAssessment-OncotypeDX
+    assessment-type: Indication broadening
+    intervention-id: Intervention-OncotypeDX
+    indication-ids:
+    - Population-WomenBreastCancer50plusHRplusHERminN1
+    emsmp-id: EMSMP-OncotypeDX
+    bia-id: BIA-OncotypeDX
+    au-id: AU-MammaOnco
+    conclusion: Positive
+    conclusion-text: "Het Zorginstituut concludeert dat de genexpressietest Oncotype DX® en de genexpressietest MammaPrint® bij de genoemde indicaties voldoet aan ‘de stand van de wetenschap en praktijk’ en daarmee bij deze subgroep van vrouwen vergoed kan worden vanuit de basisverzekering."
+    cost-effective: True
+
+emsmps: # Established Medical Science and Medical Practice
+  - id: EMSMP-MammaPrint
+    title: Stand van de Wetenschap en Praktijk - MammaPrint
+    picots-id: PICO-MammaOnco
+    slr-id: SLR-MammaOnco
+    outcome-measurement-ids:
+    - OutcomeMeasurement-OverallSurvival-TTI-AbsoluteDifference-MammaPrint
+    - OutcomeMeasurement-OverallSurvival-TTI-HazardRatio-MammaPrint
+    - OutcomeMeasurement-OverallSurvival-PP-AbsoluteDifference-MammaPrint
+    - OutcomeMeasurement-OverallSurvival-PP-HazardRatio-MammaPrint
+    relative-effectiveness: Equal
+    adheres-to-emsmps: True
+  - id: EMSMP-OncotypeDX
+    title: Stand van de Wetenschap en Praktijk - OncotypeDX
+    picots-id: PICO-MammaOnco
+    slr-id: SLR-MammaOnco
+    outcome-measurement-ids:
+    - OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-HazardRatio-OncotypeDX
+    - OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-AbsoluteDifference-OncotypeDX
+    - OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-HazardRatio-OncotypeDX
+    - OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-AbsoluteDifference-OncotypeDX
+    - OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-HazardRatio-OncotypeDX
+    - OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-AbsoluteDifference-OncotypeDX
+    relative-effectiveness: Equal
+    adheres-to-emsmps: True
+    cost-effective: True
+
+systematic-literature-reviews: # SLR
+  - id: SLR-MammaOnco
+    title: Systematisch literatuuronderzoek MammaPrint/Oncotype DX
+    literature-searches: 
+    - LS-MammaOnco-Embase-2022-10-26
+    - LS-MammaOnco-Medline-2-2022-10-26
+    - LS-MammaOnco-ClinicaltrialsGov-2022-11-01
+    - LS-ICTRP-SearchPortal-2022-11-01
+    - LS-MammaOnco-Cochrane-2022-11-01
+    literature-reference-list: LRL-MammaOnco
+
+literature-searches:
+  - id: LS-MammaOnco-Embase-2022-10-26
+    label: Literatuur zoekopdracht voor MammaPrint en Oncotype DX in Embase op 2022-10-26
+    end-time: 2022-10-26T00:00:00
+    target-db: Embase
+    target-url: https://www.embase.com/
+    evidence-type: 
+    query: >-
+      ((mammaprint* OR 70-gene* OR MINDACT OR oncotype* OR 21-gene*):ab,ti,kw) AND ('breast tumor'/exp OR (((breast*) NEAR/3 (tumor* OR tumour* OR neoplas* OR carcino* OR cancer*))):ab,ti,kw) AND [2018-2023]/py NOT ([Conference Abstract]/lim OR 'editorial'/it OR 'letter'/it OR 'note'/it OR 'chapter'/it OR 'conference abstract'/it OR 'conference paper'/it OR 'conference review'/it OR 'erratum'/it OR [preprint]/lim) NOT ((animal/exp OR animal*:de OR nonhuman/de) NOT ('human'/exp)) AND ('clinical study'/de OR 'clinical trial'/exp OR 'intervention study'/exp OR 'longitudinal study'/exp OR 'prospective study'/exp OR (((clinical OR prospect* OR intervention* OR longitudinal* OR randomi*) NEAR/3 (stud* OR trial*))):ab,ti)
+  - id: LS-MammaOnco-Medline-2-2022-10-26
+    label: Literatuur zoekopdracht voor MammaPrint en Oncotype DX in Medline op 2022-10-26
+    end-time: 2022-10-26T00:00:00
+    target-db: Medline
+    target-url: https://www.medline.com/
+    evidence-type:
+    query: >-
+      ((mammaprint* OR 70-gene* OR MINDACT OR oncotype* OR 21-gene*).ab,ti,kf.) AND (exp "Breast Neoplasms"/ OR (((breast*) ADJ3 (tumor* OR tumour* OR neoplas* OR carcino* Or cancer*))).ab,ti,kf.) AND ("Clinical Study".pt OR "Clinical Trial".pt OR "Controlled Clinical Trial".pt. OR "Randomized Controlled Trial".pt. OR "Longitudinal Studies"/ OR "Prospective Studies"/ OR (((clinical OR prospect* OR intervention* OR longitudinal* OR randomi*) ADJ3 (stud* OR trial*))).ab,ti,kf.) NOT ("Editorial".pt. OR "Comment".pt. OR "Letter".pt. OR "News".pt. OR "Congress".pt. OR "Meeting Abstract".pt. OR "Abstracts".pt. OR "Academic Dissertation".pt. OR "Published Erratum".pt. OR (book* OR chapter* OR dissertation abstract*).pt.) NOT (exp animals/ NOT humans/)
+    range-beginning: 2017
+    range-end: 2023
+  - id: LS-MammaOnco-ClinicaltrialsGov-2022-11-01
+    label: Literatuur zoekopdracht voor RCTs op MammaPrint en Oncotype DX in Clinicaltrials.gov op 2022-10-26
+    end-time: 2022-11-01T00:00:00
+    target-db: Clinicaltrials.gov
+    target-url: https://clinicaltrials.gov/
+    evidence-type: Clinical Trial
+    query: >-
+      (mammaprint OR oncotype) AND breast AND (cancer OR carcinoma OR tumor OR tumour OR neoplasm)
+  - id: LS-ICTRP-SearchPortal-2022-11-01
+    label: Literatuur zoekopdracht voor RCTs op MammaPrint en Oncotype DX in ICTRP Search Portal (WHO) op 2022-11-01
+    end-time: 2022-11-01T00:00:00
+    target-db: ICTRP Search Portal
+    target-url: https://trialsearch.who.int/
+    evidence-type: Clinical Trial
+    query: >-
+      (mammaprint OR oncotype) AND breast AND (cancer OR carcinoma OR tumor OR tumour OR neoplasm)
+  - id: LS-MammaOnco-Cochrane-2022-11-01
+    label: Literatuur zoekopdracht voor RCTs op MammaPrint en Oncotype DX in Cochrane op 2022-11-01
+    end-time: 2022-11-01T00:00:00
+    target-db: Cochrane
+    target-url: https://www.cochranelibrary.com/
+    evidence-type: Clinical Trial
+    query: >-
+      (mammaprint OR oncotype):ab,ti AND (breast NEXT/2 (cancer OR carcino* OR tumor* OR tumour* OR neoplas*)):ab,ti
+
+publications:
+  - id: JournalArticle-MINDACT
+    type: JournalArticle
+    title: "70-gene signature as an aid for treatment decisions in early breast cancer: updated results of the phase 3 randomised MINDACT trial with an exploratory analysis by age."
+    authors: [Piccart M, van 't Veer LJ, Poncet C, Lopes Cardozo JMN, Delaloge S, Pierga JY, Vuylsteke P, Brain E, Vrijaldenhoven S, Neijenhuis PA, Causeret S, Smilde TJ, Viale G, Glas AM, Delorenzi M, Sotiriou C, Rubio IT, Kümmel S, Zoppoli G, Thompson AM, Matos E, Zaman K, Hilbers F, Fumagalli D, Ravdin P, Knox S, Tryfonidis K, Peric A, Meulemans B, Bogaerts J, Cardoso F, Rutgers EJT]
+    journal: The Lancet, Oncology
+    year: 2021
+    issue: 22
+    pages: 476-88
+  - id: JournalArticle-RxPONDER
+    type: JournalArticle
+    title: "21-Gene Assay to Inform Chemotherapy Benefit in Node-Positive Breast Cancer"
+    authors: [Kalinsky K, Barlow WE, Gralow JR, Meric‐Bernstam F, Albain KS, Hayes DF, Lin NU, Perez EA, Goldstein LJ, Chia SKL, Dhesy‐Thind S, Rastogi P, Alba E, Delaloge S, Martin M, Kelly CM, Ruiz‐Borrego M, Gil‐Gil M, Arce‐Salinas CH, Brain EGC, Lee ES, Pierga JY, Bermejo B, Ramos‐Vazquez M, Jung KH, Ferrero JM, Schott AF, Shak S, Sharma P, Lew DL, Miao J, Tripathy D, Pusztai L, Hortobagyi GN]
+    journal: New England journal of medicine
+    year: 2021
+    issue: 385
+    pages: 2336‐2347
+
+literature-reference-lists:
+  - id: LRL-MammaOnco
+    title: Literatuur referentielijst voor MammaPrint en Oncotype DX SLR
+    number-of-items: 2
+    references:
+    - JournalArticle-MINDACT
+    - JournalArticle-RxPONDER
+  
+studies:
+  - id: Study-MINDACT
+    title: "Genetic Testing or Clinical Assessment in Determining the Need for Chemotherapy in Women With Breast Cancer That Involves No More Than 3 Lymph Nodes (MINDACT)"
+    short-title: MINDACT
+    registry: Clinicaltrials.gov
+    registry-id: NCT00433589
+    start-date: 2007-03
+    end-date: 2020-03
+    study-type: Interventional
+    phase: Phase 3
+    sponsor: European Organisation for Research and Treatment of Cancer - EORTC
+    url: https://clinicaltrials.gov/study/NCT00433589
+    publication-ids:
+    - JournalArticle-MINDACT
+  - id: Study-RxPONDER
+    title: "Tamoxifen Citrate, Letrozole, Anastrozole, or Exemestane With or Without Chemotherapy in Treating Patients With Invasive RxPONDER Breast Cancer"
+    short-title: RxPONDER
+    registry: Clinicaltrials.gov
+    registry-id: NCT01272037
+    start-date: 2011-01-15
+    end-date: 2023-02-01
+    study-type: Interventional
+    phase: Phase 3
+    sponsor: National Cancer Institute (NCI)
+    url: https://clinicaltrials.gov/study/NCT01272037
+    publication-ids:
+    - JournalArticle-RxPONDER
+
+cohorts:
+  - id: Cohort-MINDACT-Intervention
+    study-id: Study-MINDACT
+    intervention-group-id: InterventionGroup-MammaOnco-Intervention
+  - id: Cohort-MINDACT-Comparator
+    study-id: Study-MINDACT
+    intervention-group-id: InterventionGroup-MammaOnco-Comparator
+  - id: Cohort-RxPONDER-ITT-Intervention
+    study-id: Study-RxPONDER
+    intervention-group-id: InterventionGroup-MammaOnco-Intervention
+  - id: Cohort-RxPONDER-ITT-Comparator
+    study-id: Study-RxPONDER
+    intervention-group-id: InterventionGroup-MammaOnco-Comparator
+  - id: Cohort-RxPONDER-PP-Intervention
+    study-id: Study-RxPONDER
+    intervention-group-id: InterventionGroup-MammaOnco-Intervention
+  - id: Cohort-RxPONDER-PP-Comparator
+    study-id: Study-RxPONDER
+    intervention-group-id: InterventionGroup-MammaOnco-Comparator
+
+outcome-measurements:
+  # MammaPrint
+  - id: OutcomeMeasurement-OverallSurvival-TTI-AbsoluteDifference-MammaPrint
+    type: absolute difference
+    outcome-id: Outcome-Overall-Survival
+    cohort-ids: [Cohort-MINDACT-Intervention, Cohort-MINDACT-Comparator]
+    value: 1.6
+    unit: '%'
+    # CI type?
+    ci-lower: 1.47
+    ci-upper: 4.73
+  - id: OutcomeMeasurement-OverallSurvival-TTI-HazardRatio-MammaPrint
+    type: hazard ratio
+    outcome-id: Outcome-Overall-Survival
+    cohort-ids: [Cohort-MINDACT-Intervention, Cohort-MINDACT-Comparator]
+    value: 1.36
+    ci-lower: 0.74
+    ci-upper: 2.50
+  - id: OutcomeMeasurement-OverallSurvival-PP-AbsoluteDifference-MammaPrint
+    type: absolute difference
+    outcome-id: Outcome-Overall-Survival
+    cohort-ids: [Cohort-MINDACT-Intervention, Cohort-MINDACT-Comparator]
+    value: 0.3
+    unit: '%'
+    ci-lower: -2.96
+    ci-upper: 3.52
+  - id: OutcomeMeasurement-OverallSurvival-PP-HazardRatio-MammaPrint
+    type: hazard ratio
+    outcome-id: Outcome-Overall-Survival
+    cohort-ids: [Cohort-MINDACT-Intervention, Cohort-MINDACT-Comparator]
+    value: 1.06
+    ci-lower: 0.53
+    ci-upper: 2.13
+  # Oncotype DX
+  - id: OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-HazardRatio-OncotypeDX
+    type: hazard ratio
+    outcome-id: Outcome-Distant-Relapse-Free-Survival
+    cohort-ids: [Cohort-RxPONDER-ITT-Intervention, Cohort-RxPONDER-ITT-Comparator]
+    value: 1.05
+    ci-lower: 0.81
+    ci-upper: 1.37
+  - id: OutcomeMeasurement-Distant-Relapse-Free-Survival-ITT-AbsoluteDifference-OncotypeDX
+    type: absolute difference
+    outcome-id: Outcome-Distant-Relapse-Free-Survival
+    cohort-ids: [Cohort-RxPONDER-ITT-Intervention, Cohort-RxPONDER-ITT-Comparator]
+    value: 0.1
+    unit: '%'
+    ci-lower: -0.8
+    ci-upper: 1.7
+  - id: OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-HazardRatio-OncotypeDX
+    type: hazard ratio
+    outcome-id: Outcome-Invasive-Disease-Free-Survival
+    cohort-ids: [Cohort-RxPONDER-ITT-Intervention, Cohort-RxPONDER-ITT-Comparator]
+    value: 1.04
+    ci-lower: 0.8
+    ci-upper: 1.30
+  - id: OutcomeMeasurement-Invasive-Disease-Free-Survival-ITT-AbsoluteDifference-OncotypeDX
+    type: absolute difference
+    outcome-id: Outcome-Invasive-Disease-Free-Survival
+    cohort-ids: [Cohort-RxPONDER-ITT-Intervention, Cohort-RxPONDER-ITT-Comparator]
+    value: 0.6
+    unit: '%'
+    ci-lower: -1.3
+    ci-upper: 2.0
+  - id: OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-HazardRatio-OncotypeDX
+    type: hazard ratio
+    outcome-id: Outcome-Invasive-Disease-Free-Survival
+    cohort-ids: [Cohort-RxPONDER-PP-Intervention, Cohort-RxPONDER-PP-Comparator]
+    value: 0.97
+    ci-lower: 0.77
+    ci-upper: 1.22
+  - id: OutcomeMeasurement-Invasive-Disease-Free-Survival-PP-AbsoluteDifference-OncotypeDX
+    type: absolute difference
+    outcome-id: Outcome-Invasive-Disease-Free-Survival
+    cohort-ids: [Cohort-RxPONDER-PP-Intervention, Cohort-RxPONDER-PP-Comparator]
+    value: -0.3
+    unit: '%'
+    ci-lower: -2.0
+    ci-upper: 2.3
+
+bias:
+  - id: BIA-MammaPrint
+    title: Budget Impact Analyse voor MammaPrint
+    trend-assumption-id: TrendAssumption-MammaOnco
+    cost-estimation-ids:
+    - CostEstimation-MammaPrint
+  - id: BIA-OncotypeDX
+    title: Budget Impact Analyse voor Oncotype DX
+    trend-assumption-id: TrendAssumption-MammaOnco
+    cost-estimation-ids:
+    - CostEstimation-OncotypeDX
+
+scenarios:
+  - id: Scenario-MammaOnco-Substitution
+    title: Substitutie scenario voor MammaPrint en/of Oncotype DX
+    description: Dit scenario beschrijft de substitutie van standaardzorg door MammaPrint & Oncotype tests.
+
+trend-assumptions:
+  - id: TrendAssumption-MammaOnco
+    title: Geschatte trend voor MammaPrint en/of Oncotype DX
+    scenario-id: Scenario-MammaOnco-Substitution
+    number-of-patients: [ 808 ]
+    intervention-market-penetration: [ 1 ]
+
+
+# Intervention-MammaPrint
+# Intervention-OncotypeDX
+# Intervention-PostoperativeChemo
+# Intervention-MammaPrint-Chemo
+# Intervention-OncotypeDX-Chemo
+cost-estimations:
+  - id: CostEstimation-MammaPrint
+    title: Kostenraming voor MammaPrint
+    trend-assumption-id: TrendAssumption-MammaOnco
+    scenario-id: Scenario-MammaOnco-Substitution
+    observation-groups:
+      - type: Current
+        intervention-ids: [Intervention-PostoperativeChemo]
+        number-of-patients: [ 808 ]
+        total-costs: [ 12_773_672 ] # 15_809 * 808
+      - type: Substitution
+        intervention-ids: [ Intervention-MammaPrint ]
+        number-of-patients: [ 808 ]
+        total-costs: [ 2_625_192 ] # 3_249 * 808
+      - type: Substitution
+        intervention-ids: [ Intervention-PostoperativeChemo ]
+        number-of-patients: [ 373 ] 
+        total-costs: [ 5_896_757 ] # 15_809 * 373 = 5_896_757
+      - type: Total
+        intervention-ids: [ Intervention-MammaPrint-Chemo, Intervention-PostoperativeChemo ]
+        number-of-patients: [ 808 ]
+        total-costs: [ 8_521_949 ] # 2_625_192 + 5_896_757
+      - type: Additional
+        intervention-ids: [ Intervention-MammaPrint-Chemo ]
+        number-of-patients: [ 808 ]
+        total-costs: [ -4_251_723 ] # 8_521_949 - 12_773_672
+  - id: CostEstimation-OncotypeDX
+    title: Kostenraming voor Oncotype DX
+    trend-assumption-id: TrendAssumption-MammaOnco
+    scenario-id: Scenario-MammaOnco-Substitution
+    observation-groups:
+      - type: Current
+        intervention-ids: [Intervention-PostoperativeChemo]
+        number-of-patients: [ 808 ]
+        total-costs: [ 12_773_672 ] # 15809 * 808
+      - type: Substitution
+        intervention-ids: [ Intervention-OncotypeDX ]
+        number-of-patients: [ 808 ]
+        total-costs: [ 3_904_256 ] # 4_832 * 808
+      - type: Substitution
+        intervention-ids: [ Intervention-PostoperativeChemo ]
+        number-of-patients: [ 373 ] 
+        total-costs: [ 5_896_757 ] # 15809 * 373 = 5_896_757
+      - type: Total
+        intervention-ids: [ Intervention-OncotypeDX-Chemo, Intervention-PostoperativeChemo ]
+        number-of-patients: [ 808 ]
+        total-costs: [ 9_801_013 ] # 3_904_256 + 5_896_757
+      - type: Additional
+        intervention-ids: [ Intervention-OncotypeDX ]
+        number-of-patients: [ 808 ]
+        total-costs: [ -2_972_659 ] # 9_801_013 - 12_773_672
+
+
+appropriate-use:
+  id: AU-MammaOnco
+  title: Gepast gebruik afspraken MammaPrint en Oncotype DX
+  date: 2023-09-26
+  agreements:
+  - description: Uitgebreide patiëntinformatie en richtlijnen voor professionals over bij welke subgroep van vrouwen deze genexpressietesten van toegevoegde waarde zou kunnen zijn en wat de implicaties zijn, zodat de vrouw in overleg met haar arts een weloverwogen besluit kan nemen of inzet van een genexpressietest in het individuele geval van toegevoegde waarde is (samen beslissen). De BVN heeft toegezegd in afstemming met Patiëntfederatie Nederland de bestaande patiënteninformatie te updaten vóór maart 2024. 
+  - description: Revisie van de huidige richtlijn waarin de resultaten van de RxPonder-studie, TailorX-studie (Oncotype DX®) en 8-jaars resultaten van de MINDACT-studie (MammaPrint®) zijn opgenomen. De NABON heeft toegezegd dat de module wordt geprioriteerd voor de volgende jaarlijkse cyclus. Omdat het updaten van richtlijnen niet op korte termijn gerealiseerd is, zal de beroepsgroep een standpunt publiceren over MammaPrint en Oncotype DX op haar website.
+  - description: Inzet van genexpressietesten alleen als add-on-test aan de standaard risicoschatting, indien op basis van de standaard risicoschatting twijfel bestaat over de meerwaarde van adjuvante chemotherapie. Het is niet de bedoeling om de genexpressietest in plaats van de standaard risicoschatting in te zetten. 
+  - description: Vanwege het ontbreken van de directe vergelijking weten we nu niet welke test de meeste gezondheidswinst voor de patiënt oplevert. De beroepsgroep spant zich in om hier inzicht in te krijgen door het bijhouden van de internationale literatuur en/of uitkomsten uit registraties. Het Zorginstituut zal jaarlijks navraag doen bij de beroepsgroep of er nieuwe publicaties verschenen zijn. 
+  - description: Inzet van één van de testen per tumor (en niet beide testen). Dat de twee testen niet uitwisselbaar zijn zou er mogelijk toe kunnen leiden dat zorgprofessionals en patiënten geneigd zijn om beide testen bij één patiënt af te nemen, om alleen bij concordante uitslagen (dezelfde uitslagen) een patiënt te informeren over het advies over wel of geen adjuvante chemotherapie. Het is echter niet onderzocht of het klinisch nuttig en doelmatig is om beide testen bij één patiënt af te nemen. Het Zorginstituut is daarom van mening dat de inzet van genexpressie testen beperkt moet blijven tot één van de testen per tumor.  
+  - description: Het Zorginstituut zal monitoren en evalueren of er sprake is van gepast gebruik van de testen. In nauwe afstemming met de beroepsgroep worden hiervoor eindpunten gedefinieerd.
+

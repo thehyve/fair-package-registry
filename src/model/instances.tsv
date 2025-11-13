@@ -1,0 +1,17 @@
+IRI	Type	Label	Description	Dutch label
+ID	TYPE	LABEL	A rdfs:comment	AL rdfs:label@nl
+fpr-o:PointOfView	Package Type	Point of view	The Package Statement is a Point of View	Standpunt
+fpr-o:Advice	Package Type	Advice	The Package Statement is an Advice	Advies
+fpr-o:LockProcedureDrug	Package Type Medication Subtype	Lock procedure drug	The Package Slutement is a Lock procedure Drug	Sluisgeneesmiddel
+fpr-o:Definitive	Editorial Status	Definitive	The Editorial Status is Definitive and will not change	Definitief
+fpr-o:InitialAssessment	Assessment Type	Initial assessment	It is the initial assessment of this ICC	Initiële beoordeling
+fpr-o:Reassessment	Assessment Type	Reassessment	This ICC is reassessed	Herbeoordeling
+fpr-o:IndicationExtension	Assessment Type	Indication extension	An extension of the indication is assessed for the intervention	Indicatie-uitbreiding
+fpr-o:IndicationBroadening	Assessment Type	Indication broadening	A broadening of the indication is assessed for the intervention	Indicatie-verbreding
+fpr-o:Positive	Evaluation Outcome	Positive	The relative outcome is positive	Positief
+fpr-o:Negative	Evaluation Outcome	Negative	The relative outcome is negative	Negatief
+fpr-o:Equal	Evaluation Outcome	Equal	The relative outcome is equal	Gelijk
+fpr-o:Current	CostType	Current	The costs of the standard care	Huidig
+fpr-o:Substitution	CostType	Substitution	The costs in the situation where the intervention (partly) substitutes standard care	Substitutie
+fpr-o:Additional	CostType	Additional	The additional costs (compared to the current situation) when the intervention (partly) substitutes standard care  	Additioneel
+fpr-o:Total	CostType	Total	The total costs in the situation where the intervention (partly) substitutes standard care	Totaal

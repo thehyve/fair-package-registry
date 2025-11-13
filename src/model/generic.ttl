@@ -1,0 +1,128 @@
+@prefix : <http://chiesi.com/ontologies/skai-pho#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fpr: <http://example.org/ontology/package-registry#> .
+@prefix tax: <http://example.org/ontology/package-taxonomy/> .
+@prefix data: <http://example.org/pu-data/> .
+@base <http://example.org/ontology/packet-registry#> .
+
+<http://example.org/ontology/packet-registry> rdf:type owl:Ontology ;
+    dct:creator "Eelke van der Horst" .
+
+
+rdfs:seeAlso
+  rdf:type rdf:Property ;
+  rdfs:comment "Further information about the subject resource." ;
+  rdfs:domain rdfs:Resource ;
+  rdfs:isDefinedBy rdfs: ;
+  rdfs:label "seeAlso" ;
+  rdfs:range rdfs:Resource ;
+.
+rdfs:comment
+  rdf:type rdf:Property ;
+  rdfs:comment "A comment about the subject resource." ;
+  rdfs:domain rdfs:Resource ;
+  rdfs:isDefinedBy rdfs: ;
+  rdfs:label "comment" ;
+  rdfs:range rdfs:Literal ;
+.
+
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty ;
+    rdfs:label "Creator" ;
+    rdfs:comment "An entity responsible for making the resource." ;
+    rdfs:seeAlso <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#creator> ;
+    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty ;
+    rdfs:label "Title" ;
+    rdfs:comment "A name given to the resource." ;
+    rdfs:seeAlso <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#title> ;
+    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty ;
+    rdfs:label "Description" ;
+    rdfs:comment "An account of the resource." ;
+    rdfs:seeAlso <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#description> ;
+    rdfs:isDefinedBy <http://purl.org/dc/terms/> .
+
+dct:identifier
+  rdf:type rdf:Property ;
+  dct:description "Recommended best practice is to identify the resource by means of a string conforming to a formal identification system. "@en-US ;
+  rdfs:comment "An unambiguous reference to the resource within a given context."@en-US ;
+  rdfs:isDefinedBy dct: ;
+  rdfs:label "Identifier"@en-US ;
+  rdfs:range rdfs:Literal ;
+  rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/identifier> .
+
+dcterms:hasPart
+    dcterms:description "This property is intended to be used with non-literal values. This property is an inverse property of Is Part Of."@en ;
+    # a rdf:Property ;
+    a owl:ObjectProperty ; # To help ROBOT
+    rdfs:comment "A related resource that is included either physically or logically in the described resource."@en ;
+    rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
+    rdfs:label "Has Part"@en .
+
+
+skos:definition rdf:type owl:AnnotationProperty ;
+    rdfs:label "definition" ;
+    rdfs:comment "A statement or formal explanation of the meaning of a concept." ;
+    rdfs:seeAlso <https://www.w3.org/2009/08/skos-reference/skos.html#definition> ;
+    rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:scopeNote rdf:type owl:AnnotationProperty ;
+    rdfs:label "scope note" ;
+    rdfs:comment "A note that helps to clarify the meaning and/or the use of a concept." ;
+    rdfs:seeAlso <https://www.w3.org/2009/08/skos-reference/skos.html#scopeNote> ;
+    rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:example rdf:type owl:AnnotationProperty ;
+    rdfs:label "example" ;
+    rdfs:comment "An example of the use of a concept." ;
+    rdfs:seeAlso <https://www.w3.org/2009/08/skos-reference/skos.html#example> ;
+    rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:semanticRelation
+  rdf:type rdf:Property ;
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain skos:Concept ;
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+  rdfs:label "is in semantic relation with"@en ;
+  rdfs:range skos:Concept ;
+  skos:definition "Links a concept to a concept related by meaning."@en ;
+  skos:scopeNote "This property should not be used directly, but as a super-property for all properties denoting a relationship of meaning between concepts."@en ;
+.
+skos:mappingRelation
+  rdf:type rdf:Property ;
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "These concept mapping relations mirror semantic relations, and the data model defined below is similar (with the exception of skos:exactMatch) to the data model defined for semantic relations. A distinct vocabulary is provided for concept mapping relations, to provide a convenient way to differentiate links within a concept scheme from links between concept schemes. However, this pattern of usage is not a formal requirement of the SKOS data model, and relies on informal definitions of best practice."@en ;
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+  rdfs:label "is in mapping relation with"@en ;
+  rdfs:subPropertyOf skos:semanticRelation ;
+  skos:definition "Relates two concepts coming, by convention, from different schemes, and that have comparable meanings"@en ;
+.
+skos:closeMatch
+  rdf:type rdf:Property ;
+  rdf:type owl:ObjectProperty ;
+  rdf:type owl:SymmetricProperty ;
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> ;
+  rdfs:label "has close match"@en ;
+  rdfs:subPropertyOf skos:mappingRelation ;
+  skos:definition "skos:closeMatch is used to link two concepts that are sufficiently similar that they can be used interchangeably in some information retrieval applications. In order to avoid the possibility of \"compound errors\" when combining mappings across more than two concept schemes, skos:closeMatch is not declared to be a transitive property."@en ;
+.
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi

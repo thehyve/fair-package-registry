@@ -1,0 +1,18 @@
+# Protégé files:
+catalog-v001.xml
+*.properties
+
+# Temporary files/folders:
+~$*
+tmp/
+
+# Other files:
+*.code-workspace
+.vscode/
+*.log
+.venv
+
+robot.jar
+widoco-1.4.25-jar-with-dependencies_JDK-11.jar
+
+
