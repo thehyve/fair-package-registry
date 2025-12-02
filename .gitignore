@@ -4,7 +4,7 @@ catalog-v001.xml
 
 # Temporary files/folders:
 ~$*
-tmp/
+tmp
 
 # Other files:
 *.code-workspace

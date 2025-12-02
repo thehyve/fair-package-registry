@@ -135,7 +135,7 @@ intervention-indication-combination-assessments:
     cost-effective: False
     managed-entry-agreement-text: "Het Zorginstituut acht een korting van tenminste 55% aangewezen."
 
-emsmps:
+emsmps: 
   - id: EMSMP-Trodelvy
     title: Stand van de Wetenschap en Praktijk - Trodelvy
     picots-id: PICO-Trodelvy

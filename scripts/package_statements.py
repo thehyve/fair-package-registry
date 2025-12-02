@@ -297,6 +297,9 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         addLitIfPresent(g, subj, FPR.hasATCCode, intervention, 'atc-code')
         addLitIfPresent(g, subj, FPR.hasEMARef, intervention, 'ema-id')
         # TODO: Add schedule, dose, duration
+        costs = intervention.get('costs')
+        if costs:
+            g.add((subj, FPR.hasTotalCosts, Literal(costs, datatype=XSD.float)))
         child_interventions = intervention.get('child-interventions', [])
         for child in child_interventions:
             g.add((subj, PICO.childIntervention, NSDATA[child]))

@@ -1,0 +1,387 @@
+
+# Template for a Package Statement in YAML format.
+# Notes on usage:
+# If a field value is not present, leave that line out. If a list is empty, use an empty list: []
+# Taxonomy terms are those coming from the Cochrane Core Ontology where possible, otherwise use custom terms. If using custom terms, add them to the taxonomy tab in the fair-package-registry Excel sheet.
+# If using new terms from one of the ontologies, like OBI or STATO, add them to the corresponding ontology class in the package_statements.py script.
+
+package-statement: # Place for general information about the package statement
+  id: PS-PS1 # Create ID with format: PS-<ShortUniqueName>
+  title: # The Dutch title
+  date: # Use format: YYYY-MM-DD
+  package-type: # Select: PointOfView or Advice
+  package-type-medication-subtype: LockProcedureDrug # Only add this line when intervention is a medication that is a 'sluisgeneesmiddel'. Optional field.
+  case-number: # Zaaknummer
+  serial-number: # Volgnummer
+  status: # Always 'Definitive' for published package statements
+  contact-person: [] # List of contact persons' names (with titles, if applicable eg. Dr., MD) as metioned in the Colofon
+  # Note: department and team are now hardcoded: 'Department Zorg I' and 'Team Pakket en Advies' (change in code if needed)
+  # department: # Afdeling: e.g. Zorg
+  # team: # Team, e.g. Geneesmiddelen
+  see-also: # URL to the 'waarborgdocument' on the ZIN website. Leave this line out if not applicable.
+  iic-assessments:
+  - IICAssessment-IIC1 # Reference to the IIC Assessments, usually one. Format: IICAssessment-<ShortUniqueName>
+
+# List the Populations to be used in the PICO and as Indications
+# If there are multiple options for a condition, e.g. this or that, create multiple Populations and link to the same PICOs and IIC Assessments as needed.
+populations:
+  - id: Population-Pop1 # Create ID with format: Population-<ShortUniqueName>
+    title: # The Dutch description of the population/indication
+    sex: # Taxonomy term. Optional field. E.g. Male or Female. 
+    age: # Taxonomy term. E.g. Adult. 
+    conditions: # List of conditions as taxonomy terms, defining the population/indication
+      - Condition 1
+      - Condition 2
+      # etc.
+    treatment: [] # List of previous treatments as taxonomy terms. Leave out line if not applicable.
+  - id: Population-Pop2 # Create ID with format: Population-<ShortUniqueName>
+    title: # The Dutch description of the population/indication
+    sex: # Taxonomy term. Optional field. E.g. Male or Female. 
+    age: # Taxonomy term. E.g. Adult. 
+    conditions: # List of conditions as taxonomy terms, defining the population/indication
+      - Condition 1
+      - Condition 2
+      # etc.
+    treatment: [] # List of previous treatments as taxonomy terms. Leave out line if not applicable.
+  # etc.
+
+# List the Interventions to be used in the PICOs, i.e. the used interventions and comparators, and IIC Assessments.
+# Also list any interventions that are necessary for cost estimations or budget impact analyses. Reuse where possible.
+# If an intervention has multiple sub-interventions, create the child interventions and link them to the parent interventions using their IDs.
+interventions:
+  - id: Intervention-Iv1 # Create ID with format: Intervention-<ShortUniqueName>
+    title: # Name of the intervention as used in the package statement
+    applied-intervention: # The actual name of the intervention. Taxonomy term
+    intervention-rationale: # Text describing the rationale for using this intervention
+    intervention-classification: # Taxonomy term, e.g.Pharmacological Interventions
+    marketing-authorization-holder: # The vendor, manufacturer, or other entity holding the marketing authorization. Optional field.
+    claim-code: # Declaratie code. Optional field.
+    care-activity-code: # Zorgactiviteit code. Optional field. Use string.
+    care-product-code: # Zorgproduct code. Optional field. Use string.
+    inn: # International Nonproprietary Name. Optional field.
+    atc-code: # Anatomical Therapeutic Chemical code. Optional field.
+    ema-id: # European Medicines Agency ID. Optional field.
+    # Note: schedule, dose and duration are currently not used.
+    # schedule:
+    # dose:
+    # duration:
+    costs: # The cost per patient (per year or one time cost) for this intervention, as floating point number. Use underscore as thousands separator, e.g. 12_345.67
+    child-interventions: # List of IDs of child interventions, if applicable. Leave out line if not applicable.
+    - Intervention-Iv3
+    - Intervention-Iv4
+  - id: Intervention-Iv2 # Create ID with format: Intervention-<ShortUniqueName>
+    title: # Name of the intervention as used in the package statement
+    applied-intervention: # The actual name of the intervention. Taxonomy term
+    intervention-rationale: # Text describing the rationale for using this intervention
+    intervention-classification: # Taxonomy term, e.g.Pharmacological Interventions
+    marketing-authorization-holder: # The vendor, manufacturer, or other entity holding the marketing authorization. Optional field.
+    claim-code: # Declaratie code. Optional field.
+    care-activity-code: # Zorgactiviteit code. Optional field. Use string.
+    care-product-code: # Zorgproduct code. Optional field. Use string.
+    inn: # International Nonproprietary Name. Optional field.
+    atc-code: # Anatomical Therapeutic Chemical code. Optional field.
+    ema-id: # European Medicines Agency ID. Optional field.
+    # Note: schedule, dose and duration are currently not used.
+    # schedule:
+    # dose:
+    # duration:
+    costs: # The cost per patient (per year or one time cost) for this intervention, as floating point number. Use underscore as thousands separator, e.g. 12_345.67
+  # Example of child intervention 1:
+  - id: Intervention-Iv3 # Create ID with format: Intervention-<ShortUniqueName>
+    title: # Name of the intervention as used in the package statement
+    applied-intervention: # The actual name of the intervention. Taxonomy term
+    intervention-rationale: # Text describing the rationale for using this intervention
+    intervention-classification: # Taxonomy term, e.g.Pharmacological Interventions
+    marketing-authorization-holder: # The vendor, manufacturer, or other entity holding the marketing authorization. Optional field.
+    claim-code: # Declaratie code. Optional field.
+    care-activity-code: # Zorgactiviteit code. Optional field. Use string.
+    care-product-code: # Zorgproduct code. Optional field. Use string.
+    inn: # International Nonproprietary Name. Optional field.
+    atc-code: # Anatomical Therapeutic Chemical code. Optional field.
+    ema-id: # European Medicines Agency ID. Optional field.
+    # Note: schedule, dose and duration are currently not used.
+    # schedule:
+    # dose:
+    # duration:
+    costs: # The cost per patient (per year or one time cost) for this intervention, as floating point number. Use underscore as thousands separator, e.g. 12_345.67
+  # Example of child intervention 2:
+  - id: Intervention-Iv4 # Create ID with format: Intervention-<ShortUniqueName>
+    title: # Name of the intervention as used in the package statement
+    applied-intervention: # The actual name of the intervention. Taxonomy term
+    intervention-rationale: # Text describing the rationale for using this intervention
+    intervention-classification: # Taxonomy term, e.g.Pharmacological Interventions
+    marketing-authorization-holder: # The vendor, manufacturer, or other entity holding the marketing authorization. Optional field.
+    claim-code: # Declaratie code. Optional field.
+    care-activity-code: # Zorgactiviteit code. Optional field. Use string.
+    care-product-code: # Zorgproduct code. Optional field. Use string.
+    inn: # International Nonproprietary Name. Optional field.
+    atc-code: # Anatomical Therapeutic Chemical code. Optional field.
+    ema-id: # European Medicines Agency ID. Optional field.
+    # Note: schedule, dose and duration are currently not used.
+    # schedule:
+    # dose:
+    # duration:
+    costs: # The cost per patient (per year or one time cost) for this intervention, as floating point number. Use underscore as thousands separator, e.g. 12_345.67
+  # etc.
+
+# Group the Interventions into Intervention Groups for use in the PICOs. For parent-child interventions, use the parent intervention in the group.
+# Use separate Intervention Groups for intervention and comparator.
+# Don't add interventions that are not used in the PICOs (e.g. only for cost estimations) to Intervention Groups.
+intervention-groups:
+  - id: InterventionGroup-Ivg1
+    title: # Title for the intervention group (in Dutch)
+    intervention-ids: [Intervention-Iv1] # List of intervention IDs in this group
+  - id: InterventionGroup-Ivg2
+    title: # Title for the intervention group (in Dutch)
+    intervention-ids: [Intervention-Iv2] # List of intervention IDs in this group
+  # etc.
+
+# List the Outcomes to be used in the PICOs and EMSMPs (reused where possible). Add all relevant outcomes.
+outcomes:
+  - id: Outcome-OC1 # Create ID with format: Outcome-<ShortUniqueName>
+    name: # Unique name of the outcome as used in the package statement
+    outcome-classification: # Higher level Outcome classification (taxonomy term), e.g. Survival
+    outcome-measurement: # The outcome that is measured, taxonomy term, e.g. Overall Survival
+    specific-metric: # Optional field. The specific metric used, e.g. volume measurement in ml.
+    surrogate-outcome: # Boolean: True or False
+  - id: Outcome-OC2 # Create ID with format: Outcome-<ShortUniqueName>
+    name: # Unique name of the outcome as used in the package statement
+    outcome-classification: # Higher level Outcome classification (taxonomy term), e.g. Survival
+    outcome-measurement: # The outcome that is measured, taxonomy term, e.g. Overall Survival
+    specific-metric: # Optional field. The specific metric used, e.g. volume measurement in ml.
+    surrogate-outcome: # Boolean: True or False
+  # etc.
+
+# Group the Outcomes into Outcome Groups for use in the PICOs.
+# Use separate Outcome Groups for different time points or endpoints as needed.
+outcome-groups:
+  - id: OutcomeGroup-OG1 # Create ID with format: OutcomeGroup-<ShortUniqueName>
+    endpoint: # String describing the e.g. Between 12 and 15 months
+    outcome-ids: # List of outcome IDs in this group
+    - Outcome-OC1
+    - Outcome-OC2
+  # etc.
+
+# The PICOs used in the package statement. This references the populations, intervention groups, comparator groups, and outcome groups defined above.
+picots:
+  - id: PICO-Pico1 # Create ID with format: PICO-<ShortUniqueName>
+    population-ids:
+    - Population-Pop1
+    - Population-Pop2
+    intervention-group-id: InterventionGroup-Ivg1
+    comparator-group-id: InterventionGroup-Ivg2
+    outcome-group-ids: [OutcomeGroup-OG1]
+  # etc.
+
+# List of Intervention-Indication Combinations assessed in the package statement (usually one per package statement).
+intervention-indication-combination-assessments:
+  - id: IICAssessment-IIC1 # Create ID with format: IICAssessment-<ShortUniqueName>
+    assessment-type: # Can be: Initial, Reassessment, Indication extension, Indication broadening
+    intervention-id: Intervention-Iv1
+    indication-ids:  # List of population/indication IDs assessed for this intervention (defined above as populations)
+    - Population-Pop1
+    - Population-Pop2
+    emsmp-id: EMSMP-ID1 # Reference to the EMSMP part for this IIC Assessment (below)
+    bia-id: BIA-Bia1 # Reference to the BIA part for this IIC Assessment (below)
+    au-id: AU-AU1 # Optional reference to the Appropriate Use (Gepast gebruik) part for this IIC Assessment (below). Leave out line if not applicable.
+    conclusion: # Positive or Negative
+    conclusion-text: # 'Eindconclusie' text in Dutch for this IIC Assessment. 
+    cost-effective: # Whether the Intervention is cost-effective for the Indication. Can be True or False
+    managed-entry-agreement-text: # Managed Entry Agreement text in Dutch. Leave out line if not applicable.
+  # etc.
+
+# The Established Medical Science and Medical Practice (Stand van de Wetenschap en Praktijk) part of the package statement, linked to the IIC Assessments above.
+# Define one EMSMP per IIC Assessment 
+emsmps:
+  - id: EMSMP-ID1 # Create ID with format: EMSMP-<ShortUniqueName>
+    title: # Title in Dutch, e.g. "Stand van de Wetenschap en Praktijk - Trodelvy"
+    picots-id: PICO-Pico1 # Reference to the PICO defined above
+    slr-id: SLR-Id1 # Reference to the Systematic Literature Review defined below
+    outcome-measurement-ids: # List of outcome measurement IDs (defined below) that are relevant for this EMSMP
+    - OutcomeMeasurement-OM1
+    - OutcomeMeasurement-OM2
+    # etc.
+    relative-effectiveness: # Can be: Positive, Negative, or Equal.
+    adheres-to-emsmps: # Whether the EMSMP adheres to the established medical science and medical practice ('voldoet aan stand van de wetenschap en praktijk'). Can be True or False.
+  # etc.
+
+#  The Systematic Literature Review (SLR) parts of the package statement, linked to the EMSMPs above.
+systematic-literature-reviews:
+  - id: SLR-Id1
+    title: # Title in Dutch, e.g. "Systematisch literatuuronderzoek voor Trodelvy"
+    literature-searches: # References to the actual literature searches defined below
+    - LS-Id1-Source1-Date1
+    - LS-Id1-Source2-Date1
+    literature-reference-list: LRL-Id1
+  # etc.
+
+# The actual literature searches performed in a data source at a certain date, linked to the SLRs above.
+literature-searches:
+  - id: LS-Id1-Source1-Date1
+    label: # Title describing the literature search action, in Dutch
+    end-time: # Date of the search, in the format YYYY-MM-DDT00:00:00
+    target-db: # Data source or repository where literature was searched, e.g. PubMed
+    target-url: # Link to the data source or repository
+    evidence-type: # Currently can be: RCT, Clinical Trial, Systematic Review
+    # Define the actual search query used:
+    query: >-
+      (term1) AND (term2)
+    range-beginning: # Start year restriction for the search, e.g. 2010. Optional field.
+    range-end: # End year restriction for the search, e.g. 2023. Optional field.
+  - id: LS-Id1-Source1-Date1
+    label: # Title describing the literature search action, in Dutch
+    end-time: # Date of the search, in the format YYYY-MM-DDT00:00:00
+    target-db: # Data source or repository where literature was searched, e.g. PubMed
+    target-url: # Link to the data source or repository
+    evidence-type: # Currently can be: RCT, Clinical Trial, Systematic Review
+    # Define the actual search query used:
+    query: >-
+      (term1) AND (term2)
+    range-beginning: # Start year restriction for the search, e.g. 2010. Optional field.
+    range-end: # End year restriction for the search, e.g. 2023. Optional field.
+  # etc.
+
+# Relevant publications referenced in the package statement, e.g. for clinical studies.
+publications:
+  - id: JournalArticle-Id1 # Create ID with format: JournalArticle-<ShortUniqueName>
+    type: # Can be: JournalArticle or Manuscript
+    title: # Title of the publication
+    # Note: authors, journal, year, issue, and pages are currently not converted to RDF.
+    authors: [] # List of authors as strings, e.g. "LastName, FirstName Initials"
+    journal: # Journal title, e.g. New England Journal of Medicine
+    year: # Year of publication, e.g. 2021
+    issue: # Issue of publication as number, 16
+    pages: # Page range, e.g. 1529-1541
+  # etc.
+
+# List or literature references found by the literature searches, linked to the SLRs above.
+# This is the final reference list, specific for a IIC.
+literature-reference-lists:
+  - id: LRL-Id1 # Create ID with format: LRL-<ShortUniqueName>
+    title: # Descriptive title in Dutch, e.g. "Literatuurlijst voor Trodelvy"
+    number-of-items: # Number of references found
+    references: # List of relevant publication IDs (defined above)
+    - JournalArticle-Id1
+  # etc.
+
+# Clinical studies referenced in the package statement, linked to outcome measurements through cohorts.
+studies:
+  - id: Study-Id1 # Create ID with format: Study-<ShortUniqueName>
+    title: # Title of the study
+    short-title: # Short title or acronym of the study
+    registry: # E.g. Clinicaltrials.gov
+    registry-id: # Registry identifier, e.g. NCT02574455
+    start-date: # Start date of the study, e.g. 2017-11-07
+    end-date: # End date of the study, e.g. 2020-12-08
+    study-type: # Type of study, e.g. Interventional
+    phase: # Phase of the study, e.g. Phase 3
+    sponsor: # Sponsor of the study
+    url: # URL to the study registry entry
+    publication-ids:
+    - JournalArticle-Id1 # List of publication IDs (defined above) that describe the study results.
+  # etc.
+
+# Cohorts defined in the studies, linked to outcome measurements below.
+# cohorts can be as defined in the study or be the result of meta analyses.
+cohorts:
+  - id: Cohort-Id1-Intervention # Create ID with format: Cohort-<ShortUniqueName>
+    study-id: Study-Id1
+    intervention-group-id: InterventionGroup-Ivg1 # Reference to the intervention group ID defined above
+  - id: Cohort-Id1-Comparator # Create ID with format: Cohort-<ShortUniqueName>
+    study-id: Study-Id1
+    intervention-group-id: InterventionGroup-Ivg2 # Reference to the intervention group ID defined above
+  # etc.
+
+# Outcome measurements defined in the studies, linked to outcomes and cohorts.
+# These are the actual effect sizes and statistics used in the EMSMP assessment.
+outcome-measurements:
+  - id: OutcomeMeasurement-OMM1 # Create ID with format: OutcomeMeasurement-<ShortUniqueName>
+    type: # Can be: standardized mean difference, mean difference, hazard ratio, risk ratio, absolute difference, median difference
+    outcome-id: Outcome-OC1 # Reference to the outcome ID defined above
+    cohort-ids: [Cohort-Id1-Intervention, Cohort-Id1-Comparator] # List of cohort IDs (defined above) used for this outcome measurement
+    value: # Effect size value as floating point number
+    unit: # Unit of the effect size, if applicable. Currently, can be: %, ml, months. Define new ones in code if needed.
+    # Note that confidence intervals are optional, depending on the type of outcome measurement. Leave out lines if not applicable, or define both ci-lower and ci-upper.
+    ci-lower: # Lower bound of the confidence interval as floating point number
+    ci-upper: # Upper bound of the confidence interval as floating point number
+  - id: OutcomeMeasurement-OMM2 # Create ID with format: OutcomeMeasurement-<ShortUniqueName>
+    type: # Can be: standardized mean difference, mean difference, hazard ratio, risk ratio, absolute difference, median difference
+    outcome-id: Outcome-OC2 # Reference to the outcome ID defined above
+    cohort-ids: [Cohort-Id1-Intervention, Cohort-Id1-Comparator] # List of cohort IDs (defined above) used for this outcome measurement
+    value: # Effect size value as floating point number
+    unit: # Unit of the effect size, if applicable. Currently, can be: '%', ml, months. Define new ones in code if needed.
+    # Note that confidence intervals are optional, depending on the type of outcome measurement. Leave out lines if not applicable, or define both ci-lower and ci-upper.
+    ci-lower: # Lower bound of the confidence interval as floating point number
+    ci-upper: # Upper bound of the confidence interval as floating point number
+  # etc.
+
+# The Budget Impact Analysis (Budget Impact Analyse) part of the package statement, linked to the IIC Assessments above.
+# Define one BIA per IIC Assessment
+bias:
+  - id: BIA-Bia1 # Create ID with format: BIA-<ShortUniqueName>
+    title: # Title in Dutch, e.g. "Budget Impact Analyse - Trodelvy"
+    trend-assumption-id: TrendAssumption-TA1 # Reference to the Trend Assumption defined below
+    cost-estimation-ids: [CostEstimation-CA1] # List of Cost Estimation dataset IDs (defined below) used in this BIA
+  # etc.
+
+# Scenarios considered in the Budget Impact Analysis, linked to the Cost Estimations below.
+# There is at least one scenario per BIA. Define more if needed, for instance minimal and maximal scenarios.
+# The default/current and substitution scenarios/situations are defined as different observation groups in the Cost Estimations below, no need to define them here separately.
+scenarios:
+  - id: Scenario-S1
+    title: # Short title
+    description: # Description of the scenario in Dutch
+  # etc.
+
+# Trend Assumptions used in the Budget Impact Analysis, linked to the Cost Estimations below.
+trend-assumptions:
+  - id: TrendAssumption-TA1
+    title: # Title in Dutch, e.g. "Trend aannames voor Trodelvy"
+    scenario-id: Scenario-S1 # Reference to the Scenario defined above
+    time-points: [] # List of time points, e.g. [1, 2, 3] for years 1, 2, and 3, or 'default' if the estimate is not per year.
+    time-unit: # Optional time unit, e.g. year. Leave out line if time points are 'default'.
+    number-of-patients: [] # Estimated number of patients at each time point as list of integers. Use one value if time point is 'default'.
+    intervention-market-penetration: [] # Estimated market penetration of the intervention at each time point as list of floating point numbers (fractions). Use one value if time point is 'default'.
+  # etc.
+
+# Cost Estimations used in the Budget Impact Analysis, linked to the Trend Assumptions and Scenarios above.
+# Define one Cost Estimation per Intervention-Indication Combination per Scenario.
+cost-estimations:
+  - id: CostEstimation-CA1
+    title: # Short title in Dutch, e.g. "Kostenraming Trodelvy"
+    time-unit: year # Optional time unit for the cost estimation, e.g. year
+    time-points: [] # List of time points, e.g. [1, 2, 3] for years 1, 2, and 3, or 'default' if the estimate is not per year.
+    trend-assumption-id: TrendAssumption-TA1 # Reference to the Trend Assumption defined above
+    scenario-id: Scenario-S1
+    observation-groups: # List of different cost types per situation (type) for an intervention. On cost type blok per type of cost per intervention or combination of interventions (as needed to express data from the BIA).
+      - type: Current # The current/default situation ('bestaande behandeling')
+        intervention-ids: [Intervention-Iv1]
+        number-of-patients: [] # List of number of patients at each time point as integer
+        total-costs: [ ] # Costs at each time point as floating point number. Use underscore as thousands separator, e.g. 12_345.67
+      - type: Substitution # The situation where the new intervention (partly) substitutes the current treatment ('substitutie')
+        intervention-ids: [Intervention-Iv2] # Link to the substituting intervention(s) or existing intervention when it is substituted
+        number-of-patients: [] # List of number of patients at each time point as integer
+        total-costs: [ ] # The costs of the substitution intervention or existing intervention at each time point as floating point number. Use underscore as thousands separator, e.g. 12_345.67
+      - type: Additional # The situation where the new intervention is an addition to the current treatment ('additionele zorgkosten')
+        intervention-ids: [Intervention-Iv1, Intervention-Iv2]
+        number-of-patients: [] # List of number of patients at each time point as integer
+        total-costs: [ ] # Additional costs at each time point as floating point number, can be negative if there is cost saving. Use underscore as thousands separator, e.g. 12_345.67
+      - type: Total # The total costs for all interventions together ('totale zorgkosten') in the new situation
+        intervention-ids: [Intervention-Iv1, Intervention-Iv2]
+        number-of-patients: [] # List of number of patients at each time point as integer
+        total-costs: [ ] # Costs at each time point as floating point number. Use underscore as thousands separator, e.g. 12_345.67
+
+# Optional Appropriate Use (Gepast gebruik) part of the package statement, linked to the IIC Assessments above.
+# Define one Appropriate Use per IIC Assessment or shared, if applicable.
+appropriate-use:
+  id: AU-AU1 # Create ID with format: AU-<ShortUniqueName>
+  title: # Title in Dutch, e.g. "Gepast gebruik - MammaOnco"
+  date: # Date of the agreement, e.g. 2023-09-26
+  agreements: # List of appropriate use agreements in Dutch as text blocks.
+  - description: Uitgebreide patiëntinformatie en richtlijnen voor professionals over bij welke subgroep van vrouwen deze genexpressietesten van toegevoegde waarde zou kunnen zijn en wat de implicaties zijn, zodat de vrouw in overleg met haar arts een weloverwogen besluit kan nemen of inzet van een genexpressietest in het individuele geval van toegevoegde waarde is (samen beslissen). De BVN heeft toegezegd in afstemming met Patiëntfederatie Nederland de bestaande patiënteninformatie te updaten vóór maart 2024. 
+  - description: Revisie van de huidige richtlijn waarin de resultaten van de RxPonder-studie, TailorX-studie (Oncotype DX®) en 8-jaars resultaten van de MINDACT-studie (MammaPrint®) zijn opgenomen. De NABON heeft toegezegd dat de module wordt geprioriteerd voor de volgende jaarlijkse cyclus. Omdat het updaten van richtlijnen niet op korte termijn gerealiseerd is, zal de beroepsgroep een standpunt publiceren over MammaPrint en Oncotype DX op haar website.
+  - description: Inzet van genexpressietesten alleen als add-on-test aan de standaard risicoschatting, indien op basis van de standaard risicoschatting twijfel bestaat over de meerwaarde van adjuvante chemotherapie. Het is niet de bedoeling om de genexpressietest in plaats van de standaard risicoschatting in te zetten. 
+  - description: Vanwege het ontbreken van de directe vergelijking weten we nu niet welke test de meeste gezondheidswinst voor de patiënt oplevert. De beroepsgroep spant zich in om hier inzicht in te krijgen door het bijhouden van de internationale literatuur en/of uitkomsten uit registraties. Het Zorginstituut zal jaarlijks navraag doen bij de beroepsgroep of er nieuwe publicaties verschenen zijn. 
+  - description: Inzet van één van de testen per tumor (en niet beide testen). Dat de twee testen niet uitwisselbaar zijn zou er mogelijk toe kunnen leiden dat zorgprofessionals en patiënten geneigd zijn om beide testen bij één patiënt af te nemen, om alleen bij concordante uitslagen (dezelfde uitslagen) een patiënt te informeren over het advies over wel of geen adjuvante chemotherapie. Het is echter niet onderzocht of het klinisch nuttig en doelmatig is om beide testen bij één patiënt af te nemen. Het Zorginstituut is daarom van mening dat de inzet van genexpressie testen beperkt moet blijven tot één van de testen per tumor.  
+  - description: Het Zorginstituut zal monitoren en evalueren of er sprake is van gepast gebruik van de testen. In nauwe afstemming met de beroepsgroep worden hiervoor eindpunten gedefinieerd.
+
