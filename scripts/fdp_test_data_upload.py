@@ -181,7 +181,7 @@ token = get_token(f"{baseurl}tokens")
 # Publicatiedatum;Aandoening;ICD-10;Indicatie;Behandeling;RxNorm;
 for row in pakketadviezen:
     
-    keywords = [ "Aandoening: " + row["Aandoening"].strip(), 
+    keywords = [ row["Aandoening"].strip(), 
                 # row["Indicatie"].strip(), 
                 row["Behandeling"].strip(), 
                 row["Geneesmiddel"].strip() ]
