@@ -1,0 +1,12 @@
+site_name: Fair Package Registry
+repo_url: https://github.com/thehyve/fair-package-registry
+edit_uri: blob/main/docs/
+theme:
+  name: readthedocs
+nav:
+  - Home: index.md
+  - Making Changes: making_changes.md
+  - Ontology: ontology.md
+  - Taxonomy: taxonomy_complete.md
+  - Taxonomy Tree: taxonomy_tree.md
+  - Model Changes: changelog.md
