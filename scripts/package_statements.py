@@ -6,6 +6,8 @@ from rdflib import Graph, Namespace, URIRef, BNode, Literal
 from rdflib.namespace import RDF, RDFS, OWL, XSD, SKOS, PROV, TIME, SDO, DefinedNamespace, ClosedNamespace, DC, DCTERMS, ORG, QB, URIPattern
 import sys
 
+from package_statement_contract import ContractValidationError, validate_and_normalize_document
+
 
 class FPR(DefinedNamespace):
     _NS = Namespace("https://w3id.org/zinl/fpr-o#")
@@ -181,6 +183,57 @@ class UO(DefinedNamespace):
 TAX = Namespace("https://w3id.org/zinl/fpr-tax#")
 
 
+def _is_non_empty_string(value) -> bool:
+    return isinstance(value, str) and value.strip() != ""
+
+
+def _as_str_or_none(value):
+    if value is None:
+        return None
+    if isinstance(value, str):
+        stripped = value.strip()
+        return stripped if stripped != "" else None
+    return str(value)
+
+
+def _as_uriref_or_none(value):
+    uri = _as_str_or_none(value)
+    if uri is None:
+        return None
+    return URIRef(uri)
+
+
+def addUriIfPresent(g: Graph, subject: URIRef, predicate: URIRef, col, key: str) -> Graph:
+    uri = _as_uriref_or_none(col.get(key))
+    if uri is None:
+        return g
+    g.add((subject, predicate, uri))
+    return g
+
+
+def iterNonEmpty(values):
+    if values is None:
+        return []
+    return [v for v in values if _as_str_or_none(v) is not None]
+
+
+def build_namespace_suffix(package: dict, inputFileName: str) -> str:
+    """Return a stable, URI-safe local path segment for the package statement namespace."""
+    package_id = package.get("id")
+    if _is_non_empty_string(package_id) and package_id.strip() != "PS-":
+        source = package_id.strip()
+    else:
+        case_number = package.get("case-number")
+        serial_number = package.get("serial-number")
+        if case_number is not None and serial_number is not None:
+            source = f"case-{case_number}-serial-{serial_number}"
+        else:
+            source = os.path.splitext(os.path.basename(inputFileName))[0]
+
+    # Encode all reserved/non-ASCII chars so the namespace IRI is always valid.
+    return urllib.parse.quote(source, safe="-._~")
+
+
 def addLitIfPresent(g: Graph, subject: URIRef, predicate: URIRef, col, key: str) -> Graph:
     obj = col.get(key)
     if obj is None:
@@ -197,7 +250,10 @@ def addIntIfPresent(g: Graph, subject: URIRef, predicate: URIRef, col, key: str)
 
 # TODO: Use different local name pattern
 def getTaxonomyTerm(label: str) -> URIRef:
-    encoded_label = urllib.parse.quote(label)
+    clean_label = _as_str_or_none(label)
+    if clean_label is None:
+        raise ValueError("Cannot create taxonomy term from null/empty label")
+    encoded_label = urllib.parse.quote(clean_label)
     return TAX[encoded_label]
 
 def addNamespaces(g: Graph):
@@ -215,17 +271,35 @@ def addNamespaces(g: Graph):
     g.bind("UO", UO)
 
 
+def addTaxonomyIfPresent(g: Graph, subject: URIRef, predicate: URIRef, col, key: str) -> Graph:
+    value = _as_str_or_none(col.get(key))
+    if value is None:
+        return g
+    g.add((subject, predicate, getTaxonomyTerm(value)))
+    return g
+
+
 def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
     # Load YAML data
     with open(inputFileName, 'r') as f:
-        data = yaml.safe_load(f)
+        raw_data = yaml.safe_load(f)
+
+    if raw_data is None:
+        raise ValueError("Input YAML is empty")
+    if not isinstance(raw_data, dict):
+        raise ValueError("Input YAML root must be a mapping/object")
+
+    data = validate_and_normalize_document(raw_data)
+
+    # Read package metadata early so namespace generation can use stable identifiers.
+    package = data['package-statement']
 
     # Create RDF graph
     g = Graph()
     addNamespaces(g)
 
-    name = os.path.splitext(os.path.basename(inputFileName))[0]
-    NSDATA = Namespace("https://w3id.org/zinl/package-statements/" + name + "#")
+    namespace_suffix = build_namespace_suffix(package, inputFileName)
+    NSDATA = Namespace("https://w3id.org/zinl/package-statements/" + namespace_suffix + "#")
     g.bind("data", NSDATA)
 
     # Add ZIN organisations
@@ -242,10 +316,12 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
     g.add((zorg1, ORG.hasUnit, teamPackageAndAdvice))
 
     # Add package statement
-    package = data['package-statement']
-    subj = NSDATA[package['id']]
+    package_id = _as_str_or_none(package.get('id')) or 'PS-unknown'
+    subj = NSDATA[package_id]
     g.add((subj, RDF.type, FPR.PackageStatement))
-    g.add((subj, FPR.hasPackageType, FPR[package['package-type']]))
+    package_type = _as_str_or_none(package.get('package-type'))
+    if package_type is not None:
+        g.add((subj, FPR.hasPackageType, FPR[package_type]))
     medicationSubtype = package.get('package-type-medication-subtype')
     if medicationSubtype:
         g.add((subj, FPR.hasPackageTypeMedicationSubtype, FPR[medicationSubtype]))
@@ -253,15 +329,15 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
     g.add((subj, DCTERMS.issued, Literal(package['date'], datatype=XSD.date)))
     g.add((subj, FPR.hasCaseNumber, Literal(package['case-number'], datatype=XSD.integer)))
     g.add((subj, FPR.hasSerialNumber, Literal(package['serial-number'], datatype=XSD.integer)))
-    g.add((subj, FPR.hasStatus, FPR[package['status']]))
-    for contact in package['contact-person']:
+    status = _as_str_or_none(package.get('status'))
+    if status is not None:
+        g.add((subj, FPR.hasStatus, FPR[status]))
+    for contact in iterNonEmpty(package.get('contact-person', [])):
         g.add((subj, DC.contributor, Literal(contact))) # TODO: Use Agent or FOAF
     g.add((subj, DCTERMS.publisher, teamPackageAndAdvice))
-    g.add((subj, RDFS.seeAlso, URIRef(package['see-also'])))
-    guarantee_document = package.get('guarantee-document')
-    if guarantee_document:
-        g.add((subj, FPR.hasGuaranteeDocument, URIRef(guarantee_document)))
-    for iic in package['iic-assessments']:
+    addUriIfPresent(g, subj, RDFS.seeAlso, package, 'see-also')
+    addUriIfPresent(g, subj, FPR.hasGuaranteeDocument, package, 'guarantee-document')
+    for iic in iterNonEmpty(package.get('iic-assessments', [])):
         g.add((subj, FPR.hasIICAssessment, NSDATA[iic]))
 
     # Create populations
@@ -275,9 +351,9 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         age = population.get('age')
         if age:
             g.add((subj, PICO.age, getTaxonomyTerm(age)))
-        for condition in population['conditions']:
+        for condition in iterNonEmpty(population.get('conditions', [])):
             g.add((subj, PICO.condition, getTaxonomyTerm(condition)))
-        for treatment in population.get('treatment', []):
+        for treatment in iterNonEmpty(population.get('treatment', [])):
             g.add((subj, PICO.treatment, getTaxonomyTerm(treatment)))
 
     # Create interventions
@@ -285,9 +361,9 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         subj = NSDATA[intervention['id']]
         g.add((subj, RDF.type, PICO.Intervention))
         g.add((subj, DCTERMS.title, Literal(intervention['title'])))
-        g.add((subj, PICO.appliedIntervention, getTaxonomyTerm(intervention['applied-intervention'])))
+        addTaxonomyIfPresent(g, subj, PICO.appliedIntervention, intervention, 'applied-intervention')
         g.add((subj, PICO.interventionRationale, Literal(intervention['intervention-rationale'])))
-        g.add((subj, PICO.interventionClassification, getTaxonomyTerm(intervention['intervention-classification'])))
+        addTaxonomyIfPresent(g, subj, PICO.interventionClassification, intervention, 'intervention-classification')
         addLitIfPresent(g, subj, FPR.hasMarketingAuthorizationHolder, intervention, 'marketing-authorization-holder')
         addIntIfPresent(g, subj, FPR.hasClaimCode, intervention, 'claim-code')
         addLitIfPresent(g, subj, FPR.hasCareActivityCode, intervention, 'care-activity-code')
@@ -301,7 +377,7 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         if costs:
             g.add((subj, FPR.hasTotalCosts, Literal(costs, datatype=XSD.float)))
         child_interventions = intervention.get('child-interventions', [])
-        for child in child_interventions:
+        for child in iterNonEmpty(child_interventions):
             g.add((subj, PICO.childIntervention, NSDATA[child]))
 
     # Create intervention groups:
@@ -309,7 +385,7 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         subj = NSDATA[interventionGroup['id']]
         g.add((subj, RDF.type, PICO.InterventionGroup))
         interventionIds = interventionGroup.get('intervention-ids', [])
-        for interventionId in interventionIds:
+        for interventionId in iterNonEmpty(interventionIds):
             g.add((subj, PICO.intervention, NSDATA[interventionId]))
 
     # Create outcomes
@@ -317,8 +393,8 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         subj = NSDATA[outcome['id']]
         g.add((subj, RDF.type, PICO.Outcome))
         g.add((subj, RDFS.label, Literal(outcome['name'])))
-        g.add((subj, PICO.outcomeClassification, getTaxonomyTerm(outcome['outcome-classification'])))
-        g.add((subj, PICO.outcomeMeasurement, getTaxonomyTerm(outcome['outcome-measurement'])))
+        addTaxonomyIfPresent(g, subj, PICO.outcomeClassification, outcome, 'outcome-classification')
+        addTaxonomyIfPresent(g, subj, PICO.outcomeMeasurement, outcome, 'outcome-measurement')
         specificMetric = outcome.get('specific-metric')
         if specificMetric:
             g.add((subj, PICO.specificMetric, getTaxonomyTerm(specificMetric)))
@@ -330,18 +406,18 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         g.add((subj, RDF.type, PICO.OutcomeGroup))
         g.add((subj, PICO.endpoint, Literal(outcomeGroup['endpoint'])))
         outcomeIds = outcomeGroup.get('outcome-ids', [])
-        for outcomeId in outcomeIds:
+        for outcomeId in iterNonEmpty(outcomeIds):
             g.add((subj, PICO.outcome, NSDATA[outcomeId]))
 
     # Create PICO
     for picots in data['picots']:
         subj = NSDATA[picots['id']]
         g.add((subj, RDF.type, PICO.PICO))
-        for populationId in picots.get('population-ids', []):
+        for populationId in iterNonEmpty(picots.get('population-ids', [])):
             g.add((subj, PICO.population, NSDATA[populationId]))
         g.add((subj, PICO.interventionGroup, NSDATA[picots['intervention-group-id']]))
         g.add((subj, PICO.comparatorGroup, NSDATA[picots['comparator-group-id']]))
-        for outcomeId in picots.get('outcome-group-ids', []):
+        for outcomeId in iterNonEmpty(picots.get('outcome-group-ids', [])):
             g.add((subj, PICO.outcome, NSDATA[outcomeId]))
 
     # Create intervention-hasIndication-combination-assessments
@@ -358,7 +434,7 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         elif assessmentType == "Indication broadening":
             g.add((subj, FPR.hasAssessmentType, FPR.IndicationBroadening))
         g.add((subj, FPR.hasIntervention, NSDATA[iic['intervention-id']]))
-        for indicationId in iic.get('indication-ids', []):
+        for indicationId in iterNonEmpty(iic.get('indication-ids', [])):
             g.add((subj, FPR.hasIndication, NSDATA[indicationId]))
         g.add((subj, FPR.hasEMSMP, NSDATA[iic['emsmp-id']]))
         g.add((subj, FPR.hasBIA, NSDATA[iic['bia-id']]))
@@ -396,7 +472,7 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         subj = NSDATA[slr['id']]
         g.add((subj, RDF.type, FPR.SystematicLiteratureReview))
         g.add((subj, DCTERMS.title, Literal(slr['title'])))
-        for searchId in slr.get('literature-searches', []):
+        for searchId in iterNonEmpty(slr.get('literature-searches', [])):
             g.add((subj, DCTERMS.hasPart, NSDATA[searchId]))
         g.add((subj, SDO.result, NSDATA[slr['literature-reference-list']]))
         g.add((NSDATA[slr['literature-reference-list']], PROV.wasGeneratedBy, subj))
@@ -408,7 +484,7 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         g.add((subj, RDFS.label, Literal(search['label'])))
         g.add((subj, PROV.endedAtTime, Literal(search['end-time'], datatype=XSD.dateTime)))
         g.add((subj, SDO.name, Literal(search['target-db'])))
-        g.add((subj, SDO.target, URIRef(search['target-url'])))
+        addUriIfPresent(g, subj, SDO.target, search, 'target-url')
         g.add((subj, SDO.query, Literal(search['query'])))
         evidenceType = search.get('evidence-type')
         if evidenceType == "Clinical Trial" or evidenceType == "RCT":
@@ -462,7 +538,7 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         g.add((subj, RDF.type, FABIO.SystematicLiteratureReview))
         g.add((subj, DCTERMS.title, Literal(lrl['title'])))
         g.add((subj, SDO.numberOfItems, Literal(lrl['number-of-items'], datatype=XSD.integer)))
-        for referenceId in lrl.get('references', []):
+        for referenceId in iterNonEmpty(lrl.get('references', [])):
             g.add((subj, SDO.itemListElement, NSDATA[referenceId]))
             g.add((subj, PROV.hadMember, NSDATA[referenceId]))
 
@@ -471,9 +547,9 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
         subj = NSDATA[study['id']]
         g.add((subj, RDF.type, OBI.ClinicalTrial))
         g.add((subj, DCTERMS.title, Literal(study['title'])))
-        g.add((subj, DCTERMS.source, URIRef(study['registry'])))
+        addUriIfPresent(g, subj, DCTERMS.source, study, 'registry')
         g.add((subj, DCTERMS.identifier, Literal(study['registry-id'])))
-        g.add((subj, RDFS.seeAlso, URIRef(study['url'])))
+        addUriIfPresent(g, subj, RDFS.seeAlso, study, 'url')
         # TODO: incomplete mapping
         for publicationId in data.get('literature-reference-lists', []):
             g.add((subj, DCTERMS.bibliographicCitation, NSDATA[publicationId]))
@@ -509,7 +585,9 @@ def createPackageStatementsFromYaml(inputFileName: str, outputFileName: str):
             # TODO: add other types
         for cohortId in outcomeMeasurement.get('cohort-ids', []):
             g.add((subj, IAO.isAbout, NSDATA[cohortId]))
-        g.add((subj, IAO.isQualityMeasurementOf, URIRef(outcomeMeasurement['outcome-id'])))
+        outcome_id_ref = _as_uriref_or_none(outcomeMeasurement.get('outcome-id'))
+        if outcome_id_ref is not None:
+            g.add((subj, IAO.isQualityMeasurementOf, outcome_id_ref))
         g.add((subj, STATO.hasValue, Literal(outcomeMeasurement['value'], datatype=XSD.float)))
         unit = outcomeMeasurement.get('unit')
         if unit == '%':
@@ -633,5 +711,10 @@ if __name__ == '__main__':
     inputFileName = sys.argv[1]
     outputFileName = sys.argv[2]
 
-    createPackageStatementsFromYaml(inputFileName, outputFileName)
+    try:
+        createPackageStatementsFromYaml(inputFileName, outputFileName)
+    except ContractValidationError as exc:
+        print("YAML contract validation failed:")
+        print(exc)
+        sys.exit(2)
 

@@ -9,7 +9,7 @@
 # - Bump MAJOR for breaking changes, MINOR for backward-compatible additions, PATCH for clarifications/fixes.
 # - Use schema_version: "1.0.0" for backward compatibility with legacy files.
 
-schema_version: "2.0.0"
+schema_version: "1.0.0"
 
 package-statement: # Place for general information about the package statement
   id: PS-PS1 # Create ID with format: PS-<ShortUniqueName>

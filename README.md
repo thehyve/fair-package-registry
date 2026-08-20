@@ -28,10 +28,14 @@ Edit the terminology sources directly in the Excel sheet or tab-separated files 
 # Making changes to the example FAIR Package Statements
 
 Edit the YAML files in the [src/](src/) folder and rebuild the project.
+The YAML input contract is versioned via `schema_version` and validated before RDF generation.
+Validation and migration rules are implemented in `scripts/package_statement_contract.py`.
 
 # Building the project
 
 To rebuild the ontology, taxonomy, and example FAIR Package Statements from source files, use the provided `Makefile`. You will need to have [Make](https://www.gnu.org/software/make/), Python 3, [ROBOT](https://robot.obolibrary.org/), and Java installed on your system.
+
+Run `make help` to see the available build targets and a short explanation of each.
 
 # License
 

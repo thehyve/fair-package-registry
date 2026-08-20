@@ -1,0 +1,933 @@
+# ============================================================
+# FAIR Package Statement — Annotated Template (LLM fill template)
+# Companion doc: template_annotations_rationale.md
+#   (version history, extension provenance, and design rationale live there —
+#    not inline, to keep this file focused on filling.)
+# ============================================================
+#
+# HOW TO USE:
+# - Fill in values from the package statement PDF provided.
+# - Each field carries some of: DEFINITION (what it means), SOURCE (where to find
+#   it in the PDF), PITFALL (common extraction mistakes), HOW (filling procedure).
+# - If a value is not present in the document, leave the line empty. Do NOT invent
+#   values. A flagged gap is better than a fabricated number.
+# - Package statements vary across time periods. Older advisories (pre-2015) may
+#   lack formal PICO tables, budget impact analyses, or SLR sections. Adapt and
+#   note missing sections.
+# - The conclusion reflects a deliberative process, not an algorithm. Do not infer
+#   fields from each other.
+# - Some fields and blocks are ZIN-specific additions beyond the base template
+#   (e.g. iic-role/linked diagnostics, surrogate/reassessment fields, diagnostic-
+#   accuracy measurement types). Their provenance is documented in the companion
+#   .md; for filling, treat every field the same way.
+# ============================================================
+
+
+package-statement:
+  # DEFINITION: General metadata about the package statement document.
+  # SOURCE: Cover letter (adviesbrief) to the minister. Title, date,
+  #   and case number appear in the header/footer of the letter.
+  #   Contact person in the colofon of the farmacotherapeutisch rapport.
+  # PITFALL: A package statement bundle typically contains multiple
+  #   sub-documents (adviesbrief, farmacotherapeutisch rapport,
+  #   farmaco-economisch rapport, budget impact analyse). Metadata
+  #   may differ slightly between documents. Use the adviesbrief
+  #   as primary source for package-statement metadata.
+  #   In older advisories, some fields may be absent entirely.
+
+  id: PS-  # Format: PS-<ShortUniqueName>
+  title:   # Dutch title. Source: adviesbrief, subject line ("Betreft")
+  date:    # Format: YYYY-MM-DD. Source: adviesbrief date.
+  # Use the adviesbrief date — not the vaststelling date of the standpunt,
+  #   nor the (sometimes retroactive) ingangsdatum.
+  package-type:  # Select: PointOfView or Advice
+  package-type-medication-subtype: LockProcedureDrug
+  # DEFINITION: Only include this line for medications in the
+  #   pakketsluis (sluisgeneesmiddelen). Remove if not applicable.
+  # SOURCE: adviesbrief will mention "pakketsluis" if applicable.
+  case-number:   # "Zaaknummer" (colofon of the report) = the ID of the case/
+  #   project. NOT "Onze referentie" from the adviesbrief (that is the ID of the
+  #   letter itself and does NOT land in the YAML).
+  serial-number: # "Volgnummer" (colofon) = the ID of the report itself.
+  # CROSS-CHECK: Zaaknummer/Volgnummer usually also appear in the reference
+  #   block of the adviesbrief; the two should match — use that to confirm you took
+  #   the right numbers. Note: that block is sometimes visually covered in the PDF
+  #   but still present in the text layer.
+  # FALLBACK (older advisories without a clear colofon): at least one number
+  #   must be visible. If only one is available, put it in serial-number and leave
+  #   case-number empty. These numbers are numeric, 4-digit year + 6 unique digits
+  #   (recognition hint, not a validation rule).
+  # TIE-BREAK (bundle with multiple sub-reports, each with its own Volgnummer,
+  #   e.g. FT-rapport + BIA + farmaco-economisch rapport + verkennende analyse):
+  #   use the Farmacotherapeutisch rapport's Volgnummer as the canonical
+  #   serial-number; note the other sub-reports' Volgnummers in a comment. The
+  #   Zaaknummer is shared across all sub-reports and is the case-number.
+  status: Definitive  # Always Definitive for published advisories
+  contact-person: []
+  # SOURCE: "Contactpersoon" in the colofon of the report; for advisories
+  #   without a farmacotherapeutisch rapport (e.g. a Standpunt), take it from the
+  #   adviesbrief instead.
+  see-also:
+  # URL to waarborgdocument on ZIN website. Often not in the PDF itself.
+  iic-assessments:
+    - IICAssessment-IIC1
+  # List EVERY IICAssessment defined below. An advisory has more than one when it
+  #   assesses more than one intervention-indication combination — e.g. several
+  #   subpopulations, a group assessment, OR a companion diagnostic assessed in the
+  #   same bundle (see iic-role below).
+
+
+# ============================================================
+populations:
+  # DEFINITION: The patient population(s) for which the intervention
+  #   is assessed. Corresponds to the P in PICO.
+  # These Populations ALSO serve as the Indications: the `indication-ids`
+  #   in an IIC assessment reference Population IDs (population and indication are
+  #   the same entity in this model). There is no separate indications section.
+  # SOURCE: PICO table in the farmacotherapeutisch rapport (section 2.1
+  #   or similar). Also summarised in the adviesbrief opening paragraph.
+  #   In older advisories without a PICO table, derive from the
+  #   "indicatie" description in the introduction.
+  # PITFALL: A single advisory may cover multiple populations
+  #   (e.g. different lines of treatment, different mutation subtypes).
+  #   Create a separate Population entry for each distinct subgroup
+  #   that has its own IIC assessment. Taxonomy terms should come from
+  #   the Cochrane Core Ontology where possible.
+
+  - id: Population-  # Format: Population-<ShortUniqueName>
+    title:     # Dutch description. Source: PICO table, patiëntenpopulatie row
+    sex:       # Optional. Taxonomy term, e.g. Female. Omit if not specified.
+    age:       # Taxonomy term, e.g. Adult, Pediatric
+    conditions: []
+    # List of conditions as taxonomy terms (Cochrane Core Ontology preferred).
+    # Source: PICO table, conditions/diagnoses listed.
+    treatment: []
+    # Previous treatments required. Source: PICO table or eligibility criteria.
+    # Leave empty list [] if no prior treatment specified.
+
+
+# ============================================================
+interventions:
+  # DEFINITION: The intervention(s) and comparator(s) assessed.
+  #   Also include interventions needed only for cost calculations.
+  # SOURCE: PICO table (interventie and controle-interventie rows).
+  #   Dosing details from SmPC summary or farmacotherapeutisch rapport.
+  #   ATC code and INN from SmPC or farmacotherapeutisch kompas.
+  #   Costs from BIA section "kosten per patiënt per jaar".
+  # PITFALL: The comparator (usually active surveillance, placebo, or
+  #   standard of care) must also be listed as an Intervention entry.
+  #   Costs for comparator may be zero or may include follow-up treatment.
+  #   EMA ID and registry IDs are often not stated in the advisory PDF;
+  #   leave blank rather than guessing.
+  # TEST-GUIDED TREATMENT: when a diagnostic is assessed (see iic-role), create a
+  #   SEPARATE Intervention entry per test-strategy — e.g. "<drug> guided by
+  #   reference test" and "<drug> guided by SOC test" — with
+  #   intervention-classification: Diagnostic Test Guided Treatment. These are what
+  #   the diagnostic's test-treat PICO contrasts.
+
+  - id: Intervention-  # Format: Intervention-<ShortUniqueName>
+    title:   # Name as used in the advisory
+    applied-intervention:  # Actual intervention name. Taxonomy term.
+    intervention-rationale:  # Brief rationale text
+    intervention-classification:  # Taxonomy term, e.g. Pharmacological Interventions
+    marketing-authorization-holder:  # Vendor/manufacturer. Optional.
+    claim-code:       # Declaratiecode. Optional.
+    care-activity-code:  # Zorgactiviteitcode. Optional.
+    care-product-code:   # Zorgproductcode. Optional.
+    inn:      # International Nonproprietary Name. Optional.
+    atc-code: # ATC code, e.g. L01XX54. Optional.
+    ema-id:   # EMA product ID. Optional. Often absent from advisory PDF.
+    costs:    # Cost per patient per year as float, in EUR. Source: BIA section.
+    # Use underscore as thousands separator: e.g. 64_740.00
+    # PITFALL: the source may state costs per cycle, per mg, per administration, or per
+    #   treatment episode. Convert to cost per patient per YEAR and note the basis and any
+    #   assumption (dosing, body weight, cycles/year) in a comment. If the source gives no
+    #   basis for annualising, leave EMPTY and say so — never let a per-cycle figure sit
+    #   silently in a per-year field.
+    child-interventions: []  # Remove line if not applicable
+
+
+# ============================================================
+intervention-groups:
+  # DEFINITION: Groups interventions for use in PICOs.
+  # SOURCE: Derived from interventions defined above.
+  #   Use separate groups for intervention and comparator.
+  # PITFALL: Only include interventions actually used in PICOs here.
+  #   Interventions used only for cost calculations are excluded.
+
+  - id: InterventionGroup-  # Format: InterventionGroup-<ShortUniqueName>
+    title:  # Dutch title for this group
+    intervention-ids: []  # List of Intervention IDs
+
+
+# ============================================================
+outcomes:
+  # DEFINITION: Outcome measures used in the PICOs and EMSMPs.
+  # SOURCE: PICO table, "cruciale uitkomsten" and "relevante uitkomstmaten" rows.
+  #   Also in the section "Uitkomstmaten en klinische relevantiegrenzen".
+  # PITFALL: Distinguish between primary/crucial outcomes (e.g. OS) and
+  #   secondary/supportive outcomes (e.g. TFST, QoL). Surrogate outcomes
+  #   (e.g. PFS as surrogate for OS) must be marked surrogate-outcome: True.
+  #   In older advisories, outcome classifications may be implicit rather
+  #   than explicitly listed in a PICO table.
+
+  - id: Outcome-  # Format: Outcome-<ShortUniqueName>
+    name:   # Unique name as used in the advisory
+    outcome-classification:  # Higher level taxonomy term, e.g. Survival
+    outcome-measurement:     # Taxonomy term, e.g. Overall Survival
+    specific-metric:  # Optional. E.g. specific scale or cut-off used.
+    surrogate-outcome:  # Boolean: True or False
+    # PITFALL: PFS is typically a surrogate for OS in oncology.
+    # The advisory will often state this explicitly.
+    # DIAGNOSTIC ACCURACY OUTCOMES
+    # For a diagnostic IIC (iic-role: linked-diagnostic), the crucial outcome is
+    # NOT effectiveness but test ACCURACY. Use:
+    #   outcome-classification: Diagnostic Test Accuracy
+    #   outcome-measurement: Concordance | Sensitivity | Specificity |
+    #                        Positive/Negative Predictive Value | Analytical validity
+    # surrogate-outcome: False. Accuracy is NOT a surrogate for survival — see the
+    #   PITFALL under emsmps/basis-uitkomst, which explains why this matters.
+    # Do NOT relabel an accuracy outcome as 'effectiviteit'; that misrepresents it.
+
+
+# ============================================================
+outcome-groups:
+  # DEFINITION: Groups outcomes by time point or endpoint for use in PICOs.
+  # SOURCE: Results sections of the farmacotherapeutisch rapport.
+  #   Time points derived from follow-up duration reported per outcome.
+  # PITFALL: Different outcomes may have different follow-up horizons
+  #   (e.g. efficacy at median follow-up, QoL at 2 years, safety over
+  #   treatment duration). Create separate groups for distinct endpoints.
+
+  - id: OutcomeGroup-  # Format: OutcomeGroup-<ShortUniqueName>
+    endpoint:  # String describing the time point or measurement window
+    outcome-ids: []
+
+
+# ============================================================
+picots:
+  # DEFINITION: Links populations, interventions, comparators, and outcomes
+  #   into a structured PICO for the assessment.
+  # SOURCE: PICO table in farmacotherapeutisch rapport.
+  # PITFALL: The desired follow-up duration and required study design
+  #   (e.g. RCT, double-blind) are stated in the PICO table but cannot
+  #   currently be captured in template fields. Note these in comments.
+  #   Multiple PICOs may exist if different populations are assessed.
+  # EVERY PICO BELONGS TO AT LEAST ONE IIC. A PICO is reached from its IIC via that
+  #   IIC's emsmp (IIC -> emsmp-id -> picots-id). A PICO that no emsmp points to is
+  #   an error: it will never be read. Check this before you finish.
+  # TEST-TREAT PICOs
+  #   A diagnostic's PICO is a TEST-TREAT strategy: intervention and comparator are
+  #   the SAME treatment guided by DIFFERENT tests (e.g. "drug guided by reference
+  #   test" vs "drug guided by SOC test"), and the outcome is accuracy/concordance
+  #   (linked evidence). Capture it as a normal PICO here; it is referenced from the
+  #   diagnostic's OWN emsmp (see iic-role: linked-diagnostic).
+  #   Do not force the two test-treat arms into the drug's effectiveness PICO.
+  # HOW: create a SEPARATE Intervention entry per test-strategy, each in its OWN
+  #   intervention-group, and reference those two groups as intervention-group-id and
+  #   comparator-group-id. Do NOT point both PICO arms at the same intervention-group
+  #   with only a comment — the test contrast must live in the structured fields.
+  # NOTE ON THE COMPARATOR: in a diagnostic PICO the comparator is a REFERENCE
+  #   STANDARD (the usual/SOC test strategy). It is never empty. "No comparator"
+  #   means you have not identified the SOC test strategy yet.
+
+  - id: PICO-  # Format: PICO-<ShortUniqueName>
+    # COMMENT: Note desired follow-up duration and study design from PICO
+    #   table here as a comment, e.g.:
+    #   # Desired follow-up: X years; required design: RCT double-blind
+    population-ids: []
+    intervention-group-id:
+    comparator-group-id:
+    outcome-group-ids: []
+
+
+# ============================================================
+intervention-indication-combination-assessments:
+  # DEFINITION: The core assessment linking intervention to indication.
+  #   One per intervention-indication combination the advisory assesses.
+  # SOURCE: Conclusion of farmacotherapeutisch rapport and adviesbrief.
+  # PITFALL: conclusion-text may differ slightly between the
+  #   farmacotherapeutisch rapport and the adviesbrief. Use the
+  #   farmacotherapeutisch rapport as primary source.
+  #   In older advisories, the conclusion may not be structured as a
+  #   formal "eindconclusie" paragraph.
+  #
+  # ---- ROLES: PRIMARY INTERVENTION vs LINKED DIAGNOSTIC ----
+  # Some advisories assess, in the SAME bundle, a diagnostic test that CONDITIONS
+  #   the drug — it selects which patients are eligible. Typically documented in a
+  #   separate sub-report ("Verkennende analyse <biomarker> diagnostiek").
+  # Such a diagnostic gets its OWN IICAssessment entry here, with
+  #   iic-role: linked-diagnostic and depends-on-iic-id pointing at the drug.
+  # WHY ITS OWN IIC (rather than nested inside the drug's): it carries the same
+  #   information any assessment carries — its own PICO, its own evidence, its own
+  #   outcomes, its own reassessment triggers. Nesting it would duplicate all of
+  #   those fields in a second place. The dependency on the drug is expressed by
+  #   REFERENCE (depends-on-iic-id), which is how every other relation in this model
+  #   works. (Rationale: see companion .md, §2.2.)
+  # WHAT IS DIFFERENT is its POLICY MEANING, not its structure: ZIN issues NO
+  #   Positive/Negative package advice on the test. Three fields are therefore
+  #   REQUIRED-EMPTY for a linked diagnostic (see the conditional rules below).
+
+  - id: IICAssessment-  # Format: IICAssessment-<ShortUniqueName>
+
+    iic-role: primary-intervention
+    # DEFINITION: The role this assessment plays in the advisory.
+    #   primary-intervention -> the intervention the advisory is ABOUT (drug,
+    #                           procedure, care programme). This is the DEFAULT.
+    #   linked-diagnostic    -> a test that CONDITIONS a primary intervention and is
+    #                           assessed in the same bundle, but receives NO
+    #                           Positive/Negative package advice of its own.
+    # PITFALL: do not use linked-diagnostic for a test that the advisory assesses on
+    #   its own merits with its own conclusion — that is a primary-intervention.
+    #
+    # CONSEQUENCE MAP — setting iic-role: linked-diagnostic commits you to ALL of these.
+    #   Read this before filling anything else for a diagnostic; they are not independent
+    #   choices and half of them are easy to miss:
+    #     IIC   : assessment-type EMPTY (rule 1) · conclusion EMPTY + conclusion-type
+    #             filled (rule 2) · cost-effective usually EMPTY · depends-on-iic-id set
+    #     emsmp : relative-effectiveness EMPTY (rule 3) · adheres-to-emsmps False ·
+    #             basis-uitkomst: primary, with the ACCURACY outcome as decision-relevant
+    #     PICO  : a test-treat PICO with TWO genuinely different intervention-groups
+    #     SLR   : its own SLR -> its own LRL -> the diagnostic key papers
+    #     bia-id: usually EMPTY (test costs sit in the drug's BIA as their own
+    #             CostEstimation)
+
+    depends-on-iic-id:
+    # REQUIRED when iic-role: linked-diagnostic — the id of the IICAssessment this
+    #   diagnostic conditions. LEAVE EMPTY for primary-intervention.
+    # BACKGROUND: policy makes a test assessment CONDITIONAL on the treatment: a test
+    #   is only worth assessing once the therapy it selects for is established as
+    #   effective. This field records that dependency.
+    # PITFALL: this is a dependency, not a parent. Direction matters: the DIAGNOSTIC
+    #   points at the DRUG, never the other way round.
+
+    assessment-type:  # Initial, Reassessment, Indication extension, or Indication broadening
+    # PITFALL: this is the ASSESSMENT type, not the procedural route. Words the advisory
+    #   uses for the PROCESS — 'sluis', 'pakketsluis', 'voorwaardelijke toelating' — are
+    #   NOT values here. Ask what the assessment DOES to the intervention-indication pair:
+    #   first assessment (Initial), re-run of an earlier one (Reassessment), new indication
+    #   for an already assessed drug (Indication extension), or widening of an existing
+    #   indication (Indication broadening)? Sluis-status belongs in
+    #   package-statement.package-type-medication-subtype.
+    # CONDITIONAL RULE 1: LEAVE EMPTY when iic-role: linked-diagnostic. The advisory
+    #   does not assign the test an initial/reassessment/extension status. Do NOT
+    #   invent one.
+
+    intervention-id:
+    # For a linked diagnostic: the test-guided treatment strategy that the test
+    #   enables (e.g. "<drug> guided by <reference test>").
+    indication-ids: []
+    # List of Population IDs (defined above) — populations serve as the
+    #   indications assessed for this intervention. Do NOT invent a separate
+    #   indication entity. A linked diagnostic usually shares the drug's population.
+    emsmp-id:
+    bia-id:  # Optional. Remove line if no BIA applies to this IIC.
+    au-id:   # Optional. Remove line if no appropriate-use section applies.
+    #   A linked diagnostic often SHARES the drug's appropriate-use entry (the test
+    #   condition is one of the gepast-gebruik agreements). Referencing the same
+    #   AU id from both IICs is correct.
+
+    conclusion:  # Positive or Negative
+    # CONDITIONAL RULE 2: LEAVE EMPTY when iic-role: linked-diagnostic, and fill
+    #   conclusion-type instead. ZIN does not issue a Positive/Negative verdict on
+    #   the test. Forcing one here fabricates a judgement that was never made.
+
+    conclusion-type:
+    # REQUIRED when `conclusion` is empty (i.e. for a linked diagnostic). NON-BINARY.
+    #   condition-on-intervention -> only test X qualifies: a usage CONDITION on the
+    #                                drug ("vooralsnog alleen test X aangewezen, tot ...")
+    #   no-separate-advice        -> assessed, but explicitly no advice of its own
+    #   inconclusive              -> cannot yet determine which test is best
+    # PITFALL: pick the value the report's OPERATIVE sentence supports — the one that
+    #   states what must happen in practice. A report may ALSO say it cannot yet
+    #   determine the best test; that observation does not override an operative
+    #   condition if one is given. Do not upgrade "inconclusive about the best test"
+    #   into an endorsement of any test.
+    # LEAVE EMPTY for primary-intervention.
+
+    conclusion-text:
+    # Full Dutch conclusion text. Source: eindconclusie farmacotherapeutisch
+    #   rapport and/or adviesbrief. Quote verbatim where possible.
+    # For a linked diagnostic: quote the practice CONDITION from the diagnostic
+    #   sub-report's "Slotsom" ("vooralsnog alleen test X aangewezen, tot hoge
+    #   concordantie ..."), including any numeric threshold stated.
+
+    cost-effective:  # True, False, or inconclusive
+    # Source: conclusion of farmaco-economisch rapport.
+    # Use 'inconclusive' when the advisory states cost-effectiveness could
+    # not be determined. Do NOT code that as False — False is a different claim
+    # (it asserts the intervention is not cost-effective).
+    # PITFALL — criticism of the MODEL is not a verdict on the INTERVENTION. An advisory
+    #   may reject the manufacturer's economic model as unreliable AND still conclude the
+    #   ICER lies far above the reference value. The first is a statement about evidence
+    #   QUALITY; the second is the OUTCOME. Code the outcome. Use 'inconclusive' only when
+    #   the advisory ITSELF declines to reach a cost-effectiveness conclusion — not merely
+    #   because it distrusts the submitted model.
+    # LEAVE EMPTY for a linked diagnostic unless the test itself was subjected to a
+    #   cost-effectiveness analysis (rare).
+
+    managed-entry-agreement-text:
+    # Leave empty or remove line if not applicable.
+
+    # ---- DIAGNOSTIC FIELDS (fill ONLY when iic-role: linked-diagnostic) ----
+    diagnostic-role:
+    # What the test does for the intervention. E.g. patient-selection /
+    #   companion-diagnostic / response-monitoring.
+
+    assessment-framing:
+    # How ZIN positioned the evaluation:
+    #   exploratory-risk-based -> a "verkennende analyse" under risicogericht
+    #                             pakketbeheer. NO formal SvWP verdict on the test.
+    #   formal-svwp            -> a full stand-van-wetenschap-en-praktijk assessment
+    #                             of the test itself.
+    # SOURCE: the diagnostic report's "Aanleiding"/framing section — it usually says
+    #   which of the two it is, in so many words.
+    # BACKGROUND (why this field exists): medical tests sit in the OPEN system. Most
+    #   tests are never pre-tested by ZIN; compliance with SvWP is silently assumed and
+    #   the professional field is trusted. A ZIN assessment of a test is an EVENT
+    #   triggered by risk — not a property every test has. This field records which
+    #   event occurred, so that "no formal verdict" is stated rather than implied.
+
+    reference-test:
+    # The test used in the pivotal effectiveness trial — the de-facto standard the
+    #   others are compared against. It carries the EVIDENCE BRIDGE to the trial:
+    #   the proven health gain was demonstrated in patients IT selected.
+
+    comparator-tests: []
+    # Other tests evaluated against the reference (the SOC tests in practice).
+    #   List as text.
+
+
+# ============================================================
+emsmps:
+  # DEFINITION: Stand van de Wetenschap en Praktijk — the evidence-based
+  #   effectiveness assessment. One EMSMP per IIC Assessment (including per
+  #   linked-diagnostic IIC).
+  # SOURCE: Farmacotherapeutisch rapport, main body: gunstige effecten,
+  #   ongunstige effecten, and overall conclusion sections. For a linked
+  #   diagnostic: the diagnostic sub-report's results and "Slotsom".
+  # PITFALL: relative-effectiveness is a binary field (Positive/Negative/Equal).
+  #   It cannot express nuance such as "positive on surrogate, primary outcome
+  #   immature". Use the fields below for this nuance.
+
+  - id: EMSMP-  # Format: EMSMP-<ShortUniqueName>
+    title:
+    picots-id:
+    slr-id:
+    outcome-measurement-ids: []
+
+    relative-effectiveness:  # Positive, Negative, or Equal
+    # CONDITIONAL RULE 3: LEAVE EMPTY when this emsmp belongs to an IIC with
+    #   iic-role: linked-diagnostic AND assessment-framing: exploratory-risk-based.
+    #   ZIN made no SvWP judgement on the test; an entered Positive/Negative would
+    #   fabricate one. (If assessment-framing is formal-svwp, DO fill it.)
+    adheres-to-emsmps:  # Boolean: True or False
+    # Same conditional logic: False when no SvWP assessment of the test was made.
+
+    # Surrogate-based assessment fields
+    # DEFINITION: Captures whether the positive assessment rests on a
+    #   surrogate outcome and what conditions would trigger reassessment.
+    # SOURCE: farmacotherapeutisch rapport results section (GRADE conclusions),
+    #   adviesbrief evaluation/monitoring paragraph, ACP committee advice
+    #   (often at end of document bundle), EMA obligations to manufacturer.
+    # PITFALL: The reassessment condition may be stated at multiple levels
+    #   of detail across different sub-documents. The most specific version
+    #   (data maturity threshold + deadline) is typically in the
+    #   farmacotherapeutisch rapport or EPAR reference. The broader trigger
+    #   list is often in the ACP advice or adviesbrief evaluation section.
+    #   In older advisories these fields will often be absent entirely.
+    basis-uitkomst:  # 'surrogate' or 'primary'
+    # DEFINITION: which KIND of outcome the assessment's conclusion rests on.
+    #   surrogate -> the decisive outcome is a stand-in for a TRUE outcome that is
+    #                not yet known (e.g. PFS while OS is immature). The surrogate
+    #                ESTIMATES an unknown quantity.
+    #   primary   -> the assessment's conclusion rests on the decision-relevant
+    #                outcome itself.
+    # DIAGNOSTIC ASSESSMENTS: use 'primary', with the ACCURACY outcome as the
+    #   decision-relevant outcome (concordance/sensitivity/specificity).
+    # PITFALL — do NOT code accuracy as a surrogate for survival. It is tempting
+    #   (accuracy feels "indirect") but it is wrong:
+    #     - A surrogate estimates an outcome that is UNKNOWN (immature OS).
+    #     - For a companion diagnostic the health gain is KNOWN and PROVEN — in the
+    #       patients the REFERENCE TEST selected. Accuracy does not estimate that
+    #       gain; it tests whether the proven gain TRANSFERS to patients selected by
+    #       a different test. That is an indirectness / transferability question
+    #       (GRADE's own term for it), not surrogacy.
+    #   Policy backs this up: a test is only assessed once the therapy is already
+    #   established as effective — so the effectiveness question is already CLOSED,
+    #   and accuracy IS the decision-relevant outcome of the test assessment.
+    surrogaat-voor-uitkomst-id:  # Outcome ID of the primary outcome
+    # LEAVE EMPTY when basis-uitkomst is 'primary'.
+
+    # Reassessment triggers with type
+    # DEFINITION: Conditions stated in the advisory that would prompt ZIN to
+    #   reconsider this assessment. Each trigger is free text PLUS a `type` that
+    #   records WHAT KIND of development would activate it. The type is what lets
+    #   the signaling pipeline decide whether PubMed is even a plausible source
+    #   for the trigger (literature triggers are; the others are watched elsewhere).
+    # SOURCE: ACP advice and adviesbrief evaluation/monitoring section. The
+    #   reassessment-condition below (herbeoordelingsconditie) is usually the
+    #   most specific literatuur-type trigger; the broader list is often in the
+    #   ACP advies or the adviesbrief §Evaluatie. For a linked diagnostic: the
+    #   diagnostic sub-report's "Slotsom"/"Overwegingen".
+    #
+    # HOW TO TYPE A TRIGGER — the decisive question:
+    #   NOT "could a publication report on this?" (almost anything can be published)
+    #   BUT "would a publication about this move ZIN to act?"
+    #   If the advisory hands the question to the professional field — a CieBOD /
+    #   CieMKNT advice, a quality standard, national harmonisation, EQA results —
+    #   then the type is `beroepsgroep`, EVEN IF the underlying evidence appears in
+    #   journals. ZIN has no action pending there; the professional bodies do.
+    #
+    # PITFALL: Determine `type` from WHERE the trigger sits in the advisory and
+    #   what it commits ZIN to monitor — NOT from how the trigger text sounds.
+    #   A trigger can read clinically (e.g. "results of first-line indication
+    #   extension") yet be a registratie trigger, because the advisory placed it
+    #   among market-authorisation/monitoring commitments, not among the
+    #   evidence-maturity conditions. Getting this wrong makes the pipeline treat
+    #   a registration trigger as a literature trigger and over-flag PubMed hits.
+    #   The advisory's section is the authority; the wording is not.
+    #   If a trigger genuinely fits none of the named types, use 'overig' rather
+    #   than forcing a fit or leaving type empty.
+    # GRANULARITY — one trigger per INDEPENDENTLY MONITORABLE EVENT. Do not merge several
+    #   conditions into one composite label just because they sit in the same sentence.
+    #   Test: could one of them occur WITHOUT the others, and would that alone be worth
+    #   noticing? Then it is its own trigger. A merged trigger cannot fire partially, and
+    #   the events it hides become invisible. Conversely, do not split one event into
+    #   restatements of itself.
+    # MANAGED-ENTRY / FINANCIAL ARRANGEMENT — a price agreement that carries a DURATION or a
+    #   REVIEW MOMENT ("financieel arrangement met een doorlooptijd van maximaal N jaar",
+    #   "herziening zodra de werkelijke budgetimpact duidelijk is") is not only
+    #   managed-entry-agreement-text. It is ALSO a `zorggebruik` trigger: the arrangement expires,
+    #   and it is renegotiated on real-world utilisation and budget-impact data. Recording it only
+    #   in the text field hides a DATED, SCHEDULED reassessment moment from the pipeline.
+    #   Overlap between the two fields is INTENDED here, not duplication: the text field carries the
+    #   agreement, the trigger carries the moment it comes up for review.
+    herbeoordelingsconditie:
+    # Free text. E.g. "OS-data ≥60% matuur; EMA-deadline uiterlijk eind YYYY"
+    #   For a diagnostic, this is typically the practice condition INCLUDING any
+    #   numeric threshold ("concordantie ≥95% met de referentietest, via EQA").
+    herbeoordelingstriggers: []
+    # List of trigger entries. Source: ACP advice and adviesbrief.
+    # Each entry:
+    #   - label: "<trigger condition from the advisory>"
+    #     type:  # literatuur | registratie | zorggebruik | beroepsgroep | overig
+    #   `type` is REQUIRED (use 'overig' as the explicit fallback).
+    #   literatuur   -> new published evidence would activate it (e.g. mature OS
+    #                   data, long-term outcome publication, new RCT). PubMed IS
+    #                   a plausible source.
+    #   registratie  -> a regulatory/market-authorisation event would activate it
+    #                   (e.g. indication extension granted, new comparator drug
+    #                   authorised). PubMed is NOT the natural source.
+    #   zorggebruik  -> real-world utilisation/cost/treatment-duration signals
+    #                   would activate it. PubMed is NOT the natural source.
+    #   beroepsgroep -> an act of the professional field would activate it: a
+    #                   CieBOD/CieMKNT advice, a quality standard, national
+    #                   standardisation/harmonisation, EQA (external quality
+    #                   assurance) results. The advisory DEFERS the question to the
+    #                   professional bodies; ZIN has no pending action. PubMed is NOT
+    #                   the natural source — these are watched via the professional
+    #                   bodies' own publications (e.g. NVVP/CieBOD).
+    #   overig       -> none of the above fits; explicit fallback, never blank.
+    # NOTE: it is entirely possible — and correct — for a diagnostic emsmp to end up
+    #   with ZERO literatuur triggers. Do not manufacture one to fill the gap.
+
+
+# ============================================================
+systematic-literature-reviews:
+  # DEFINITION: The systematic literature review underpinning the EMSMP.
+  # SOURCE: Farmacotherapeutisch rapport, search strategy section and
+  #   literature sections. Bijlage 1 (zoekstrategie). For a linked diagnostic:
+  #   the diagnostic sub-report's own literature section, if separable.
+  # PITFALL: Besides the formal literature search, advisories routinely
+  #   use additional sources (SmPC, EPAR, clinical guidelines) that are
+  #   NOT captured in this structure. Note their use in a comment.
+  #   In older advisories, a formal PRISMA-structured SLR may be absent.
+  # EVERY SLR MUST POINT AT A LITERATURE-REFERENCE-LIST. An SLR with an empty
+  #   literature-reference-list is dangling: its publications become unreachable.
+  #   This matters most for a diagnostic SLR — see literature-reference-lists below.
+
+  - id: SLR-  # Format: SLR-<ShortUniqueName>
+    title:
+    literature-searches: []
+    literature-reference-list:
+
+
+# ============================================================
+literature-searches:
+  # DEFINITION: Individual search actions in a specific database at
+  #   a specific date.
+  # SOURCE: Bijlage 1 (zoekstrategie) of farmacotherapeutisch rapport.
+  # PITFALL: The exact search date is often stated only as a month
+  #   ("october 2019"), not a full date. Use the first day of the month
+  #   as a proxy and note the approximation in a comment.
+  #   In older advisories, formal search strings may not be documented.
+
+  - id: LS-  # Format: LS-<Source>-<Date>
+    label:      # Dutch description of the search action
+    end-time:   # Format: YYYY-MM-DDT00:00:00
+    target-db:  # E.g. PubMed, Embase, Cochrane
+    target-url:
+    evidence-type:  # RCT, Clinical Trial, or Systematic Review
+    query: >-
+      # Exact search string. Source: bijlage zoekstrategie.
+    range-beginning:  # Start year restriction. Optional.
+    range-end:        # End year restriction. Optional.
+
+
+# ============================================================
+publications:
+  # DEFINITION: Key publications referenced in the advisory.
+  # SOURCE: Reference list of farmacotherapeutisch rapport.
+  #   For included studies: bijlage 2 (overzicht geïncludeerde studies).
+  #   For a linked diagnostic: the reference list of the diagnostic sub-report.
+  # PITFALL: Full author lists are often not reproduced in the advisory.
+  #   Use "et al." for truncated lists and note this.
+  #   The advisory may cite a paper as "Author Year" with different years
+  #   for the same paper (e.g. citing 2018 data update as "Author 2019").
+  #   Use the actual publication year of the journal article.
+  # TITLE: copy the title VERBATIM as printed in the reference list (original
+  #   language, exact wording). Do NOT translate or paraphrase — verbatim titles are
+  #   what enable title-based retrieval and retraction-matching in the pipeline.
+  #   This matters most for diagnostic papers, which often do not name the drug and
+  #   are only findable by their exact title.
+
+  - id: JournalArticle-  # Format: JournalArticle-<ShortUniqueName>
+    type:     # JournalArticle or Manuscript
+    title:
+    authors: []
+    journal:
+    year:
+    issue:
+    pages:
+    # Additional identifiers for pipeline use
+    # DEFINITION: Stable identifiers enabling direct API access to
+    #   abstract text and metadata for the signaling pipeline.
+    # SOURCE: DOI from journal article or reference list. PMID from
+    #   PubMed lookup. OpenAlex ID from OpenAlex API lookup.
+    # PITFALL: Check the reference list FIRST — the DOI is often stated there
+    #   (do not assume it must be looked up). If the DOI is present, PMID MAY be
+    #   derived by DOI resolution (deterministic: one identifier -> another). If the
+    #   DOI is absent, leave PMID for the separate enrichment step ([TE-VERRIJKEN]).
+    #   NEVER look up a PMID from free text (title/authors) — that is guessing, not
+    #   resolution.
+    #   doi is the most stable identifier (publisher-independent).
+    #   pmid enables direct PubMed API calls for abstract retrieval.
+    #   openalex-id enables fallback retrieval and citation network access.
+    # Retraction status is NOT a conversion field: at the moment an advisory is
+    #   published no retraction is known. Do not add retraction info here at
+    #   conversion time — the signaling pipeline determines it later, out of band.
+    doi:          # Primary identifier. Format: "10.xxxx/xxxxx"
+    pmid:         # Optional. Format: "XXXXXXXX" (numeric string)
+    openalex-id:  # Optional. Format: "WXXXXXXXXXX"
+
+
+# ============================================================
+literature-reference-lists:
+  # DEFINITION: The final reference list used in a specific IIC assessment.
+  # SOURCE: "Literatuur" section at end of farmacotherapeutisch rapport; for a
+  #   linked diagnostic, the reference list of the diagnostic sub-report.
+  # PITFALL: This list includes background references, guidelines, and
+  #   regulatory documents, not only included studies. For signaling
+  #   pipeline purposes, only the included study publications need to be
+  #   listed under "references". Note total count for completeness.
+  # CREATE A SEPARATE LRL PER SLR. If the advisory contains a diagnostic
+  #   sub-report with its own key papers, those papers belong in their OWN LRL,
+  #   referenced from the diagnostic SLR. This is what makes them reachable at all.
+  # KEY FOR THE SIGNALING PIPELINE: many diagnostic papers — in particular studies
+  #   comparing SOC tests AGAINST the reference test — do not mention the drug, so the
+  #   drug's retrieval will never surface them. (Validation studies OF the reference test
+  #   often DO name the drug and the pivotal trial, since they exist for that trial. The
+  #   two kinds behave differently; do not assume either way.) Carrying these papers here,
+  #   with pmid/doi, is what makes retraction-checking and targeted monitoring possible.
+
+  - id: LRL-  # Format: LRL-<ShortUniqueName>
+    title:
+    number-of-items:
+    # The TOTAL number of entries in the source document's reference list — count the
+    #   numbered references in the PDF. This is deliberately NOT len(references) below:
+    #   `references` holds only the clinically relevant subset the pipeline monitors. The
+    #   two numbers SHOULD differ, and the gap is informative. If you find yourself writing
+    #   the same number twice, re-read this line.
+    # WHICH "twice": the warning above is about this number equalling len(references)
+    #   WITHIN one list. Repetition ACROSS lists is a different case, and it is CORRECT:
+    #   a bundled advisory has ONE running reference list, so every reference list in that
+    #   advisory carries the SAME document-wide count, however many searches it ran.
+    # Never sum this field across lists — that multiplies the document total by the number
+    #   of assessments.
+    references: []    # List only clinically relevant publication IDs here
+
+
+# ============================================================
+studies:
+  # DEFINITION: Clinical studies referenced in the advisory, linked to
+  #   outcome measurements through cohorts.
+  # Include the studies the advisory treats as decisive for the conclusion
+  #   (the ones it flags as strongly matching the PICO), not necessarily every
+  #   study the SLR included. These are what the pipeline monitors.
+  # SOURCE: Bijlage 2 (overzicht geïncludeerde studies) and study
+  #   description in the farmacotherapeutisch rapport results section.
+  # PITFALL: The ClinicalTrials.gov registry ID (NCT number) is frequently
+  #   absent from the advisory PDF. Look it up via ClinicalTrials.gov
+  #   or the publication. Similarly, study start date is often not stated;
+  #   the data cut-off date is more reliably available.
+  #   In older advisories, registry IDs may not exist (pre-2000 trials).
+
+  - id: Study-  # Format: Study-<ShortUniqueName>
+    title:
+    short-title:   # Acronym or short name, e.g. SOLO1
+    registry:      # E.g. ClinicalTrials.gov
+    registry-id:   # E.g. NCT01844986. Often absent from advisory — note this.
+    start-date:    # Format: YYYY-MM-DD. Often absent — note this.
+    end-date:      # Data cut-off or completion date. Format: YYYY-MM-DD.
+    study-type:    # E.g. Interventional
+    phase:         # E.g. Phase 3
+    sponsor:
+    publication-ids: []
+
+
+# ============================================================
+cohorts:
+  # DEFINITION: Treatment arms within a study, linked to outcome measurements.
+  # SOURCE: Study description in farmacotherapeutisch rapport.
+  #   Bijlage 2 (overzicht geïncludeerde studies), "aantal patiënten" column.
+  # PITFALL: Note ITT vs safety analysis population differences in comments.
+  #   For outcome measurements with substantial missing data (e.g. QoL),
+  #   note the effective analysis n separately in the outcome-measurement entry.
+  # Diagnostic accuracy measurements do NOT use cohorts — see outcome-measurements.
+
+  - id: Cohort-  # Format: Cohort-<StudyName>-<Arm>
+    study-id:
+    intervention-group-id:
+
+
+# ============================================================
+outcome-measurements:
+  # DEFINITION: Actual effect sizes and statistics from the studies,
+  #   linked to outcomes and cohorts.
+  # SOURCE: Results sections of farmacotherapeutisch rapport.
+  #   Tables and GRADE evidence profiles (bijlage 7).
+  #   Multiple outcomes may appear in different subsections:
+  #   efficacy outcomes in "gunstige effecten", safety in "ongunstige effecten",
+  #   QoL in a separate subsection. Check all subsections.
+  # PITFALL: The same outcome may be reported with multiple statistics
+  #   (HR and absolute difference). Create separate entries for each.
+  #   Confidence intervals are not always reported for all statistics.
+  #   Unit field currently supports: %, ml, months — not score points.
+  #   For scale-based outcomes (e.g. QoL), leave unit blank and note
+  #   the scale in a comment.
+  # A standardized mean difference (SMD) is dimensionless — leave unit blank;
+  #   never label it months or % (a filled YAML did this by mistake).
+  # PER-STUDY vs POOLED: record per-study between-arm effects here EVEN when
+  #   the review could not pool them (heterogeneous studies). "Not pooled" does NOT
+  #   mean "no effect size" — individual studies still report between-arm effects,
+  #   one entry per study x outcome x time point. Do not leave this section empty
+  #   just because there is no single pooled estimate.
+  # CONSISTENCY: any numeric effect (SMD/MD/HR + CI) cited in the IIC
+  #   conclusion-text or the effectiveness section MUST also appear here as an
+  #   OutcomeMeasurement. If you quoted it in the conclusion, capture it here.
+
+  - id: OutcomeMeasurement-
+    # Format: OutcomeMeasurement-<OutcomeName>-<StatType>
+    type:
+    # Options: standardized mean difference, mean difference, hazard ratio,
+    # risk ratio, absolute difference, median difference
+    # diagnostic-accuracy types (use with Diagnostic Test
+    # Accuracy outcomes): concordance, overall percent agreement, sensitivity,
+    # specificity, positive predictive value, negative predictive value,
+    # cohens kappa, proportion-selected
+    # PITFALL — an available enum value IS an instruction to use it. If the source reports
+    #   a quantity for which a type exists, it becomes an OutcomeMeasurement entry; it does
+    #   not go in a comment. This applies especially to `proportion-selected` (the share of
+    #   patients a test classifies as marker-positive) and `cohens kappa`. A difference in
+    #   proportion-selected between two tests is often THE number the whole risk assessment
+    #   turns on — e.g. one test selecting nearly twice as many patients as another. Record
+    #   one entry per test and let the ratio be derivable. Do not leave it as prose.
+    outcome-id:
+    cohort-ids: []
+    value:
+    unit:   # %, ml, months — or leave blank (see pitfall above)
+    ci-lower:
+    ci-upper:
+
+    # Diagnostic comparison fields
+    # DEFINITION: For diagnostic-accuracy measurements the "cohorts" (treatment
+    #   arms) concept does not apply; the measurement is over a sample set with
+    #   two tests. Use these fields instead (leave cohort-ids empty).
+    # SOURCE: the diagnostic study as cited in the verkennende analyse.
+    # Record ONLY accuracy/concordance figures explicitly stated in the source.
+    #   Do NOT derive a value for a dichotomy the source did not report numerically
+    #   (e.g. inventing a neg/pos concordance % when only overall concordance is
+    #   given). A missing measurement is left out; it is never back-computed.
+    reference-test:   # The standard the index test is compared against.
+    index-test:       # The test being evaluated.
+    sample-n:         # Number of samples/cases the measure is based on.
+    # PITFALL: fill BOTH reference-test and index-test, and get the direction right.
+    #   Which test is being SCRUTINISED and which is the YARDSTICK is a substantive
+    #   distinction, not bookkeeping.
+    # index-test and reference-test MAY BE THE SAME TEST. An analytical-validation or
+    #   reproducibility study evaluates the reference test AGAINST ITSELF (antibody lots,
+    #   kit lots, instruments, day-to-day runs, inter-laboratory agreement). Fill it that
+    #   way, and use the free text to name the facet compared (e.g. index: '<test> —
+    #   inter-lab repeat', reference: '<test> — reference run'). Do NOT force such a study
+    #   into a two-different-tests shape; that misrepresents what was measured.
+    #   WHY IT MATTERS: a study that undermines the REFERENCE test undermines the bridge to
+    #   the pivotal trial's evidence — a study comparing OTHER tests against it does not.
+
+    # Subset analysis fields
+    # DEFINITION: Flags when an outcome measurement is based on a subset
+    #   of the full ITT cohort, with reason.
+    # SOURCE: Methods/results text in farmacotherapeutisch rapport.
+    #   GRADE evidence profile (bijlage 7) notes missing data.
+    # PITFALL: QoL outcomes frequently have incomplete follow-up data.
+    #   Planned subgroup analyses are pre-specified in the protocol;
+    #   incomplete data analyses are a data quality limitation.
+    #   Both reduce reliability but for different reasons.
+    # RECORD PRE-SPECIFIED SUBGROUPS AS THEIR OWN MEASUREMENTS. If the advisory reports an
+    #   effect separately for pre-specified subgroups (e.g. hormone-receptor-positive and
+    #   -negative cohorts) AND those subgroups carry weight in the reasoning or in the
+    #   conclusion, create one OutcomeMeasurement per subgroup, with is-subset-analyse: True
+    #   and subset-type: planned-subgroup. Recording only the total-population effect
+    #   silently discards the subgroup structure the assessment actually rests on.
+    is-subset-analyse:  # Boolean: True or False
+    subset-type:        # 'incomplete-data' or 'planned-subgroup'
+    subset-toelichting: # Free text explanation
+
+
+# ============================================================
+bias:
+  # DEFINITION: Budget Impact Analysis section. Usually one BIA per advisory,
+  #   attached to the primary-intervention IIC.
+  #   Built from interventions x volumes x tariffs (the intervention cost fields
+  #   feed this section).
+  # SOURCE: Separate BIA sub-document (budget impact analyse rapport).
+  # PITFALL: In older advisories, BIA may be integrated in the main
+  #   farmacotherapeutisch rapport rather than a separate document.
+  # SIGNAL, DON'T FABRICATE: if the budget impact does not map cleanly onto
+  #   Current/Substitution/Total (e.g. already-reimbursed care with a net impact of
+  #   ~0, or only gross costs without a scenario breakdown), do NOT invent values to
+  #   force the structure to fit. Fill what the document clearly supports, mark the
+  #   BIA as incomplete/uncertain, and note which data are missing. A flagged gap is
+  #   better than a fabricated number.
+  # BUT: "flag the gap" applies only when the data are GENUINELY absent. If the
+  #   BIA sub-document contains a full per-year table (patient numbers +
+  #   macrokostenbeslag / meerkosten per year), fill the COMPLETE series from that
+  #   table. Do not stop at the adviesbrief's rounded summary figures (e.g.
+  #   "€40,6 mln in jaar 3") and leave earlier years empty — check the BIA's own
+  #   "Budgetimpact"/"macrokostenbeslag" table first.
+  # DIAGNOSTIC COSTS: when the BIA reports the companion-test budget impact as part
+  #   of the drug's BIA (the usual case), keep it there as its own CostEstimation
+  #   (see cost-estimations) and leave the diagnostic IIC's bia-id EMPTY. Do not
+  #   duplicate the BIA.
+
+  - id: BIA-  # Format: BIA-<ShortUniqueName>
+    title:
+    trend-assumption-id:
+    cost-estimation-ids: []
+
+
+# ============================================================
+scenarios:
+  # DEFINITION: Scenarios modelled in the BIA.
+  # SOURCE: BIA rapport, scenario description sections.
+
+  - id: Scenario-
+    title:
+    description:
+
+
+# ============================================================
+trend-assumptions:
+  # DEFINITION: Patient number and market penetration assumptions
+  #   underlying the BIA.
+  # SOURCE: BIA rapport, sections on patiëntenpopulatie and marktpenetratie.
+  # PITFALL: Patient numbers may refer to incident (new) patients per year,
+  #   not total prevalent population. Clarify in a comment.
+
+  - id: TrendAssumption-
+    title:
+    scenario-id:
+    time-points: []     # E.g. [1, 2, 3] for years 1, 2, 3
+    time-unit:          # E.g. year
+    number-of-patients: []
+    intervention-market-penetration: []
+
+
+# ============================================================
+cost-estimations:
+  # DEFINITION: Actual cost estimates for each scenario and observation type.
+  # SOURCE: BIA rapport, cost tables (usually near end of document).
+  # PITFALL: The four observation types map to BIA table columns as follows:
+  #   Current     = costs WITHOUT new intervention (comparator world)
+  #   Substitution = costs WITH new intervention (intervention world)
+  #   Additional  = only use when intervention is ADDED to existing treatment,
+  #                 not when it replaces it. Leave empty lists if not applicable.
+  #   Total       = net budget impact = Substitution MINUS Current
+  #                 This equals the "meerkosten" column in the BIA table.
+  #                 Do NOT sum Current + Substitution — that is a double count.
+  # Note: The cohort model in BIAs is often dynamic (incident cohorts
+  #   accumulate over years). The template represents a simplified snapshot
+  #   per year. Document cohort structure in the scenario description.
+  # DIAGNOSTIC COSTS (companion-diagnostic cases): if the BIA reports a
+  #   SEPARATELY identified diagnostic/companion-test budget impact (e.g. a
+  #   "Budgetimpact diagnostiek" line or bijlage), model it as its OWN
+  #   CostEstimation (with its own scenario) using observation-group type
+  #   Additional — do not fold it into the drug's Current/Substitution/Total and do
+  #   not leave it as a comment. Link both cost-estimations from bias.cost-estimation-ids.
+
+  - id: CostEstimation-
+    title:
+    time-unit:
+    time-points: []
+    trend-assumption-id:
+    scenario-id:
+    observation-groups:
+
+      - type: Current
+        intervention-ids: []
+        number-of-patients: []
+        total-costs: []
+
+      - type: Substitution
+        intervention-ids: []
+        number-of-patients: []
+        total-costs: []
+
+      - type: Additional
+        # Leave empty lists if intervention substitutes rather than adds.
+        intervention-ids: []
+        number-of-patients: []
+        total-costs: []
+
+      - type: Total
+        # Net budget impact = meerkosten. Source: "meerkosten" column in BIA.
+        intervention-ids: []
+        number-of-patients: []
+        total-costs: []
+
+
+# ============================================================
+appropriate-use:
+  # DEFINITION: Gepast gebruik agreements or monitoring commitments.
+  # SOURCE: Adviesbrief "Gepast gebruik" and "Evaluatie" sections.
+  #   In some advisories, a formal separate gepast gebruik agreement
+  #   exists with professional bodies; in others only monitoring
+  #   commitments by ZIN are present.
+  # PITFALL: The "date" field implies a formal agreement date. When only
+  #   monitoring commitments exist (not a signed agreement), use the
+  #   adviesbrief date. The distinction between formal agreements and
+  #   monitoring intentions is politically sensitive and currently
+  #   not captured in the template structure.
+  #   In older advisories, this section may be absent entirely.
+  #   Remove the au-id reference from the IIC assessment if not applicable.
+  # A test-access condition ("only test X qualifies for now") belongs here as one
+  #   of the agreements, AND as the diagnostic IIC's conclusion-text. Both IICs may
+  #   reference the same AU id.
+
+  id: AU-  # Format: AU-<ShortUniqueName>
+  title:
+  date:  # Format: YYYY-MM-DD
+  agreements: []
+  # List of agreement descriptions in Dutch as text blocks.
+  # Include: access conditions, treatment duration agreements,
+  # monitoring commitments, and reassessment triggers.
