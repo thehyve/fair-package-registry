@@ -58,6 +58,21 @@ PACKAGE_STATEMENTS_IRI=https://w3id.org/zinl/package-statements
 
 all: $(PS_ONTOLOGY) $(TAXONOMY) $(all-package-statements)
 
+.PHONY: help
+
+help:
+	@echo "FAIR Package Registry - available make targets"
+	@echo ""
+	@echo "  make help                  Show this help message"
+	@echo "  make all                   Build ontology, taxonomy, and all package statements"
+	@echo "  make update-tsv-files      Regenerate TSV files from src/fair-package-registry.xlsx"
+	@echo "  make fpr-o.ttl             Build ontology (fpr-o.ttl)"
+	@echo "  make fpr-tax.ttl           Build taxonomy (fpr-tax.ttl)"
+	@echo "  make all-package-statements Build all example package statements"
+	@echo "  make aft_ps.ttl            Build AFT package statement"
+	@echo "  make mammaonco_ps.ttl      Build MammaOnco package statement"
+	@echo "  make trodelvy_ps.ttl       Build Trodelvy package statement"
+
 # # Todo: update
 # clean:
 # 	rm -f $(PS_ONTOLOGY) $(TAXONOMY)
